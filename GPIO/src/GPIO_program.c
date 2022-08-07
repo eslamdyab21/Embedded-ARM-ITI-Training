@@ -2,7 +2,7 @@
  * GPIO_program.c
  *
  *  Created on: Aug 4, 2022
- *      Author: Omar Gamal
+ *      Author: Eslam Dyab
  */
 
 #include "STD_TYPES.h"
@@ -84,28 +84,40 @@ void GPIO_voidSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8PinValue){
 	switch(Copy_u8Port){
 	      case GPIO_PORTA:
 		      if(Copy_u8PinValue){
-			      SET_BIT(REG_GPIO_PORTA->ODR,Copy_u8Pin);	// non-atomic access
-			      REG_GPIO_PORTA->BSRR = 0x00010001;		// atomic access
-		      }else
-			      CLR_BIT(REG_GPIO_PORTA->ODR,Copy_u8Pin);
+			      //SET_BIT(REG_GPIO_PORTA->ODR,Copy_u8Pin);	// non-atomic access
+			      REG_GPIO_PORTA->BSRR = 0x0001<<Copy_u8Pin;		// atomic access
+		      }else{
+			      //CLR_BIT(REG_GPIO_PORTA->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTA->BRR = 0x0001<<Copy_u8Pin;		// atomic access
+		      }
+
 
 		      break;
 
 
 	      case GPIO_PORTB:
-		      if(Copy_u8PinValue)
-			      SET_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
-		      else
-			      CLR_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
+		      if(Copy_u8PinValue){
+			      //SET_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTB->BSRR = 0x0001<<Copy_u8Pin;		// atomic access
+		      }
+		      else{
+			      //CLR_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTB->BRR = 0x0001<<Copy_u8Pin;		// atomic access
+		      }
 
 		      break;
 
 
 	      case GPIO_PORTC:
-		      if(Copy_u8PinValue)
-			      SET_BIT(REG_GPIO_PORTC->ODR,Copy_u8Pin);
-		      else
-			      CLR_BIT(REG_GPIO_PORTC->ODR,Copy_u8Pin);
+		      if(Copy_u8PinValue){
+			      //SET_BIT(REG_GPIO_PORTC->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTC->BRR = 0x0001<<Copy_u8Pin;		// atomic access
+		      }
+		      else{
+			      //CLR_BIT(REG_GPIO_PORTC->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTC->BRR = 0x0001<<Copy_u8Pin;		// atomic access
+
+		      }
 
 		      break;
 	      }

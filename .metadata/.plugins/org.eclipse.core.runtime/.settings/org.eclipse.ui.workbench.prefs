@@ -12,6 +12,7 @@ HYPERLINK_COLOR=111,197,238
 INCOMING_COLOR=31,179,235
 OUTGOING_COLOR=238,238,238
 RESOLVED_COLOR=108,210,17
+SAVE_AUTOMATICALLY=true
 eclipse.preferences.version=1
 org.eclipse.cdt.debug.ui.ModulesDetailPaneFont=1|Monospace|12.0|0|GTK|1|;
 org.eclipse.cdt.internal.ui.compare.AsmMergeViewer=1|Noto Sans|12.0|0|GTK|1|;

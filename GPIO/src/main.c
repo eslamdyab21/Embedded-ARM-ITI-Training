@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: Aug 4, 2022
- *      Author: Omar Gamal
+ *      Author: Eslam Dyab
  */
 
 #include "STD_TYPES.h"
@@ -16,6 +16,7 @@ int main(void)
 
 	RCC_voidInit();
 	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
+
 	GPIO_voidSetPinMode(GPIO_PORTA, 2, GPIO_PIN_MODE_PULLING_INPUT);
 	GPIO_voidSetPinValue(GPIO_PORTA, 2, GPIO_HIGH);
 

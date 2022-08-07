@@ -2,7 +2,7 @@
  * GPIO_interface.h
  *
  *  Created on: Aug 4, 2022
- *      Author: Omar Gamal
+ *      Author: Eslam Dyab
  */
 
 #ifndef GPIO_INTERFACE_H_

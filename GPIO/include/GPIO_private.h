@@ -2,7 +2,7 @@
  * GPIO_private.h
  *
  *  Created on: Aug 4, 2022
- *      Author: Omar Gamal
+ *      Author: Eslam Dyab
  */
 
 #ifndef GPIO_PRIVATE_H_
