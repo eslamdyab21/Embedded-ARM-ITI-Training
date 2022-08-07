@@ -12,6 +12,9 @@
 #include "Led_interface.h"
 
 u8 statue = GPIO_LOW;
+u16 tick_green=0;
+u16 tick_yellow=0;
+u16 tick_red=0;
 
 void Init(){
         RCC_voidInit();
@@ -32,37 +35,61 @@ void Init(){
       	GPIO_voidSetPinMode(GPIO_PORTB, 6, GPIO_PIN_MODE_GP_PP_2MHZ);
 }
 
-u8 Blink(u16 timeDelay, u16 *start_time){
-      //u16 i=0;
-      //for(i=0; i<timeDelay; i++ );
-      *start_time = *start_time+1;
-      if (*start_time >= timeDelay)
+u8 BlinkGreen(u16 timeDelay){
+
+      tick_green++;
+      if (tick_green >= timeDelay)
+	    return 1;
+      else
+	    return 0;
+}
+
+u8 BlinkYellow(u16 timeDelay){
+
+      tick_yellow++;
+      if (tick_yellow >= timeDelay)
+	    return 1;
+      else
+	    return 0;
+}
+
+u8 BlinkRed(u16 timeDelay){
+
+      tick_red++;
+      if (tick_red >= timeDelay)
 	    return 1;
       else
 	    return 0;
 }
 
 
-void BlinkLed(u8 Copy_u8Pin, u16 BlinkTime,u16 *start_time){
+void BlinkLed(u8 Copy_u8Pin, u16 BlinkTime){
 
-	if(Blink(BlinkTime, start_time)){
-		    if(statue == GPIO_LOW){
-			  GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_HIGH);
-			  statue = GPIO_HIGH;
+	switch(Copy_u8Pin){
+	      case GREEN_LED:
+		    if(BlinkGreen(BlinkTime)){
+			      GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, !GPIO_u8GetPinValue(GPIO_PORTA,Copy_u8Pin));
+			      tick_green= 0;
 		    }
-		    else{
-			  GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_LOW);
-			  statue = GPIO_LOW;
+		    break;
+
+
+	      case YELLOW_LED:
+		    if(BlinkYellow(BlinkTime)){
+			    GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, !GPIO_u8GetPinValue(GPIO_PORTA,Copy_u8Pin));
+			    tick_yellow= 0;
 		    }
-		    *start_time = 0;
+		    break;
+
+	      case RED_LED:
+		    if(BlinkRed(BlinkTime)){
+			  GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, !GPIO_u8GetPinValue(GPIO_PORTA,Copy_u8Pin));
+			  tick_red= 0;
+		    }
+		    break;
 	}
 
-	else{
-		    if(statue == GPIO_LOW)
-			GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_LOW);
-		   else
-			GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_HIGH);
-	}
+
 }
 
 
@@ -79,19 +106,19 @@ void SevenSegment_Update(u8 number){
 
 int main(void)
 {
-        u16 green_led_blink_time = 10*10000;
+        u16 green_led_blink_time = 30*10000;
         u16 yellow_led_blink_time = 3*10000;
-        u16 red_led_blink_time = 10*10000;
+        u16 red_led_blink_time = 30*10000;
 
-        u16 start_time=0;
+
         Init();
 
 	while(1){
 		    SevenSegment_Update(segmentNumber[3]);
 
-		    BlinkLed(GREEN_LED, green_led_blink_time,&start_time);
-		    //BlinkLed(YELLOW_LED, yellow_led_blink_time);
-		   //BlinkLed(RED_LED, red_led_blink_time);
+		    BlinkLed(GREEN_LED, green_led_blink_time);
+		    BlinkLed(YELLOW_LED, yellow_led_blink_time);
+		    BlinkLed(RED_LED, red_led_blink_time);
 
 	}
 

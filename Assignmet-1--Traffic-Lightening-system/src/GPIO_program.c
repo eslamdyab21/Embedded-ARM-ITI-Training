@@ -97,12 +97,12 @@ void GPIO_voidSetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8 Copy_u8PinValue){
 
 	      case GPIO_PORTB:
 		      if(Copy_u8PinValue){
-			      SET_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
-			      //REG_GPIO_PORTB->BSRR = 0x0001<<Copy_u8Pin;		// atomic access
+			     // SET_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTB->BSRR = 0x0001<<Copy_u8Pin;		// atomic access
 		      }
 		      else{
-			      CLR_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
-			      //REG_GPIO_PORTB->BRR = 0x0001<<Copy_u8Pin;		// atomic access
+			      //CLR_BIT(REG_GPIO_PORTB->ODR,Copy_u8Pin);
+			      REG_GPIO_PORTB->BRR = 0x0001<<Copy_u8Pin;		// atomic access
 		      }
 
 		      break;
