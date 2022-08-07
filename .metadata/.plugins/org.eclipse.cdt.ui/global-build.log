@@ -1,14 +1,14 @@
-10:16:58 **** Incremental Build of configuration Debug for project Assignmet-1--Traffic-Lightening-system ****
+10:31:43 **** Incremental Build of configuration Debug for project Assignmet-1--Traffic-Lightening-system ****
 make all 
 Building file: ../src/main.c
 Invoking: GNU Arm Cross C Compiler
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -DDEBUG -DUSE_FULL_ASSERT -DTRACE -DOS_USE_TRACE_SEMIHOSTING_DEBUG -DSTM32F105xC -DUSE_HAL_DRIVER -DHSE_VALUE=8000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f1-hal" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
 ../src/main.c: In function 'main':
-../src/main.c:109:36: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '300000' to '37856' [-Woverflow]
-  109 |         u16 green_led_blink_time = 30*10000;
+../src/main.c:108:36: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '300000' to '37856' [-Woverflow]
+  108 |         u16 green_led_blink_time = 30*10000;
       |                                    ^~
-../src/main.c:111:34: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '300000' to '37856' [-Woverflow]
-  111 |         u16 red_led_blink_time = 30*10000;
+../src/main.c:110:34: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '300000' to '37856' [-Woverflow]
+  110 |         u16 red_led_blink_time = 30*10000;
       |                                  ^~
 Finished building: ../src/main.c
  

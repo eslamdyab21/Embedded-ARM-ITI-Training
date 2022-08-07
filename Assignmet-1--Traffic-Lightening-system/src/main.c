@@ -11,7 +11,6 @@
 #include "RCC_interface.h"
 #include "Led_interface.h"
 
-u8 statue = GPIO_LOW;
 u16 tick_green=0;
 u16 tick_yellow=0;
 u16 tick_red=0;
