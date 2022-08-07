@@ -1,8 +1,15 @@
-06:19:25 **** Incremental Build of configuration Debug for project Assignmet-1--Traffic-Lightening-system ****
+07:06:37 **** Incremental Build of configuration Debug for project Assignmet-1--Traffic-Lightening-system ****
 make all 
 Building file: ../src/main.c
 Invoking: GNU Arm Cross C Compiler
 arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -DDEBUG -DUSE_FULL_ASSERT -DTRACE -DOS_USE_TRACE_SEMIHOSTING_DEBUG -DSTM32F105xC -DUSE_HAL_DRIVER -DHSE_VALUE=8000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f1-hal" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:40:36: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '100000' to '34464' [-Woverflow]
+   40 |         u16 green_led_blink_time = 10*10000;
+      |                                    ^~
+../src/main.c:42:34: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '100000' to '34464' [-Woverflow]
+   42 |         u16 red_led_blink_time = 10*10000;
+      |                                  ^~
 Finished building: ../src/main.c
  
 Building target: Assignmet-1--Traffic-Lightening-system.elf
@@ -17,6 +24,6 @@ Finished building: Assignmet-1--Traffic-Lightening-system.hex
 Invoking: GNU Arm Cross Print Size
 arm-none-eabi-size --format=berkeley "Assignmet-1--Traffic-Lightening-system.elf"
    text	   data	    bss	    dec	    hex	filename
-   5043	    160	    416	   5619	   15f3	Assignmet-1--Traffic-Lightening-system.elf
+   5079	    160	    416	   5655	   1617	Assignmet-1--Traffic-Lightening-system.elf
 Finished building: Assignmet-1--Traffic-Lightening-system.siz
  
