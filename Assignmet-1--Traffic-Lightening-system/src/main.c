@@ -15,6 +15,7 @@
 void Init(){
         RCC_voidInit();
       	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
+      	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOB);
 
       	// make pins 1,2,3 output mode
       	GPIO_voidSetPinMode(GPIO_PORTA, GREEN_LED, GPIO_PIN_MODE_GP_PP_2MHZ);
@@ -42,6 +43,8 @@ void BlinkLed(u8 Copy_u8Pin, u16 BlinkTime){
 	GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_HIGH);
 	Delay(BlinkTime);
 }
+
+
 
 void SevenSegment_Update(u8 number){
       GPIO_voidSetPinValue(GPIO_PORTB, 0, ((number>>0)&0x01));
