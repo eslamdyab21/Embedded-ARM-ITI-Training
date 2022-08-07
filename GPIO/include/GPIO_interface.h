@@ -18,7 +18,7 @@
 #define GPIO_LOW		0
 
 
-// *********************Pin modes MACROs ************************
+// *************************************Pin modes MACROs **********************************
 //Input cases where MODEx=00 (last two bits)
 #define GPIO_PIN_MODE_ANALOG_INPUT		0b0000
 #define GPIO_PIN_MODE_FLOATING_INPUT		0b0100
@@ -43,6 +43,8 @@
 #define GPIO_PIN_MODE_AF_OD_2MHZ			0b1110
 #define GPIO_PIN_MODE_AF_OD_10MHZ			0b1101
 #define GPIO_PIN_MODE_AF_OD_50MHZ			0b1111
+// *************************************Pin modes MACROs **********************************
+
 
 // Public functions
 
