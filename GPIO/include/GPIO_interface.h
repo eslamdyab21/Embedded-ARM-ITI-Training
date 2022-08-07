@@ -19,21 +19,30 @@
 
 
 // *********************Pin modes MACROs ************************
-//Input cases where MODEX=00 (last two bits)
+//Input cases where MODEx=00 (last two bits)
 #define GPIO_PIN_MODE_ANALOG_INPUT		0b0000
 #define GPIO_PIN_MODE_FLOATING_INPUT		0b0100
 #define GPIO_PIN_MODE_PULLING_INPUT		0b1000
 
-//Output cases where MODEX=00
+//Output cases where CNFx=00 (first two bits) (General purpose output push-pull)
 #define GPIO_PIN_MODE_GP_PP_2MHZ			0b0010
 #define GPIO_PIN_MODE_GP_PP_10MHZ			0b0001
 #define GPIO_PIN_MODE_GP_PP_50MHZ			0b0011
 
+//Output cases where CNFx=01 (first two bits) (General purpose output Open-drain)
 #define GPIO_PIN_MODE_GP_OD_2MHZ			0b0110
 #define GPIO_PIN_MODE_GP_OD_10MHZ			0b0101
 #define GPIO_PIN_MODE_GP_OD_50MHZ			0b0111
 
+//Output cases where CNFx=10 (first two bits) (Alternate function output Push-pull)
+#define GPIO_PIN_MODE_AF_PP_2MHZ			0b1010
+#define GPIO_PIN_MODE_AF_PP_10MHZ			0b1001
+#define GPIO_PIN_MODE_AF_PP_50MHZ			0b1011
 
+//Output cases where CNFx=11 (first two bits) (Alternate function output Open-drain)
+#define GPIO_PIN_MODE_AF_OD_2MHZ			0b1110
+#define GPIO_PIN_MODE_AF_OD_10MHZ			0b1101
+#define GPIO_PIN_MODE_AF_OD_50MHZ			0b1111
 
 // Public functions
 
