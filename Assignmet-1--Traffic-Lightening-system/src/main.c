@@ -11,6 +11,7 @@
 #include "RCC_interface.h"
 #include "Led_interface.h"
 
+u8 statue = GPIO_LOW;
 
 void Init(){
         RCC_voidInit();
@@ -31,17 +32,37 @@ void Init(){
       	GPIO_voidSetPinMode(GPIO_PORTB, 6, GPIO_PIN_MODE_GP_PP_2MHZ);
 }
 
-void Delay(u16 timeDelay){
-      u16 i=0;
-      for(i=0; i<timeDelay; i++ );
-
+u8 Blink(u16 timeDelay, u16 *start_time){
+      //u16 i=0;
+      //for(i=0; i<timeDelay; i++ );
+      *start_time = *start_time+1;
+      if (*start_time >= timeDelay)
+	    return 1;
+      else
+	    return 0;
 }
 
-void BlinkLed(u8 Copy_u8Pin, u16 BlinkTime){
-        GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_LOW);
-	Delay(BlinkTime);
-	GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_HIGH);
-	Delay(BlinkTime);
+
+void BlinkLed(u8 Copy_u8Pin, u16 BlinkTime,u16 *start_time){
+
+	if(Blink(BlinkTime, start_time)){
+		    if(statue == GPIO_LOW){
+			  GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_HIGH);
+			  statue = GPIO_HIGH;
+		    }
+		    else{
+			  GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_LOW);
+			  statue = GPIO_LOW;
+		    }
+		    *start_time = 0;
+	}
+
+	else{
+		    if(statue == GPIO_LOW)
+			GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_LOW);
+		   else
+			GPIO_voidSetPinValue(GPIO_PORTA, Copy_u8Pin, GPIO_HIGH);
+	}
 }
 
 
@@ -61,14 +82,16 @@ int main(void)
         u16 green_led_blink_time = 10*10000;
         u16 yellow_led_blink_time = 3*10000;
         u16 red_led_blink_time = 10*10000;
+
+        u16 start_time=0;
         Init();
 
 	while(1){
 		    SevenSegment_Update(segmentNumber[3]);
 
-		    BlinkLed(GREEN_LED, green_led_blink_time);
-		    BlinkLed(YELLOW_LED, yellow_led_blink_time);
-		    BlinkLed(RED_LED, red_led_blink_time);
+		    BlinkLed(GREEN_LED, green_led_blink_time,&start_time);
+		    //BlinkLed(YELLOW_LED, yellow_led_blink_time);
+		   //BlinkLed(RED_LED, red_led_blink_time);
 
 	}
 

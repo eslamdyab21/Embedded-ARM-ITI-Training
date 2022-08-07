@@ -1,22 +1,5 @@
-08:30:51 **** Incremental Build of configuration Debug for project Assignmet-1--Traffic-Lightening-system ****
+09:13:13 **** Incremental Build of configuration Debug for project Assignmet-1--Traffic-Lightening-system ****
 make all 
-Building file: ../src/main.c
-Invoking: GNU Arm Cross C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -DDEBUG -DUSE_FULL_ASSERT -DTRACE -DOS_USE_TRACE_SEMIHOSTING_DEBUG -DSTM32F105xC -DUSE_HAL_DRIVER -DHSE_VALUE=8000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f1-hal" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-../src/main.c: In function 'main':
-../src/main.c:61:36: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '100000' to '34464' [-Woverflow]
-   61 |         u16 green_led_blink_time = 10*10000;
-      |                                    ^~
-../src/main.c:63:34: warning: unsigned conversion from 'int' to 'u16' {aka 'short unsigned int'} changes value from '100000' to '34464' [-Woverflow]
-   63 |         u16 red_led_blink_time = 10*10000;
-      |                                  ^~
-Finished building: ../src/main.c
- 
-Building target: Assignmet-1--Traffic-Lightening-system.elf
-Invoking: GNU Arm Cross C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m3 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"Assignmet-1--Traffic-Lightening-system.map" --specs=nano.specs -o "Assignmet-1--Traffic-Lightening-system.elf" ./system/src/stm32f1-hal/stm32f1xx_hal.o ./system/src/stm32f1-hal/stm32f1xx_hal_cortex.o ./system/src/stm32f1-hal/stm32f1xx_hal_flash.o ./system/src/stm32f1-hal/stm32f1xx_hal_flash_ex.o ./system/src/stm32f1-hal/stm32f1xx_hal_gpio.o ./system/src/stm32f1-hal/stm32f1xx_hal_gpio_ex.o ./system/src/stm32f1-hal/stm32f1xx_hal_iwdg.o ./system/src/stm32f1-hal/stm32f1xx_hal_pwr.o ./system/src/stm32f1-hal/stm32f1xx_hal_rcc.o  ./system/src/newlib/assert.o ./system/src/newlib/cxx.o ./system/src/newlib/exit.o ./system/src/newlib/sbrk.o ./system/src/newlib/startup.o ./system/src/newlib/syscalls.o  ./system/src/diag/trace-impl.o ./system/src/diag/trace.o  ./system/src/cortexm/exception-handlers.o ./system/src/cortexm/initialize-hardware.o ./system/src/cortexm/reset-hardware.o  ./system/src/cmsis/system_stm32f1xx.o ./system/src/cmsis/vectors_stm32f105xc.o  ./src/GPIO_program.o ./src/RCC_program.o ./src/main.o   
-Finished building target: Assignmet-1--Traffic-Lightening-system.elf
- 
 Invoking: GNU Arm Cross Create Flash Image
 arm-none-eabi-objcopy -O ihex "Assignmet-1--Traffic-Lightening-system.elf"  "Assignmet-1--Traffic-Lightening-system.hex"
 Finished building: Assignmet-1--Traffic-Lightening-system.hex
@@ -24,6 +7,6 @@ Finished building: Assignmet-1--Traffic-Lightening-system.hex
 Invoking: GNU Arm Cross Print Size
 arm-none-eabi-size --format=berkeley "Assignmet-1--Traffic-Lightening-system.elf"
    text	   data	    bss	    dec	    hex	filename
-   5267	    172	    416	   5855	   16df	Assignmet-1--Traffic-Lightening-system.elf
+   5351	    172	    420	   5943	   1737	Assignmet-1--Traffic-Lightening-system.elf
 Finished building: Assignmet-1--Traffic-Lightening-system.siz
  
