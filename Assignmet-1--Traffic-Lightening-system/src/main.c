@@ -103,6 +103,8 @@ void SevenSegment_Update(u8 number){
       GPIO_voidSetPinValue(GPIO_PORTB, 6, ((number>>6)&0x01));
 }
 
+
+
 int main(void)
 {
         u16 green_led_blink_time = 30*10000;
