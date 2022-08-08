@@ -73,4 +73,12 @@ void NVIC_voidClearPendingFlag(u8 Copy_u8InterruptPotiotion){
  * return value: 0: not active or 1: active
  * description: indicate which interrupts are active
  */
-u8 NVIC_u8GetActiveFlag(u8 Copy_u8InterruptPotiotion);
+u8 NVIC_u8GetActiveFlag(u8 Copy_u8InterruptPotiotion){
+    u8 temp=0;
+    if(Copy_u8InterruptPotiotion < 32)
+        temp = GET_BIT(NVIC_IABR0,Copy_u8InterruptPotiotion);
+    else if(Copy_u8InterruptPotiotion < 60)
+        temp = GET_BIT(NVIC_IABR1,(Copy_u8InterruptPotiotion - 32));
+
+    return temp;
+}
