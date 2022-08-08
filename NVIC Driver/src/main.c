@@ -5,9 +5,7 @@
  *      Author: dyab
  */
 
-#include "NVIC_interface.h"
-#include "NVIC_private.h"
-#include "NVIC_config.h"
+
 
 
 int main(void){
