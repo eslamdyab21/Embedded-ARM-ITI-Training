@@ -13,6 +13,40 @@
 #include "NVIC_config.h"
 
 
+
+/*
+ * NVIC_voidInit
+ * Parameters: void
+ * description: Sets the Priority Model for group & sub-priorities 
+ * SCP Work
+ */
+void NVIC_voidInit(void){
+    switch(NVIC_PRIORITY_DISTRIBUTION){
+        case NVIC_GROUP_4_BITS:
+            SCB_AIRCR = 0x05FA0300;
+            break;
+
+        case NVIC_GROUP_3_BITS:
+            SCB_AIRCR = 0x05FA0400;
+            break;
+
+        case NVIC_GROUP_2_BITS:
+            SCB_AIRCR = 0x05FA0500;
+            break;
+
+        case NVIC_GROUP_1_BITS:
+            SCB_AIRCR = 0x05FA0600;
+            break;
+
+        case NVIC_GROUP_0_BITS:
+            SCB_AIRCR = 0x05FA0700;
+            break;
+    }
+}
+
+
+
+
 /*
  * NVIC_voidEnableInterrupt
  * parameters: index of interrupt
