@@ -9,6 +9,14 @@
 #define NVIC_INTERFACE_H_
 
 
+/*
+ * NVIC_voidInit
+ * Parameters: void
+ * description: Sets the Priority Model for group & sub-priorities 
+ * SCP Work
+ */
+void NVIC_voidInit(void);
+
 
 /*
  * NVIC_voidEnableInterrupt
