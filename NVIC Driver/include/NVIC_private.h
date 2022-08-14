@@ -10,6 +10,7 @@
 
 
 #define NVIC_BASE_ADDRESS  0xE00E100
+#define SCB_BASE_ADDRESS   0xE000ED00
 
 
 //Interrupt set-enable registers
@@ -43,7 +44,10 @@
 #define NVIC_STIR			*((volatile u32 *) (NVIC_BASE_ADDRESS+0xE00))
 
 
-
+//System Control Block
+//Application interrupt and reset control register (SCB_AIRCR)
+//The AIRCR provides priority grouping control
+#define SCB_AIRCR			*((volatile u32 *) (SCB_BASE_ADDRESS+0x0C))
 
 
 #endif /* NVIC_PRIVATE_H_ */
