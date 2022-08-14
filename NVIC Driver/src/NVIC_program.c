@@ -21,7 +21,9 @@
  * SCP Work
  */
 void NVIC_voidInit(void){
-    switch(NVIC_PRIORITY_DISTRIBUTION){
+    SCB_AIRCR = NVIC_PRIORITY_DISTRIBUTION;
+
+    /*switch(NVIC_PRIORITY_DISTRIBUTION){
         case NVIC_GROUP_4_BITS:
             SCB_AIRCR = 0x05FA0300;
             break;
@@ -41,7 +43,7 @@ void NVIC_voidInit(void){
         case NVIC_GROUP_0_BITS:
             SCB_AIRCR = 0x05FA0700;
             break;
-    }
+    }*/
 }
 
 
@@ -125,5 +127,6 @@ u8 NVIC_u8GetActiveFlag(u8 Copy_u8InterruptPotiotion){
  * description: Sets the priority for a specific interrupt
  */
 void NVIC_voidSetPriority(u8 Copy_u8InterruptPosition, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority){
-    NVIC_IPR[Copy_u8InterruptPosition] = (Copy_u8GroupPriority<<(4+NVIC_PRIORITY_DISTRIBUTION)) | (Copy_u8SubPriority<<4);
+    //NVIC_IPR[Copy_u8InterruptPosition] = (Copy_u8GroupPriority<<(4+NVIC_PRIORITY_DISTRIBUTION)) | (Copy_u8SubPriority<<4);
+    NVIC_IPR[Copy_u8InterruptPosition] = (Copy_u8GroupPriority<<(4+((NVIC_PRIORITY_DISTRIBUTION-0x05FA0300)/0x100))) | (Copy_u8SubPriority<<4);
 }
