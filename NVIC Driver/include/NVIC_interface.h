@@ -51,6 +51,11 @@ void NVIC_voidClearPendingFlag(u8 Copy_u8InterruptPotiotion);
 u8 NVIC_u8GetActiveFlag(u8 Copy_u8InterruptPotiotion);
 
 
-
+/*
+ * NVIC_voidSetPriority
+ * parameters: index of interrupt, GroupPriority and SubPriority
+ * description: Sets the priority for a specific interrupt
+ */
+void NVIC_voidSetPriority(u8 Copy_u8InterruptPosition, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority);
 
 #endif /* NVIC_INTERFACE_H_ */
