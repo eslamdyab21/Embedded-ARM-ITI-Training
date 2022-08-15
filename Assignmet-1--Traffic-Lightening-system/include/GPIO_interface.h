@@ -31,8 +31,8 @@
 
 //Output cases where CNFx=01 (first two bits) (General purpose output Open-drain)
 #define GPIO_PIN_MODE_GP_OD_2MHZ			0b0110
-#define GPIO_PIN_MODE_GP_OD_10MHZ			0b0101
-#define GPIO_PIN_MODE_GP_OD_50MHZ			0b0111
+#define GPIO_PIN_MODE_GP_OD_10MHZ		0b0101
+#define GPIO_PIN_MODE_GP_OD_50MHZ		0b0111
 
 //Output cases where CNFx=10 (first two bits) (Alternate function output Push-pull)
 #define GPIO_PIN_MODE_AF_PP_2MHZ			0b1010

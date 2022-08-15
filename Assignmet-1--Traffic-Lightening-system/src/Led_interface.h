@@ -9,8 +9,8 @@
 #define LED_INTERFACE_H_
 
 #define		GREEN_LED 		1
-#define 	YELLOW_LED 	2
-#define 	RED_LED 		3
+#define 		YELLOW_LED 		2
+#define 		RED_LED 			3
 
 
 u8 segmentNumber[10] = {
