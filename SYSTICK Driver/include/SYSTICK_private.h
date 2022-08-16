@@ -8,6 +8,11 @@
 #ifndef SYSTICK_PRIVATE_H_
 #define SYSTICK_PRIVATE_H_
 
+//Macros
+#define SYSTICK_PERIODIC_INTERVAL 	0
+#define SYSTICK_SINGLE_INTERVAL 	1
+
+
 #define SYSTICK_BASE_ADDRESS		0xE000E010
 
 typedef struct{

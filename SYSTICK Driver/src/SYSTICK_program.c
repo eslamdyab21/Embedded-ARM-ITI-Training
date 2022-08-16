@@ -15,6 +15,7 @@
 
 
 void (*CallBack)(void) = (void *) 0;
+u8 IntervalState = SYSTICK_PERIODIC_INTERVAL;
 
 
 /*
@@ -92,6 +93,9 @@ void STK_voidSetBusyWait(u32 Copy_u32TickCount){
  *            void (*ptr)(void): pointer to a function to call after every period
  */
 void STK_voidSetPeriodicInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
+
+    IntervalState = SYSTICK_PERIODIC_INTERVAL;
+
     //Set LOAD value
 	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
 
@@ -118,6 +122,9 @@ void STK_voidSetPeriodicInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
  *              takes a callback function to call one time
  */
 void STK_voidSetSingleInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
+
+    IntervalState = SYSTICK_SINGLE_INTERVAL;
+
     //Set LOAD value
 	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
 
@@ -142,6 +149,10 @@ void SysTick_Handler(void){
     // Call the callback function to do the periodic task
 	CallBack();
 
+    // Disable the counter
+    if(IntervalState == SYSTICK_SINGLE_INTERVAL)
+        CLR_BIT(SYSTICK->CTRL, 0);
+        
     /*
     *A write of any value clears the field to 0, and also clears the COUNTFLAG bit 
     *in the STK_CTRL register to 0.
