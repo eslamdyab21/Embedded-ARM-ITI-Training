@@ -9,7 +9,7 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
-#include "/home/dyab/Documents/Embedded-ARM-ITI-Training/SYSTICK Driver/include/SYSTICK_interface.h"
+#include "SYSTICK_interface.h"
 
 #include "OS_interface.h"
 #include "OS_private.h"
