@@ -9,6 +9,8 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
+#include "SYSTICK Driver/include/SYSTICK_interface.h"
+
 #include "OS_interface.h"
 #include "OS_private.h"
 #include "OS_config.h"
@@ -76,3 +78,13 @@ void OS_voidSuspendTask(u8 Copy_u8ID, u8 Copy_u8SuspendTime){
     OS_Tasks[Copy_u8ID].InitialDelay += Copy_u8SuspendTime;
 }
 
+
+
+/*
+ * OS_voidStartScheduler
+ */
+void OS_voidStartScheduler(void){
+    STK_voidInit(SYSTICK_AHB_8);
+	Scheduler();
+	STK_voidSetPeriodicInterval(OS_TICK_TIME, Scheduler);
+}
