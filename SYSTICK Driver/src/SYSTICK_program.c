@@ -14,6 +14,9 @@
 #include "SYSTICK_private.h"
 
 
+void (*CallBack)(void) = (void *) 0;
+
+
 /*
  * STK_voidInit
  * description: Selects the clock source of the SysTick (AHB, AHB/8)
@@ -74,7 +77,33 @@ void STK_voidSetBusyWait(u32 Copy_u32TickCount){
 
     //disable the timer
 	CLR_BIT(SYSTICK->CTRL, 0);
-    
+
     //stop the timer
 	SYSTICK->VAL = 0;
+}
+
+
+
+/*
+ * STK_voidSetPeriodicInterval
+ * description: Starts a periodic interval asynchronous wait
+ *              takes a callback function to call every period
+ * paramters: Copy_u32TickCount
+ *            void (*ptr)(void): pointer to a function to call after every period
+ */
+void STK_voidSetPeriodicInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
+    //Set LOAD value
+	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
+
+    //clear the val regitser to start from zero
+	SYSTICK->VAL = 0;
+    
+    //assign the callback function to the handler
+	CallBack = ptr;
+
+    //Enable the systick interrupt (TICKINT: SysTick exception request enable)
+	SET_BIT(SYSTICK->CTRL, 1);
+
+    //Enable the timer (ENABLE: Counter enable)
+	SET_BIT(SYSTICK->CTRL, 0);
 }
