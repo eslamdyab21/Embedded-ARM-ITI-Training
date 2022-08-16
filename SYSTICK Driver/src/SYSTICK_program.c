@@ -160,6 +160,22 @@ u32 STK_u32GetRemainingTicks(void){
 
 
 
+/*
+ * STK_u32GetElapsedTicks
+ * description: Gets the number of ticks elapsed since we started counting
+ */
+u32 STK_u32GetElapsedTicks(u32 Copy_u32TickCount){
+    /*
+    *In SysTick current value register (STK_VAL)
+    *The VAL register contains the current value of the SysTick counter.
+    *Reads return the current value of the SysTick counter
+    */
+
+   return (Copy_u32TickCount - SYSTICK->VAL);
+}
+
+
+
 
 void SysTick_Handler(void){
     // Call the callback function to do the periodic task

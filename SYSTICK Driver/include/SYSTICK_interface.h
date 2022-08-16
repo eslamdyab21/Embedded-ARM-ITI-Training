@@ -64,7 +64,7 @@ u32 STK_u32GetRemainingTicks(void);
  * STK_u32GetElapsedTicks
  * description: Gets the number of ticks elapsed since we started counting
  */
-u32 STK_u32GetElapsedTicks(void);
+u32 STK_u32GetElapsedTicks(u32 Copy_u32TickCount);
 
 
 #endif /* SYSTICK_INTERFACE_H_ */
