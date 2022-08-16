@@ -65,3 +65,14 @@ void OS_voidCreateTask(u8 Copy_u8ID, u8 Copy_u8Periodicity, u8 Copy_u8InitialDel
 void OS_voidDeleteTask(u8 Copy_u8ID){
     OS_Tasks[Copy_u8ID].State = OS_TASK_DELETED;
 }
+
+
+/*
+ * OS_voidSuspendTask
+ */
+void OS_voidSuspendTask(u8 Copy_u8ID, u8 Copy_u8SuspendTime){
+    OS_Tasks[Copy_u8ID].State = OS_TASK_SUSPENDED;
+    OS_Tasks[Copy_u8ID].SuspendTime = Copy_u8SuspendTime;
+    OS_Tasks[Copy_u8ID].InitialDelay += Copy_u8SuspendTime;
+}
+
