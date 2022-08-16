@@ -8,7 +8,10 @@
 #ifndef OS_INTERFACE_H_
 #define OS_INTERFACE_H_
 
-
+//Macros
+#define OS_TASK_DELETED			2
+#define OS_TASK_READY			1
+#define OS_TASK_SUSPENDED		0
 
 
 

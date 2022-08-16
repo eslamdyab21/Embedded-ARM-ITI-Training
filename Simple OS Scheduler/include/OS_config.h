@@ -9,6 +9,9 @@
 #define OS_CONFIG_H_
 
 
+//(1000000 is one second if speed is 1Mhz)
+#define OS_TICK_TIME		1000000  
+#define OS_NUMBER_OF_TASKS	3
 
 
 
