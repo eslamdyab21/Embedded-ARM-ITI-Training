@@ -104,3 +104,12 @@ void OS_voidResumeTask(u8 Copy_u8ID){
 
     OS_Tasks[Copy_u8ID].SuspendTime = 0;
 }
+
+
+
+/*
+ * OS_u8GetTaskState
+ */
+u8 OS_u8GetTaskState(u8 Copy_u8ID){
+    return OS_Tasks[Copy_u8ID].State;
+}
