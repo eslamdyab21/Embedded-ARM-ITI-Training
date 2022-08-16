@@ -17,6 +17,8 @@ typedef struct{
 	void (*Fptr)(void);
 }Task;
 
+void Scheduler(void);
+
 
 
 #endif /* OS_PRIVATE_H_ */
