@@ -8,7 +8,16 @@
 #ifndef SYSTICK_PRIVATE_H_
 #define SYSTICK_PRIVATE_H_
 
+#define SYSTICK_BASE_ADDRESS		0xE000E010
 
+typedef struct{
+	volatile u32 CTRL;
+	volatile u32 LOAD;
+	volatile u32 VAL;
+	volatile u32 CALIB;
+}SYSTICK_t;
+
+#define SYSTICK			((volatile SYSTICK_t *)SYSTICK_BASE_ADDRESS)
 
 
 

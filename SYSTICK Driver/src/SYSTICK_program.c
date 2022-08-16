@@ -6,5 +6,10 @@
  */
 
 
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
 
+#include "SYSTICK_interface.h"
+#include "SYSTICK_config.h"
+#include "SYSTICK_private.h"
 
