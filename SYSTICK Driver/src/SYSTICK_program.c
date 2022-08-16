@@ -112,6 +112,27 @@ void STK_voidSetPeriodicInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
 
 
 
+/*
+ * STK_voidSetSingleInterval
+ * description: Starts a single interval asynchronous wait
+ *              takes a callback function to call one time
+ */
+void STK_voidSetSingleInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
+    //Set LOAD value
+	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
+
+    //clear the val regitser to start from zero
+	SYSTICK->VAL = 0;
+    
+    //assign the callback function to the handler
+	CallBack = ptr;
+
+    //Enable the systick interrupt (TICKINT: SysTick exception request enable)
+	SET_BIT(SYSTICK->CTRL, 1);
+
+    //Enable the timer (ENABLE: Counter enable)
+	SET_BIT(SYSTICK->CTRL, 0);
+}
 
 
 
