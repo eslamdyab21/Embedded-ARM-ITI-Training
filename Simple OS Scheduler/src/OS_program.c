@@ -88,3 +88,19 @@ void OS_voidStartScheduler(void){
 	Scheduler();
 	STK_voidSetPeriodicInterval(OS_TICK_TIME, Scheduler);
 }
+
+
+
+/*
+ * OS_voidResumeTask
+ */
+void OS_voidResumeTask(u8 Copy_u8ID){
+    OS_Tasks[Copy_u8ID].State = OS_TASK_READY;
+
+    if(OS_Tasks[Copy_u8ID].InitialDelay > OS_Tasks[Copy_u8ID].SuspendTime)
+        OS_Tasks[Copy_u8ID].InitialDelay -= OS_Tasks[Copy_u8ID].SuspendTime;
+    else
+        OS_Tasks[Copy_u8ID].InitialDelay = 0;
+
+    OS_Tasks[Copy_u8ID].SuspendTime = 0;
+}
