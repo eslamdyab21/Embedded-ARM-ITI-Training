@@ -9,6 +9,13 @@
 #define OS_PRIVATE_H_
 
 
+typedef struct{
+	u8 Periodicity;
+	u8 InitialDelay;
+	u8 State;
+	u8 SuspendTime;
+	void (*Fptr)(void);
+}Task;
 
 
 
