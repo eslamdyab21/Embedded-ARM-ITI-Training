@@ -107,3 +107,23 @@ void STK_voidSetPeriodicInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
     //Enable the timer (ENABLE: Counter enable)
 	SET_BIT(SYSTICK->CTRL, 0);
 }
+
+
+
+
+
+
+
+
+
+
+void SysTick_Handler(void){
+    // Call the callback function to do the periodic task
+	CallBack();
+
+    /*
+    *A write of any value clears the field to 0, and also clears the COUNTFLAG bit 
+    *in the STK_CTRL register to 0.
+    */
+	SYSTICK->VAL = 0;
+}
