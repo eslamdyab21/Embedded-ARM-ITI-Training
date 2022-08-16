@@ -63,7 +63,7 @@ void STK_voidSetBusyWait(u32 Copy_u32TickCount){
     //Note anded with 0x00FFFFFF because the SysTick can count up to 24-bits only
 	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
 
-    //clear the val regitser to start from zero
+    //clear the val regitser
 	SYSTICK->VAL = 0;
 
     //start the timer
@@ -95,7 +95,7 @@ void STK_voidSetPeriodicInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
     //Set LOAD value
 	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
 
-    //clear the val regitser to start from zero
+    //clear the val regitser
 	SYSTICK->VAL = 0;
     
     //assign the callback function to the handler
@@ -121,7 +121,7 @@ void STK_voidSetSingleInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
     //Set LOAD value
 	SYSTICK->LOAD = (Copy_u32TickCount - 1) & 0x00FFFFFF;
 
-    //clear the val regitser to start from zero
+    //clear the val regitser
 	SYSTICK->VAL = 0;
     
     //assign the callback function to the handler
