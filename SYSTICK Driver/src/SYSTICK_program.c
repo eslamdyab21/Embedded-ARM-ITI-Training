@@ -143,6 +143,22 @@ void STK_voidSetSingleInterval(u32 Copy_u32TickCount, void (*ptr)(void)){
 
 
 
+/*
+ * STK_u32GetRemainingTicks
+ * description: Gets the number of ticks remaining until we reach zero
+ *              Note the SysTick starts from a specfied value and decremintes
+ */
+u32 STK_u32GetRemainingTicks(void){
+    /*
+    *In SysTick current value register (STK_VAL)
+    *The VAL register contains the current value of the SysTick counter.
+    *Reads return the current value of the SysTick counter
+    */
+
+   return SYSTICK->VAL;
+}
+
+
 
 
 void SysTick_Handler(void){
