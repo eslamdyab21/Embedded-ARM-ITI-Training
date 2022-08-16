@@ -56,3 +56,12 @@ void OS_voidCreateTask(u8 Copy_u8ID, u8 Copy_u8Periodicity, u8 Copy_u8InitialDel
 	OS_Tasks[Copy_u8ID].State = OS_TASK_READY;
 }
 
+
+
+
+/*
+ * OS_voidDeleteTask
+ */
+void OS_voidDeleteTask(u8 Copy_u8ID){
+    OS_Tasks[Copy_u8ID].State = OS_TASK_DELETED;
+}
