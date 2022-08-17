@@ -26,23 +26,40 @@ void SevenSegment_Update(u8 number){
 
 void PeriodicDisplay(){
     static u8 flip = 1;
+    static u8 count = 1;
+    static u8 number = 0;
+    static u8 digit1 = 0;
+    static u8 digit2 = 0;
+
+    digit1 = number/10;
+    digit2 = number%10;
+
     GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_HIGH);
     GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_HIGH);
 
     switch (flip){
         case 1:
             GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_LOW);
-            SevenSegment_Update(segmentNumber[5]);
+            SevenSegment_Update(segmentNumber[digit1]);
             flip = 0;
             break;
 
         case 0:
             GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_LOW);
-            SevenSegment_Update(segmentNumber[1]);
+            SevenSegment_Update(segmentNumber[digit2]);
             flip = 1;
             break;
     }
     
+    if(count == 200){
+        count = 0;
+        number++;
+    }
+        
+    if(number == 99)
+        number = 0;
+    
+    count++;
 }
 
 
