@@ -11,6 +11,8 @@
 #include "GPIO/GPIO_interface.h"
 #include "RCC Driver/RCC_interface.h"
 #include "SYSTICK Driver/SYSTICK_interface.h"
+#include "Simple OS Scheduler/OS_interface.h"
+
 #include "7Segment_interface.h"
 
 
@@ -56,10 +58,42 @@ void PeriodicDisplay(){
         number++;
     }
         
-    if(number == 99)
+    if(number == 100)
         number = 0;
     
     count++;
+}
+
+
+void PeriodicDisplay_With_OS(){
+    static u8 flip = 1;
+    static u8 number = 0;
+    static u8 digit1 = 0;
+    static u8 digit2 = 0;
+
+    digit1 = number/10;
+    digit2 = number%10;
+
+    GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_HIGH);
+
+    switch (flip){
+        case 1:
+            GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_LOW);
+            SevenSegment_Update(segmentNumber[digit1]);
+            flip = 0;
+            break;
+
+        case 0:
+            GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_LOW);
+            SevenSegment_Update(segmentNumber[digit2]);
+            flip = 1;
+            break;
+    }
+    
+    number++;
+    if(number == 100)
+        number = 0;
 }
 
 
@@ -74,9 +108,17 @@ int main(void)
 	}
 
 
-    STK_voidInit(SYSTICK_AHB_8);
-	STK_voidSetPeriodicInterval(5000, PeriodicDisplay);
+    // With now implementation
+    //STK_voidInit(SYSTICK_AHB_8);
+	//STK_voidSetPeriodicInterval(5000, PeriodicDisplay);
     
+    // With OS implementation
+    OS_voidCreateTask(0, 5, 0, PeriodicDisplay_With_OS);
+	OS_voidCreateTask(1, 5, 1, PeriodicDisplay_With_OS);
+
+    OS_voidStartScheduler();
+
+
 	while(1);
 
 	return 0;
