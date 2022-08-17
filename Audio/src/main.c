@@ -20,7 +20,7 @@ void SendAudio(void){
 	static u16 x = 0;
 	GPIO_voidPortMaskWrite(GPIO_PORTA, 0xFF, data[x++]);
 
-	if(x == 39299)
+	if(x == 39288)
 		x=0;
 
 	GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_LOW);
