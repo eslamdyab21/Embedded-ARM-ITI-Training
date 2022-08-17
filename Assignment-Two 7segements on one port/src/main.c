@@ -58,7 +58,7 @@ int main(void)
 
 
     STK_voidInit(SYSTICK_AHB_8);
-	STK_voidSetPeriodicInterval(1000, PeriodicDisplay);
+	STK_voidSetPeriodicInterval(5000, PeriodicDisplay);
     
 	while(1);
 
