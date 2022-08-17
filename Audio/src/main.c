@@ -38,6 +38,7 @@ int main(void)
 
 	GPIO_voidSetPinMode(GPIO_PORTA, 8, GPIO_PIN_MODE_GP_PP_10MHZ);
 
+    STK_voidInit(SYSTICK_AHB_8);
 	STK_voidSetPeriodicInterval(100, SendAudio);
 
 	while(1);
