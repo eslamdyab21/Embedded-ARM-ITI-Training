@@ -23,7 +23,7 @@
  *                           a time slot of the cpu time
  *      ptr:                 pointer to a callback function
  */
-void OS_voidCreateTask(u8 Copy_u8ID, u8 Copy_u8Periodicity, u8 Copy_u8InitialDelay, void (*ptr)(void));
+void OS_voidCreateTask(u8 Copy_u8ID, u16 Copy_u8Periodicity, u8 Copy_u8InitialDelay, void (*ptr)(void));
 
 
 /*

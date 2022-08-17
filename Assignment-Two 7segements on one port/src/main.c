@@ -15,6 +15,8 @@
 
 #include "7Segment_interface.h"
 
+u8 number = 0;
+
 
 void SevenSegment_Update(u8 number){
     GPIO_voidSetPinValue(GPIO_PORTA, 0, ((number>>0)&0x01));
@@ -67,7 +69,6 @@ void PeriodicDisplay(){
 
 void PeriodicDisplay_With_OS(){
     static u8 flip = 1;
-    static u8 number = 0;
     static u8 digit1 = 0;
     static u8 digit2 = 0;
 
@@ -91,10 +92,16 @@ void PeriodicDisplay_With_OS(){
             break;
     }
     
+}
+
+
+void IncreamentNumber_With_OS(){
     number++;
     if(number == 100)
         number = 0;
 }
+
+
 
 
 int main(void)
@@ -114,7 +121,7 @@ int main(void)
     
     // With OS implementation
     OS_voidCreateTask(0, 5, 0, PeriodicDisplay_With_OS);
-	OS_voidCreateTask(1, 5, 1, PeriodicDisplay_With_OS);
+	OS_voidCreateTask(1, 1000, 1, IncreamentNumber_With_OS);
 
     OS_voidStartScheduler();
 

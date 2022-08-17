@@ -53,7 +53,7 @@ void Scheduler(void){
  *                           a time slot of the cpu time
  *      ptr:                 pointer to a callback function
  */
-void OS_voidCreateTask(u8 Copy_u8ID, u8 Copy_u8Periodicity, u8 Copy_u8InitialDelay, void (*ptr)(void)){
+void OS_voidCreateTask(u8 Copy_u8ID, u16 Copy_u8Periodicity, u8 Copy_u8InitialDelay, void (*ptr)(void)){
     OS_Tasks[Copy_u8ID].Fptr = ptr;
 	OS_Tasks[Copy_u8ID].InitialDelay = Copy_u8InitialDelay;
 	OS_Tasks[Copy_u8ID].Periodicity = Copy_u8Periodicity;
