@@ -8,9 +8,11 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
-#include "GPIO_interface.h"
-#include "GPIO_config.h"
-#include "GPIO_private.h"
+#include <GPIO/GPIO_config.h>
+#include <GPIO/GPIO_interface.h>
+#include <GPIO/GPIO_private.h>
+
+
 
 
 

@@ -1,13 +1,44 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 17, 2022
+ *      Author: Dyab
+ */
 
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+
+#include "GPIO/GPIO_interface.h"
+#include "RCC Driver/RCC_interface.h"
+#include "SYSTICK Driver/SYSTICK_interface.h"
+#include "7Segment_interface.h"
+
+
+void SevenSegment_Update(u8 number){
+    GPIO_voidSetPinValue(GPIO_PORTA, 0, ((number>>0)&0x01));
+    GPIO_voidSetPinValue(GPIO_PORTA, 1, ((number>>1)&0x01));
+    GPIO_voidSetPinValue(GPIO_PORTA, 2, ((number>>2)&0x01));
+    GPIO_voidSetPinValue(GPIO_PORTA, 3, ((number>>3)&0x01));
+    GPIO_voidSetPinValue(GPIO_PORTA, 4, ((number>>4)&0x01));
+    GPIO_voidSetPinValue(GPIO_PORTA, 5, ((number>>5)&0x01));
+    GPIO_voidSetPinValue(GPIO_PORTA, 6, ((number>>6)&0x01));
+}
 
 
 int main(void)
 {
 
-  // Infinite loop
-  while (1)
-    {
-       // Add your code here.
-    }
-  return 0;
+	RCC_voidInit();
+	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
+
+	for(u8 i=0; i<8; i++){
+		GPIO_voidSetPinMode(GPIO_PORTA, i, GPIO_PIN_MODE_GP_PP_10MHZ);
+	}
+
+
+	//STK_voidSetPeriodicInterval(100, SendAudio);
+    //SevenSegment_Update(segmentNumber[3]);
+	while(1);
+
+	return 0;
 }

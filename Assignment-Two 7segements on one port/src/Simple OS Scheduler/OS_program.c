@@ -9,11 +9,13 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
-#include "/home/dyab/Documents/Embedded-ARM-ITI-Training/SYSTICK Driver/include/SYSTICK_interface.h"
+#include <Simple OS Scheduler/OS_config.h>
+#include <Simple OS Scheduler/OS_interface.h>
+#include <Simple OS Scheduler/OS_private.h>
 
-#include "OS_interface.h"
-#include "OS_private.h"
-#include "OS_config.h"
+
+#include "SYSTICK Driver/SYSTICK_interface.h"
+
 
 
 Task OS_Tasks[OS_NUMBER_OF_TASKS];

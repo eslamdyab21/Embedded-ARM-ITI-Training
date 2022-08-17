@@ -9,9 +9,11 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
-#include "SYSTICK_interface.h"
-#include "SYSTICK_config.h"
-#include "SYSTICK_private.h"
+#include <SYSTICK Driver/SYSTICK_config.h>
+#include <SYSTICK Driver/SYSTICK_interface.h>
+#include <SYSTICK Driver/SYSTICK_private.h>
+
+
 
 
 void (*CallBack)(void) = (void *) 0;
