@@ -24,6 +24,27 @@ void SevenSegment_Update(u8 number){
     GPIO_voidSetPinValue(GPIO_PORTA, 6, ((number>>6)&0x01));
 }
 
+void PeriodicDisplay(){
+    static u8 flip = 1;
+    GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_HIGH);
+
+    switch (flip){
+        case 1:
+            GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_LOW);
+            SevenSegment_Update(segmentNumber[5]);
+            flip = 0;
+            break;
+
+        case 0:
+            GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_LOW);
+            SevenSegment_Update(segmentNumber[1]);
+            flip = 1;
+            break;
+    }
+    
+}
+
 
 int main(void)
 {
@@ -31,13 +52,14 @@ int main(void)
 	RCC_voidInit();
 	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
 
-	for(u8 i=0; i<8; i++){
+	for(u8 i=0; i<=9; i++){
 		GPIO_voidSetPinMode(GPIO_PORTA, i, GPIO_PIN_MODE_GP_PP_10MHZ);
 	}
 
 
-	//STK_voidSetPeriodicInterval(100, SendAudio);
-    //SevenSegment_Update(segmentNumber[3]);
+    STK_voidInit(SYSTICK_AHB_8);
+	STK_voidSetPeriodicInterval(1000, PeriodicDisplay);
+    
 	while(1);
 
 	return 0;
