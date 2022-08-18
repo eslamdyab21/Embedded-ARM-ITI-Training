@@ -10,16 +10,16 @@
 
 //Macros
 
-//Input
-#define S2P_A                   8       //Serial Data Input
-#define S2P_SHIFT_CLK           8
-#define S2P_RESET               8
-#define S2P_LATCH_CLK           8
-#define S2P_OUTPUT_ENABLE       8
+//Input (PORTB)
+#define S2P_A                   3       //Serial Data Input
+#define S2P_SHIFT_CLK           4
+#define S2P_RESET               5
+#define S2P_LATCH_CLK           6
+#define S2P_OUTPUT_ENABLE       7
 
 
 
-//Output
+//Output (PORTA)
 #define S2P_QA  0
 #define S2P_QB  1
 #define S2P_QC  2
