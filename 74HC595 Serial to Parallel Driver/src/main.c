@@ -23,9 +23,18 @@ void SendSerialData(){
     DigitIndex++;
 
     if(DigitIndex==8){
+        //rising edge on latch
+        S2P_voidLatchClock(1);
+        S2P_voidOutputEnable();
+
         DigitIndex=0;
         //Data8Bits = new value
+
+
+        //falling edge on latch
+        S2P_voidLatchClock(0);
     }
+
 
 }
 
@@ -37,7 +46,6 @@ void Clock(){
         case 1:
             flip = 0;
             S2P_voidShiftClock(0);
-            S2P_voidLatchClock(0);
             SendSerialData();
 
             break;
@@ -45,7 +53,6 @@ void Clock(){
         case 0:
             flip = 1;
             S2P_voidShiftClock(1);
-            S2P_voidLatchClock(1);
 
             break;
     }
