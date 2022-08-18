@@ -16,3 +16,43 @@
 #include "GPIO/GPIO_interface.h"
 #include "RCC Driver/RCC_interface.h"
 
+
+
+/*
+* Function to intialize the pins as output
+*/
+void S2P_voidInit(){
+    RCC_voidInit();
+    switch (S2P_PORT){
+        case PORTA:
+            RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
+            GPIO_voidSetPinMode(GPIO_PORTA, S2P_A_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTA, S2P_SHIFT_CLK_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTA, S2P_RESET_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTA, S2P_LATCH_CLK_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTA, S2P_OUTPUT_ENABLE_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+
+            break;
+
+        case PORTB:
+            RCC_voidPeripheralClockEnable(RCC_APB2, GPIOB);
+            GPIO_voidSetPinMode(GPIO_PORTB, S2P_A_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTB, S2P_SHIFT_CLK_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTB, S2P_RESET_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTB, S2P_LATCH_CLK_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTB, S2P_OUTPUT_ENABLE_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+
+            break;
+
+        case PORTC:
+            RCC_voidPeripheralClockEnable(RCC_APB2, GPIOC);
+            GPIO_voidSetPinMode(GPIO_PORTC, S2P_A_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTC, S2P_SHIFT_CLK_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTC, S2P_RESET_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTC, S2P_LATCH_CLK_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            GPIO_voidSetPinMode(GPIO_PORTC, S2P_OUTPUT_ENABLE_PIN, GPIO_PIN_MODE_GP_PP_10MHZ);
+            break;
+
+    }
+
+}

@@ -9,6 +9,16 @@
 #define S2P_INTERFACE_H_
 
 
+//Macros
+#define PORTA   0
+#define PORTB   1
+#define PORTC   2
+
+/*
+* Function to intialize the pins as output
+*/
+void S2P_voidInit();
+
 
 /*
 * Function to send serial data

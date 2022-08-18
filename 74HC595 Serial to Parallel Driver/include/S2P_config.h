@@ -10,10 +10,11 @@
 
 
 //Macros
-// 0: PortA
-// 1: PortB
-// 2: PortC
-#define S2P_PORT                     0
+//Choose one
+// PortA
+// PortB
+// PortC
+#define S2P_PORT                     PORTA
 
 
 //Pins 
