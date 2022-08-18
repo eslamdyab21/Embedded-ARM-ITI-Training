@@ -62,18 +62,18 @@ void S2P_voidInit(){
 * Function to send serial data
 * Paramters: Copy_u8SerialData 1-bit
 */
-void S2P_voidTx(u8 Copy_u8SerialData){
+void S2P_voidTx(u8 Copy_u8SerialData, u8 Copy_u8DigitCount){
     switch (S2P_PORT){
         case PORTA:
-            GPIO_voidSetPinValue(GPIO_PORTA, S2P_A_PIN, Copy_u8SerialData);
+            GPIO_voidSetPinValue(GPIO_PORTA, S2P_A_PIN, (Copy_u8SerialData>>Copy_u8DigitCount)&0x01);
             break;
 
         case PORTB:
-            GPIO_voidSetPinValue(GPIO_PORTB, S2P_A_PIN, Copy_u8SerialData);
+            GPIO_voidSetPinValue(GPIO_PORTB, S2P_A_PIN, (Copy_u8SerialData>>Copy_u8DigitCount)&0x01);
             break;
 
         case PORTC:
-            GPIO_voidSetPinValue(GPIO_PORTC, S2P_A_PIN, Copy_u8SerialData);
+            GPIO_voidSetPinValue(GPIO_PORTC, S2P_A_PIN, (Copy_u8SerialData>>Copy_u8DigitCount)&0x01);
             break;
 
     }

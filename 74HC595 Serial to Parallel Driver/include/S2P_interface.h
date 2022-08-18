@@ -24,7 +24,7 @@ void S2P_voidInit();
 * Function to send serial data
 * Paramters: Copy_u8SerialData 1-bit
 */
-void S2P_voidTx(u8 Copy_u8SerialData);
+void S2P_voidTx(u8 Copy_u8SerialData, u8 Copy_u8DigitCount);
 
 
 /*
