@@ -70,6 +70,9 @@ int main(void){
     S2P_voidInit();
     S2P_voidOutputEnable();
     
+    S2P_voidShiftReset(0);
+
+
     OS_voidCreateTask(0, 1, 0, Clock);
     OS_voidStartScheduler();
 
