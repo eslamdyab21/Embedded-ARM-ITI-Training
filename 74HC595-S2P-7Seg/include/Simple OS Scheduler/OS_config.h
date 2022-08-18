@@ -11,7 +11,7 @@
 
 //(1000000 is one second if speed is 1Mhz)
 #define OS_TICK_TIME		1000  
-#define OS_NUMBER_OF_TASKS	2
+#define OS_NUMBER_OF_TASKS	1
 
 
 
