@@ -75,18 +75,18 @@ void PeriodicDisplay_With_OS(){
     digit1 = number/10;
     digit2 = number%10;
 
-    GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_HIGH);
-    GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_LOW);
+    GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_LOW);
 
     switch (flip){
         case 1:
-            GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_LOW);
+            GPIO_voidSetPinValue(GPIO_PORTA, 8, GPIO_HIGH);
             SevenSegment_Update(segmentNumber[digit1]);
             flip = 0;
             break;
 
         case 0:
-            GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_LOW);
+            GPIO_voidSetPinValue(GPIO_PORTA, 9, GPIO_HIGH);
             SevenSegment_Update(segmentNumber[digit2]);
             flip = 1;
             break;
