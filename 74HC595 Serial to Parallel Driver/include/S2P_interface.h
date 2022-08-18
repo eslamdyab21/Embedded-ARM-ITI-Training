@@ -19,18 +19,6 @@
 
 
 
-//Output (PORTA)
-#define S2P_QA  0
-#define S2P_QB  1
-#define S2P_QC  2
-#define S2P_QD  3
-#define S2P_QE  4
-#define S2P_QF  5
-#define S2P_QG  6
-#define S2P_QH  7
-
-
-
 /*
 * Function to set the clock speed for the latch and the shift register
 * Paramters: Copy_u8ShiftClkSpeed and Copy_u8LatchClkSpeed
