@@ -20,33 +20,32 @@ void SendSerialData(){
     static u8 DigitIndex=0;
 
     S2P_voidTx(Data8Bits, DigitIndex);
-    DigitIndex++;
+    
 
     if(DigitIndex==8){
         //rising edge on latch
         S2P_voidLatchClock(1);
-        S2P_voidOutputEnable();
 
-        DigitIndex=0;
+        DigitIndex=-1;
         //Data8Bits = new value
 
 
         //falling edge on latch
         S2P_voidLatchClock(0);
     }
-
+    DigitIndex++;
 
 }
 
 
 void Clock(){
-    static u8 flip=0;
+    static u8 flip=1;
 
     switch (flip){
         case 1:
             flip = 0;
-            S2P_voidShiftClock(0);
             SendSerialData();
+            S2P_voidShiftClock(0);
 
             break;
 
@@ -62,8 +61,12 @@ void Clock(){
 int main(void){
 
     S2P_voidInit();
+    //S2P_voidOutputEnable();
+    
+    //S2P_voidShiftReset(0);
 
     OS_voidCreateTask(0, 1, 0, Clock);
-
+    OS_voidStartScheduler();
+    
     return 0;
 }
