@@ -13,3 +13,8 @@
 #include "S2P_private.h"
 #include "S2P_config.h"
 
+#include "GPIO/GPIO_interface.h"
+#include "RCC Driver/RCC_interface.h"
+#include "SYSTICK Driver/SYSTICK_interface.h"
+#include "Simple OS Scheduler/OS_interface.h"
+

@@ -19,12 +19,6 @@
 
 
 
-/*
-* Function to set the clock speed for the latch and the shift register
-* Paramters: Copy_u8ShiftClkSpeed and Copy_u8LatchClkSpeed
-*            in ms
-*/
-void S2P_voidInit(u8 Copy_u8ShiftClkSpeed, u8 Copy_u8LatchClkSpeed);
 
 /*
 * Function to send serial data
