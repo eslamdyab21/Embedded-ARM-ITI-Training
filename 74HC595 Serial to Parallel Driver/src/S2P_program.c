@@ -121,3 +121,45 @@ void S2P_voidOutputDisable(){
 
     }
 }
+
+
+/*
+* Shift Clock Function
+*/
+void S2P_voidShiftClock(u8 Copy_u8HighOrLow){
+    switch (S2P_PORT){
+        case PORTA:
+            GPIO_voidSetPinValue(GPIO_PORTA, S2P_SHIFT_CLK_PIN, Copy_u8HighOrLow);
+            break;
+
+        case PORTB:
+            GPIO_voidSetPinValue(GPIO_PORTB, S2P_SHIFT_CLK_PIN, Copy_u8HighOrLow);
+            break;
+
+        case PORTC:
+            GPIO_voidSetPinValue(GPIO_PORTC, S2P_SHIFT_CLK_PIN, Copy_u8HighOrLow);
+            break;
+
+    }
+}
+
+
+/*
+* Latch Clock Function
+*/
+void S2P_voidLatchClock(u8 Copy_u8HighOrLow){
+    switch (S2P_PORT){
+        case PORTA:
+            GPIO_voidSetPinValue(GPIO_PORTA, S2P_LATCH_CLK_PIN, Copy_u8HighOrLow);
+            break;
+
+        case PORTB:
+            GPIO_voidSetPinValue(GPIO_PORTB, S2P_LATCH_CLK_PIN, Copy_u8HighOrLow);
+            break;
+
+        case PORTC:
+            GPIO_voidSetPinValue(GPIO_PORTC, S2P_LATCH_CLK_PIN, Copy_u8HighOrLow);
+            break;
+
+    }
+}

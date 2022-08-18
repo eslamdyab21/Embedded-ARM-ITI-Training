@@ -39,4 +39,15 @@ void S2P_voidOutputEnable();
 void S2P_voidOutputDisable();
 
 
+/*
+* Shift Clock Function
+*/
+void S2P_voidShiftClock();
+
+
+/*
+* Latch Clock Function
+*/
+void S2P_voidLatchClock();
+
 #endif /* S2P_INTERFACE_H_ */
