@@ -42,12 +42,12 @@ void S2P_voidOutputDisable();
 /*
 * Shift Clock Function
 */
-void S2P_voidShiftClock();
+void S2P_voidShiftClock(u8 Copy_u8HighOrLow);
 
 
 /*
 * Latch Clock Function
 */
-void S2P_voidLatchClock();
+void S2P_voidLatchClock(u8 Copy_u8HighOrLow);
 
 #endif /* S2P_INTERFACE_H_ */
