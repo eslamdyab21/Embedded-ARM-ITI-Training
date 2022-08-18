@@ -56,3 +56,47 @@ void S2P_voidInit(){
     }
 
 }
+
+
+
+/*
+* Function to Enable output
+*/
+void S2P_voidOutputEnable(){
+    switch (S2P_PORT){
+        case PORTA:
+            GPIO_voidSetPinValue(GPIO_PORTA, S2P_OUTPUT_ENABLE_PIN, GPIO_LOW);
+            break;
+
+        case PORTB:
+            GPIO_voidSetPinValue(GPIO_PORTB, S2P_OUTPUT_ENABLE_PIN, GPIO_LOW);
+            break;
+
+        case PORTC:
+            GPIO_voidSetPinValue(GPIO_PORTC, S2P_OUTPUT_ENABLE_PIN, GPIO_LOW);
+            break;
+
+    }
+}
+
+
+
+/*
+* Function to Disable output
+*/
+void S2P_voidOutputDisable(){
+    switch (S2P_PORT){
+        case PORTA:
+            GPIO_voidSetPinValue(GPIO_PORTA, S2P_OUTPUT_ENABLE_PIN, GPIO_HIGH);
+            break;
+
+        case PORTB:
+            GPIO_voidSetPinValue(GPIO_PORTB, S2P_OUTPUT_ENABLE_PIN, GPIO_HIGH);
+            break;
+
+        case PORTC:
+            GPIO_voidSetPinValue(GPIO_PORTC, S2P_OUTPUT_ENABLE_PIN, GPIO_HIGH);
+            break;
+
+    }
+}

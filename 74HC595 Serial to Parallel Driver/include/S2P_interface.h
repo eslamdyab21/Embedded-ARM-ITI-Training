@@ -28,13 +28,15 @@ void S2P_voidTx(u8 Copy_u8SerialData);
 
 
 /*
-* Function to Enable/Disable output
-* Paramters: Copy_u8Status, 0 for Disable
-*                           1 for Enable
+* Function to Enable output
 */
-void S2P_voidOutputEnaleOrDisable(u8 Copy_u8Status);
+void S2P_voidOutputEnable();
 
 
+/*
+* Function to Disable output
+*/
+void S2P_voidOutputDisable();
 
 
 #endif /* S2P_INTERFACE_H_ */
