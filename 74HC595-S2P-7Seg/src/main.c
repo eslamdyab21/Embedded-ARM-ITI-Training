@@ -12,8 +12,13 @@
 #include "SYSTICK Driver/SYSTICK_interface.h"
 #include "Simple OS Scheduler/OS_interface.h"
 
+#include "GPIO/GPIO_interface.h"
+#include "7Segment_interface.h"
+
+
 // Change it's value after 8 clock cycles (DigitCount==8)
-u8 Data8Bits = 0;
+u8 Data8Bits = 0x6d; //5 for common cathod 7seg
+
 
 
 void SendSerialData(){
@@ -25,7 +30,6 @@ void SendSerialData(){
     if(DigitIndex==8){
         //rising edge on latch
         S2P_voidLatchClock(1);
-        S2P_voidOutputEnable();
 
         DigitIndex=0;
         //Data8Bits = new value
@@ -45,8 +49,8 @@ void Clock(){
     switch (flip){
         case 1:
             flip = 0;
-            S2P_voidShiftClock(0);
             SendSerialData();
+            S2P_voidShiftClock(0);
 
             break;
 
@@ -59,11 +63,15 @@ void Clock(){
     
 }
 
+
+
 int main(void){
 
     S2P_voidInit();
-
+    S2P_voidOutputEnable();
+    
     OS_voidCreateTask(0, 1, 0, Clock);
+    OS_voidStartScheduler();
 
     return 0;
 }
