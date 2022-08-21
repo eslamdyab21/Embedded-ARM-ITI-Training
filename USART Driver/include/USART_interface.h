@@ -9,7 +9,4 @@
 #define USART_INTERFACE_H_
 
 
-
-
-
 #endif /* USART_INTERFACE_H_ */
