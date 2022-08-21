@@ -118,3 +118,17 @@ u8 USART_u8TransmissionStatus(void){
     return TCstate;
 
 }
+
+
+
+/*
+* function to read recived data
+*/
+u8 USART_u8Rx(void){
+    //RXNE: Read data register not empty
+    //0: Data is not received
+    //1: Received data is ready to be read.
+
+    while(!GETBIT(USART1_REG->SR,5));
+    return USART1_REG->DR;
+}

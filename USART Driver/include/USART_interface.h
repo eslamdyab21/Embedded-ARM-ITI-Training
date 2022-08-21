@@ -41,7 +41,7 @@ u8 USART_u8TransmissionStatus(void);
 /*
 * function to read recived data
 */
-u8 USART_u8Rx();
+u8 USART_u8Rx(void);
 
 
 #endif /* USART_INTERFACE_H_ */
