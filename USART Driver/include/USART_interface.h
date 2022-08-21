@@ -16,6 +16,8 @@ Transmit data register empty        TXE               TXEIE
 Transmission complete               TC                TCIE
 */
 
+
+
 /*
 * function to enable sending data
 */
@@ -26,10 +28,19 @@ void USART_voidInitTx(void);
 */
 void USART_voidInitRx(void);
 
+
 /*
 * function to send data
 */
 void USART_voidTx(u8 Copy_u8DataByte);
+
+/*
+* function to check if last frame is sent before disableing USART
+* return : 0 --> Transmission is not complete
+           1 --> Transmission is complete
+*/
+u8 USART_u8TransmissionStatus(void);
+
 
 /*
 * function to read recived data

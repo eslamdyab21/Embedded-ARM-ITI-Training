@@ -51,6 +51,10 @@ void USART_voidInitTx(void){
     //if the DR is empty before sending new data
     SET_BIT(USART1_REG->CR1,7);
 
+
+    //Set the TCIE (Transmission complete interrupt enable) to enable the TC
+    SET_BIT(USART1_REG->CR1,6);
+
 }
 
 
@@ -73,5 +77,31 @@ void USART_voidTx(u8 Copy_u8DataByte){
    while (!GET_BIT(USART1_REG->SR,7));
    
    USART1_REG->DR = Copy_u8DataByte;
+
+}
+
+
+
+
+/*
+* function to check if last frame is sent before disableing USART
+* return : 0 --> Transmission is not complete
+           1 --> Transmission is complete
+*/
+u8 USART_u8TransmissionStatus(void){
+    u8 TCstate = 0;
+   /*
+   8.After writing the last data into the USART_DR register, wait until TC=1. 
+    This indicates that the transmission of the last frame is complete. 
+    This is required for instance when the USART is disabled or enters 
+    the Halt mode to avoid corrupting the last transmission.
+    0: Transmission is not complete
+    1: Transmission is complete
+   */
+
+    if(GET_BIT(USART1_REG->SR,6))
+        TCstate = 1;
+    
+    return TCstate;
 
 }
