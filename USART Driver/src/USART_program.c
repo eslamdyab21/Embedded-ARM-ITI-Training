@@ -19,6 +19,9 @@
 
 
 
+void (*CallBack)(void) = (void *) 0;
+
+
 /*
 * Init Function
 */
@@ -152,4 +155,10 @@ u8 USART_u8Rx(void){
 
     while(!GET_BIT(USART1_REG->SR,5));
     return USART1_REG->DR;
+}
+
+
+
+void USART1_IRQHandler(void){
+
 }
