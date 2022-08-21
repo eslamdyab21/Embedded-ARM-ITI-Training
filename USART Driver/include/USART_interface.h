@@ -9,6 +9,12 @@
 #define USART_INTERFACE_H_
 
 
+/*
+Interrupt event                  Event flag      Enable Control bit
+-----------------------------------------------------------------------
+Transmit data register empty        TXE               TXEIE
+Transmission complete               TC                TCIE
+*/
 
 /*
 * function to enable sending data

@@ -46,4 +46,32 @@ void USART_voidInitTx(void){
     //idle frame as first transmission.
     SET_BIT(USART1_REG->CR1,3);
 
+
+    //Set the TXEIE (TXE interrupt enable) to enable the TXE to check
+    //if the DR is empty before sending new data
+    SET_BIT(USART1_REG->CR1,7);
+
+}
+
+
+
+/*
+* function to send data
+*/
+void USART_voidTx(u8 Copy_u8DataByte){
+
+    /*7.Write the data to send in the USART_DR register 
+      (this clears the TXE bit). Repeat this for each data to be transmitted 
+      in case of single buffer.
+    *TXE: Transmit data register empty
+     0: Data is not transferred to the shift register
+     1: Data is transferred to the shift register)
+    * need to check if TXE is 1 first before writting new data to USART_DR
+    */
+
+   //check if TXE is 1 to continue sending
+   while (!GET_BIT(USART1_REG->SR,7));
+   
+   USART1_REG->DR = Copy_u8DataByte;
+
 }
