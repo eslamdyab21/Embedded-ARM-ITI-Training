@@ -19,7 +19,8 @@
 
 
 
-void (*CallBack)(void) = (void *) 0;
+u8 *Ptr_u8TxBytes;
+u8 *Ptr_u8RxByte;
 
 
 /*
@@ -119,6 +120,27 @@ void USART_voidTx(u8 Copy_u8DataByte){
 
 
 
+/*
+* function to send data by Interupt
+* Ptr_u8DataBytesArray: array of data bytes
+*/
+void USART_voidTxInt(u8 *Ptr_u8DataBytesArray){
+    Ptr_u8TxBytes = Ptr_u8DataBytesArray;
+
+}
+
+/*
+*function not used by user
+*/
+void USART_voidTxIntSend(void){
+    USART1_REG->DR = *Ptr_u8TxBytes;
+    Ptr_u8TxBytes++;
+}
+
+
+
+
+
 
 /*
 * function to check if last frame is sent before disableing USART
@@ -159,6 +181,30 @@ u8 USART_u8Rx(void){
 
 
 
-void USART1_IRQHandler(void){
+/*
+* function to recive data by Interupt
+* Ptr_u8DataByte: Pointer to the varible to read to.
+*/
+void USART_voidRxInt(u8 *Ptr_u8DataByte){
+    Ptr_u8RxByte = Ptr_u8DataByte;
+}
 
+/*
+*function not used by user
+*/
+void USART_voidRxIntSend(void){
+    *Ptr_u8RxByte = USART1_REG->DR;
+}
+
+
+
+/*
+* Interupt hundeler for Rx and Tx
+*/
+void USART1_IRQHandler(void){
+    if(GET_BIT(USART1_REG->SR,7))
+        USART_voidTxSend();
+    
+    if(GET_BIT(USART1_REG->SR,5))
+        USART_voidRxIntSend();
 }

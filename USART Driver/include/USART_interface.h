@@ -44,4 +44,30 @@ u8 USART_u8TransmissionStatus(void);
 u8 USART_u8Rx(void);
 
 
+
+/*
+* function to send data by Interupt
+* Ptr_u8DataBytesArray: array of data bytes
+*/
+void USART_voidTxInt(u8 *Ptr_u8DataBytesArray);
+
+/*
+*function not used by user
+*/
+void USART_voidTxIntSend(void);
+
+
+
+/*
+* function to recive data by Interupt
+* Ptr_u8DataByte: Pointer to the varible to read to.
+*/
+void USART_voidRxInt(u8 *Ptr_u8DataByte);
+
+/*
+*function not used by user
+*/
+void USART_voidRxIntSend(void);
+
+
 #endif /* USART_INTERFACE_H_ */
