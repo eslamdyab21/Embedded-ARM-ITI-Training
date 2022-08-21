@@ -58,7 +58,15 @@ void USART_voidInit(void){
     SET_BIT(USART1_REG->CR1,6);
 
 
+
     /**************************RX*******************************/
+    //6.Set the RE(Receiver enable) bit USART_CR1. This enables the 
+    //receiver which begins searching for a start bit.
+    SET_BIT(USART1_REG->CR1,2);
+
+    //Set the RXNEIE (RXNE interrupt enable) to enable the RXNE: to check
+    //if the DR is not empty before reading new data
+    SET_BIT(USART1_REG->CR1,7);
 
 }
 
