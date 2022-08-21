@@ -203,7 +203,7 @@ void USART_voidRxIntSend(void){
 */
 void USART1_IRQHandler(void){
     if(GET_BIT(USART1_REG->SR,7))
-        USART_voidTxSend();
+        USART_voidTxIntSend();
     
     if(GET_BIT(USART1_REG->SR,5))
         USART_voidRxIntSend();
