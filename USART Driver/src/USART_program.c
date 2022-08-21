@@ -15,9 +15,9 @@
 
 
 /*
-* function to enable sending data
+* Init Function
 */
-void USART_voidInitTx(void){
+void USART_voidInit(void){
     //1.Enable the USART by writing the UE bit in USART_CR1 register to 1.
     SET_BIT(USART1_REG->CR1,13);
 
@@ -42,6 +42,8 @@ void USART_voidInitTx(void){
     //1041.666d --> 1041d = 411h,  0.666*16 = 10.6d = 11d = Bh
     USART1_REG->BRR = 0x411<<4 | 0xB;
 
+
+    /**************************TX*******************************/
     //6.Set the TE (Transmitter enable) bit in USART_CR1 to send an 
     //idle frame as first transmission.
     SET_BIT(USART1_REG->CR1,3);
@@ -54,6 +56,9 @@ void USART_voidInitTx(void){
 
     //Set the TCIE (Transmission complete interrupt enable) to enable the TC
     SET_BIT(USART1_REG->CR1,6);
+
+
+    /**************************RX*******************************/
 
 }
 

@@ -18,15 +18,11 @@ Transmission complete               TC                TCIE
 
 
 
-/*
-* function to enable sending data
-*/
-void USART_voidInitTx(void);
 
 /*
-* function to enable receving data
+* Init Function
 */
-void USART_voidInitRx(void);
+void USART_voidInit(void);
 
 
 /*
