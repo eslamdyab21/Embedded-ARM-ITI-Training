@@ -150,6 +150,6 @@ u8 USART_u8Rx(void){
     //0: Data is not received
     //1: Received data is ready to be read.
 
-    while(!GETBIT(USART1_REG->SR,5));
+    while(!GET_BIT(USART1_REG->SR,5));
     return USART1_REG->DR;
 }
