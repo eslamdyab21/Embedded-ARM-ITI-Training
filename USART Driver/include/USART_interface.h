@@ -10,11 +10,24 @@
 
 
 
+/*
+* function to enable sending data
+*/
+void USART_voidInitTx(void);
 
-void USART_voidInit(void);
+/*
+* function to enable receving data
+*/
+void USART_voidInitRx(void);
 
+/*
+* function to send data
+*/
 void USART_voidTx(u8 Copy_u8DataByte);
 
+/*
+* function to read recived data
+*/
 u8 USART_u8Rx();
 
 
