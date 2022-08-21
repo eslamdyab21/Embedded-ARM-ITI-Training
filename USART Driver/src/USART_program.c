@@ -29,7 +29,8 @@ u8 *Ptr_u8RxByte;
 void USART_voidInit(void){
     /**************************RCC/GPIO*******************************/
     RCC_voidInit();
-	RCC_voidPeripheralClockEnable(RCC_APB1, USART1);
+	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
+	RCC_voidPeripheralClockEnable(RCC_APB2, USART1);
 
     //A9: Tx, A10: Rx
     GPIO_voidSetPinMode(GPIO_PORTA, 9, GPIO_PIN_MODE_AF_PP_10MHZ);
