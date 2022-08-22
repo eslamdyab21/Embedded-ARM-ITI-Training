@@ -40,7 +40,7 @@ void USART_voidInit(void){
     /*********************Enable USART NVIC-Interupt********************/
     NVIC_voidInit();
     //37  44  settable   USART1USART1 global interrupt   0x0000_00D4
-    NVIC_voidEnableInterrupt(37);
+    //NVIC_voidEnableInterrupt(37);
 
 
 
@@ -66,7 +66,7 @@ void USART_voidInit(void){
     //5.Select the desired baud rate using the USART_BRR register.
     //10Mhz USART perferal, target 9600ps
     //1041.666d --> 1041d = 411h,  0.666*16 = 10.6d = 11d = Bh
-    USART1_REG->BRR = 0x411<<4 | 0xB;
+    USART1_REG->BRR = 0x34<<4 | 0x1;
 
 
     /**************************TX*******************************/
