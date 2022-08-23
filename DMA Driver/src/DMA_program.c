@@ -91,3 +91,15 @@ void DMA_voidDestinationSize(u8 Copy_u8ChannelNumber, u8 Copy_u8DestinationSize)
             break;
         }
 }
+
+
+
+/*
+* Function to take the number of data elements to be transfered
+* number of data elements from 0 to 65535
+* Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidNumberOfDataElements(u8 Copy_u8ChannelNumber, u32 Copy_u32NumberOfDataElements){
+    DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CNDTR = Copy_u32NumberOfDataElements;
+}
+
