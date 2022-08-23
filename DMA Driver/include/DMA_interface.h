@@ -172,4 +172,11 @@ void DMA_voidDisableChannel_x(u8 Copy_u8ChannelNumber);
 void DMA_voidDataTransferDirection(u8 Copy_u8ChannelNumber);
 
 
+/*
+* Function to sclear all flags: GIF, TEIF, HTIF and TCIF flags 
+*/
+void DMA_voidClearAllFlagsChanel1(void);
+
+
+
 #endif /* DMA_INTERFACE_H_ */

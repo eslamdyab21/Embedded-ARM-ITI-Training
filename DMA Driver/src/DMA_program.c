@@ -342,3 +342,11 @@ void DMA_voidDataTransferDirection(u8 Copy_u8ChannelNumber){
    CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,4);
 
 }
+
+
+/*
+* Function to sclear all flags: GIF, TEIF, HTIF and TCIF flags 
+*/
+void DMA_voidClearAllFlagsChanel1(void){
+    DMA1_REG->IFCR = 1;
+}
