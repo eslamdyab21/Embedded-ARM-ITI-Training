@@ -291,3 +291,36 @@ void DMA_voidDisableTransferCompleteInterrupt(u8 Copy_u8ChannelNumber){
 
    CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,1);
 }
+
+
+
+/*
+* Function to enable a channel_x
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidEnableChannel_x(u8 Copy_u8ChannelNumber){
+    /*
+    EN: Channel enable
+        0: Channel disabled
+        1: Channel enabled
+    */
+
+   SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,0);
+}
+
+
+/*
+* Function to enable a channel_x
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDisableChannel_x(u8 Copy_u8ChannelNumber){
+    /*
+    EN: Channel enable
+        0: Channel disabled
+        1: Channel enabled
+    */
+
+   SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,0);
+}
