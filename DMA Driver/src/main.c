@@ -12,26 +12,37 @@
 
 
 
-void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress, u32 Copy_u32NumberOfDataElements, u8 PriorityLevel){
+void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
+                  u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
+                  u8 Copy_u8DestinationSize){
+
     //1.Set the peripheral register address in the DMA_CPARx register
-    void DMA_voidSourceAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress);
+    DMA_voidSourceAddress(Copy_u8ChannelNumber, Copy_u32SourceAdress);
 
     //2.Set the memory address in the DMA_CMARx register
-    void DMA_voidDestinationAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32DestinationAdress);
+    DMA_voidDestinationAddress(Copy_u8ChannelNumber, Copy_u32DestinationAdress);
 
 
     //3.Configure the total number of data to be transferred in the DMA_CNDTRx register.
-    void DMA_voidNumberOfDataElements(u8 Copy_u8ChannelNumber, u32 Copy_u32NumberOfDataElements);
+    DMA_voidNumberOfDataElements(Copy_u8ChannelNumber, Copy_u32NumberOfDataElements);
 
 
     //4.Configure the channel priority using the PL[1:0] bits in the DMA_CCRx register
-    void DMA_voidChannelPriorityLevel(u8 Copy_u8ChannelNumber, u8 PriorityLevel);
+    DMA_voidChannelPriorityLevel(Copy_u8ChannelNumber, PriorityLevel);
 
 
     //5.Configure data transfer direction, circular mode, peripheral & memory incremented
     //mode, peripheral & memory data size, and interrupt after half and/or full transfer 
     //in the DMA_CCRx register
-    
+    DMA_voidDataTransferDirection(Copy_u8ChannelNumber);
+
+    DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
+    DMA_voidEnableSourceIncreament(Copy_u8ChannelNumber);
+
+    DMA_voidSourceSize(Copy_u8ChannelNumber, Copy_u8SourceSize);
+    DMA_voidDestinationSize(Copy_u8ChannelNumber, Copy_u8DestinationSize);
+
+    DMA_voidEnableTransferCompleteInterrupt(Copy_u8ChannelNumber);
 }
 
 
