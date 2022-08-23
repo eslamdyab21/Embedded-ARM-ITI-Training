@@ -158,3 +158,36 @@ void DMA_voidEnableMemory2MemoryMode(u8 Copy_u8ChannelNumber){
 void DMA_voidDisabledMemory2MemoryMode(u8 Copy_u8ChannelNumber){
     CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,14);
 }
+
+
+
+
+
+/*
+* Function to Enable source increament mode
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidEnableSourceIncreament(u8 Copy_u8ChannelNumber){
+    /*
+    PINC: Peripheral increment mode
+        0: Peripheral increment mode disabled
+        1: Peripheral increment mode enabled
+    */
+    SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,6);
+}
+
+
+/*
+* Function to disabled source increament mode
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDisabledSourceIncreament(u8 Copy_u8ChannelNumber){
+    /*
+    PINC: Peripheral increment mode
+        0: Peripheral increment mode disabled
+        1: Peripheral increment mode enabled
+    */
+    CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,6);
+}
