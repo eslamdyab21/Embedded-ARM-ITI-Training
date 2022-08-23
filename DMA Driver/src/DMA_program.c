@@ -34,6 +34,14 @@ void DMA_voidSourceAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress){
 *          : Copy_u8ChannelNumber: Channel Number 1 to 7
 */
 void DMA_voidSourceSize(u8 Copy_u8ChannelNumber, u8 Copy_u8SourceSize){
+    /*
+    PSIZE[1:0]: Peripheral size
+        00: 8-bits
+        01: 16-bits
+        10: 32-bits
+        11: Reserved
+    */
+
     switch (Copy_u8SourceSize)
     {
     case DMA_8BITS:
@@ -73,6 +81,14 @@ void DMA_voidDestinationAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32Destinatio
 *          : Copy_u8ChannelNumber: Channel Number 1 to 7
 */
 void DMA_voidDestinationSize(u8 Copy_u8ChannelNumber, u8 Copy_u8DestinationSize){
+    /*
+    MSIZE[1:0]: Memory size
+        00: 8-bits
+        01: 16-bits
+        10: 32-bits
+        11: Reserved
+    */
+
     switch (Copy_u8DestinationSize)
         {
         case DMA_8BITS:
@@ -104,6 +120,7 @@ void DMA_voidNumberOfDataElements(u8 Copy_u8ChannelNumber, u32 Copy_u32NumberOfD
 }
 
 
+
 /*
 * Function to set the priority level of a channel
 * Paramters:
@@ -114,6 +131,14 @@ void DMA_voidNumberOfDataElements(u8 Copy_u8ChannelNumber, u32 Copy_u32NumberOfD
                            3:Very high
 */
 void DMA_voidChannelPriorityLevel(u8 Copy_u8ChannelNumber, u8 PriorityLevel){
+    /*
+    PL[1:0]: Channel priority level
+        00: Low
+        01: Medium
+        10: High
+        11: Very high
+    */
+
     switch (PriorityLevel)
         {
         case DMA_LOW:
@@ -146,6 +171,11 @@ void DMA_voidChannelPriorityLevel(u8 Copy_u8ChannelNumber, u8 PriorityLevel){
 *           Copy_u8ChannelNumber: Channel Number 1 to 7
 */
 void DMA_voidEnableMemory2MemoryMode(u8 Copy_u8ChannelNumber){
+    /*
+    MEM2MEM: Memory to memory mode
+        0: Memory to memory mode disabled
+        1: Memory to memory mode enabled
+    */
     SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,14);
 }
 
@@ -156,6 +186,11 @@ void DMA_voidEnableMemory2MemoryMode(u8 Copy_u8ChannelNumber){
 *           Copy_u8ChannelNumber: Channel Number 1 to 7
 */
 void DMA_voidDisabledMemory2MemoryMode(u8 Copy_u8ChannelNumber){
+    /*
+    MEM2MEM: Memory to memory mode
+        0: Memory to memory mode disabled
+        1: Memory to memory mode enabled
+    */
     CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,14);
 }
 
