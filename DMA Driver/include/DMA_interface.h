@@ -9,20 +9,25 @@
 #define DMA_INTERFACE_H_
 
 
+//Macros
+#define DMA_8BITS    0
+#define DMA_16BITS   1
+#define DMA_32BITS   2
+
 
 /*
 * Function to take the source address
 * Copy_u8ChannelNumber: Channel Number 1 to 7
 */
-void DMA_voidSourceAddress(u8 Copy_u8ChannelNumber, u32 Copy_u32SourceAdress);
+void DMA_voidSourceAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress);
 
 
 /*
 * Function to take the source size
 * Paramters: Copy_u32SourceSize
-                00: 8-bits
-                01: 16-bits
-                10: 32-bits
+                0: 8-bits
+                1: 16-bits
+                2: 32-bits
 
 *          : Copy_u8ChannelNumber: Channel Number 1 to 7
 */
