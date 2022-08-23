@@ -10,10 +10,16 @@
 
 
 //Macros
-#define DMA_8BITS    0
-#define DMA_16BITS   1
-#define DMA_32BITS   2
+//element size
+#define DMA_8BITS       0
+#define DMA_16BITS      1
+#define DMA_32BITS      2
 
+// priority level
+#define DMA_LOW         0
+#define DMA_MEDIUM      1
+#define DMA_HIGH        2
+#define DMA_VERY_HIGH   3
 
 /*
 * Function to take the source address

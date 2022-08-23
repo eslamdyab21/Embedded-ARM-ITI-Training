@@ -103,3 +103,37 @@ void DMA_voidNumberOfDataElements(u8 Copy_u8ChannelNumber, u32 Copy_u32NumberOfD
     DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CNDTR = Copy_u32NumberOfDataElements;
 }
 
+
+/*
+* Function to set the priority level of a channel
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+            PriorityLevel: 0:Low
+                           1:Medium
+                           2:High
+                           3:Very high
+*/
+void DMA_voidChannelPriorityLevel(u8 Copy_u8ChannelNumber, u8 PriorityLevel){
+    switch (PriorityLevel)
+        {
+        case DMA_LOW:
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,12);
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,13);
+            break;
+        
+        case DMA_MEDIUM:
+            SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,12);
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,13);
+            break;
+        
+        case DMA_HIGH:
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,12);
+            SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,13);
+            break;
+        
+        case DMA_VERY_HIGH:
+            SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,12);
+            SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,13);
+            break;
+        }
+}
