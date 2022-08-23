@@ -137,3 +137,24 @@ void DMA_voidChannelPriorityLevel(u8 Copy_u8ChannelNumber, u8 PriorityLevel){
             break;
         }
 }
+
+
+
+/*
+* Function to enable Memory to memory mode
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidEnableMemory2MemoryMode(u8 Copy_u8ChannelNumber){
+    SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,14);
+}
+
+
+/*
+* Function to disabled Memory to memory mode
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDisabledMemory2MemoryMode(u8 Copy_u8ChannelNumber){
+    CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,14);
+}
