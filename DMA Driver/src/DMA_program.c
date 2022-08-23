@@ -26,15 +26,15 @@ void DMA_voidSourceAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress){
 
 /*
 * Function to take the source size
-* Paramters: Copy_u32SourceSize
+* Paramters: Copy_u8SourceSize
                 0: 8-bits
                 1: 16-bits
                 2: 32-bits
 
 *          : Copy_u8ChannelNumber: Channel Number 1 to 7
 */
-void DMA_voidSourceSize(u8 Copy_u8ChannelNumber, u8 Copy_u32SourceSize){
-    switch (Copy_u32SourceSize)
+void DMA_voidSourceSize(u8 Copy_u8ChannelNumber, u8 Copy_u8SourceSize){
+    switch (Copy_u8SourceSize)
     {
     case DMA_8BITS:
         CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,8);
@@ -51,4 +51,43 @@ void DMA_voidSourceSize(u8 Copy_u8ChannelNumber, u8 Copy_u32SourceSize){
         SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,9);
         break;
     }
+}
+
+
+
+/*
+* Function to take the destination address
+* Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDestinationAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32DestinationAdress){
+    DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CMAR = Copy_u32DestinationAdress;
+}
+
+
+/*
+* Function to take the destination size
+* Paramters: Copy_u8DestinationSize
+                0: 8-bits
+                1: 16-bits
+                2: 32-bits
+*          : Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDestinationSize(u8 Copy_u8ChannelNumber, u8 Copy_u8DestinationSize){
+    switch (Copy_u8DestinationSize)
+        {
+        case DMA_8BITS:
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,10);
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,11);
+            break;
+        
+        case DMA_16BITS:
+            SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,10);
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,11);
+            break;
+        
+        case DMA_32BITS:
+            CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,10);
+            SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,11);
+            break;
+        }
 }

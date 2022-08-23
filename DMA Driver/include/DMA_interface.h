@@ -24,31 +24,32 @@ void DMA_voidSourceAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress);
 
 /*
 * Function to take the source size
-* Paramters: Copy_u32SourceSize
+* Paramters: Copy_u8SourceSize
                 0: 8-bits
                 1: 16-bits
                 2: 32-bits
 
 *          : Copy_u8ChannelNumber: Channel Number 1 to 7
 */
-void DMA_voidSourceSize(u8 Copy_u8ChannelNumber, u8 Copy_u32SourceSize);
+void DMA_voidSourceSize(u8 Copy_u8ChannelNumber, u8 Copy_u8SourceSize);
 
 
 /*
 * Function to take the destination address
+* Copy_u8ChannelNumber: Channel Number 1 to 7
 */
-void DMA_voidDestinationAddress(u8 Copy_u8ChannelNumber, u32 Copy_u32DestinationAdress);
+void DMA_voidDestinationAddress(u8 Copy_u8ChannelNumber, u32 *Copy_u32DestinationAdress);
 
 
 /*
 * Function to take the destination size
-* Paramters: Copy_u32DestinationSize
+* Paramters: Copy_u8DestinationSize
                 0: 8-bits
                 1: 16-bits
                 2: 32-bits
 *          : Copy_u8ChannelNumber: Channel Number 1 to 7
 */
-void DMA_voidDestinationSize(u8 Copy_u8ChannelNumber, u8 Copy_u32DestinationSize);
+void DMA_voidDestinationSize(u8 Copy_u8ChannelNumber, u8 Copy_u8DestinationSize);
 
 
 
