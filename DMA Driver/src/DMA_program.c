@@ -322,5 +322,23 @@ void DMA_voidDisableChannel_x(u8 Copy_u8ChannelNumber){
         1: Channel enabled
     */
 
-   SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,0);
+   CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,0);
+}
+
+
+
+/*
+* Function to set data flow direction, source to destination (perph to mem)
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDataTransferDirection(u8 Copy_u8ChannelNumber){
+    /*
+    DIR: Data transfer direction
+        0: Read from peripheral
+        1: Read from memory
+    */
+
+   CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,4);
+
 }

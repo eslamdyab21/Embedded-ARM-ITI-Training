@@ -163,4 +163,13 @@ void DMA_voidEnableChannel_x(u8 Copy_u8ChannelNumber);
 void DMA_voidDisableChannel_x(u8 Copy_u8ChannelNumber);
 
 
+
+/*
+* Function to set data flow direction, source to destination (perph to mem)
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDataTransferDirection(u8 Copy_u8ChannelNumber);
+
+
 #endif /* DMA_INTERFACE_H_ */
