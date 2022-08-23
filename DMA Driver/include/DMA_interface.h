@@ -140,7 +140,7 @@ void DMA_voidEnableTransferCompleteInterrupt(u8 Copy_u8ChannelNumber);
 
 
 /*
-* Function to disabled destination increament mode
+* Function to disabled Transfer complete interrupt
 * Paramters:
 *           Copy_u8ChannelNumber: Channel Number 1 to 7
 */

@@ -258,3 +258,36 @@ void DMA_voidDisableDestinationIncreament(u8 Copy_u8ChannelNumber){
 
     CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,7);
 }
+
+
+
+/*
+* Function to enable Transfer complete interrupt 
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidEnableTransferCompleteInterrupt(u8 Copy_u8ChannelNumber){
+    /*
+    TCIE: Transfer complete interrupt enable
+        0: TC interrupt disabled
+        1: TC interrupt enabled
+    */
+
+   SET_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,1);
+}
+
+
+/*
+* Function to disabled Transfer complete interrupt
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+void DMA_voidDisableTransferCompleteInterrupt(u8 Copy_u8ChannelNumber){
+    /*
+    TCIE: Transfer complete interrupt enable
+        0: TC interrupt disabled
+        1: TC interrupt enabled
+    */
+
+   CLR_BIT(DMA1_REG->CHANNEL[Copy_u8ChannelNumber-1].CCR,1);
+}
