@@ -9,6 +9,8 @@
 #define SPI_INTERFACE_H_
 
 
+
+//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
 //Macros
 //Data frmae size
 #define SPI_8BITS    0
@@ -21,10 +23,35 @@
 #define SPI_CLK_MODE_3   3      //Clock Polarity = 1, Cock Phase = 1
 
 
+//frame format (MSB-first or LSB-first)
+#define SPI_MSB_FIRST   0
+#define SPI_LSB_FIRST   1
+
+
+//Slave managment mode (HW or SW mode)
+#define SPI_HW_MODE     0
+#define SPI_SW_MODE     1
+
+
+//+++++++++++++++++++++++++++++++++++MASTER++++++++++++++++++++++++++++++++
+//Macros
+//Baud rate control
+#define SPI_BAUD_RATE_F_2       0b000
+#define SPI_BAUD_RATE_F_4       0b001
+#define SPI_BAUD_RATE_F_8       0b010
+#define SPI_BAUD_RATE_F_16      0b011
+#define SPI_BAUD_RATE_F_32      0b100
+#define SPI_BAUD_RATE_F_64      0b101
+#define SPI_BAUD_RATE_F_128     0b110
+#define SPI_BAUD_RATE_F_256     0b111
+
+
+
+//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
 /*
 * Function to set the data frame size (8/16 bits)
 * Paramters :
-        Choose a frame size
+        Choose a frame size in config
             SPI_8BITS
             SPI_16BITS
 */
@@ -44,5 +71,61 @@ void SPI_voidDataFrameSize(void);
 
 */
 void SPI_voidClkPolarityPhaseMode(void);
+
+
+
+
+/*
+* Function to set the frame format (MSB-first or LSB-first)
+* Paramters :
+        Choose a format in config
+            SPI_MSB_FIRST   
+            SPI_LSB_FIRST 
+*/
+void SPI_voidDataFrameFormat(void);
+
+
+
+/*
+* Function to set the Slave managment mode (HW or SW mode)
+* Paramters :
+        Choose a mode in config
+            SPI_HW_MODE   
+            SPI_SW_MODE 
+*/
+void SPI_voidSlaveManagmentMode(void);
+
+
+/*
+* Function to set the controller as slave
+*/
+void SPI_voidEnableSlave(void);
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+//+++++++++++++++++++++++++++++++++++MASTER++++++++++++++++++++++++++++++++
+
+/*
+* Function to define the serial clock baud rate
+* Paramters :
+        Choose a Baud rate in config
+            SPI_BAUD_RATE_F_2       
+            SPI_BAUD_RATE_F_4       
+            SPI_BAUD_RATE_F_8       
+            SPI_BAUD_RATE_F_16      
+            SPI_BAUD_RATE_F_32      
+            SPI_BAUD_RATE_F_64    
+            SPI_BAUD_RATE_F_128     
+            SPI_BAUD_RATE_F_256
+*/
+void SPI_voidBaudRateClk(void);
+
+
 
 #endif /* SPI_INTERFACE_H_ */
