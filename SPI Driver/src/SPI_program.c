@@ -132,3 +132,62 @@ void SPI_voidDataFrameFormat(void){
         break;
     }
 }
+
+
+
+
+
+/*
+* Function to set the Master managment mode (HW or SW mode)
+* Paramters :
+    SPI_BAUD_RATE
+        Choose a mode in config
+            SPI_MASTER_HW_MODE   
+            SPI_MASTER_SW_MODE 
+*/
+void SPI_voidMasterManagmentMode(void){
+    /*
+            ---Hardware NSS management (SSM = 0)---
+    NSS output enabled (SSM = 0, SSOE = 1)
+    This configuration is used only when the device operates in master mode. The
+    NSS signal is driven low when the master starts the communication and is kept
+    low until the SPI is disabled.
+    */
+
+    /*
+            ---Software NSS management (SSM = 1)---
+    The slave select information is driven internally by the value of the SSI bit 
+    in the SPI_CR1 register. The external NSS pin remains free for other 
+    application uses.
+    */
+
+    /*
+    Bit 9 SSM: Software slave management(CR1)
+        When the SSM bit is set, the NSS pin input is replaced with 
+        the value from the SSI bit.
+        0: Software slave management disabled
+        1: Software slave management enabled
+    */
+
+    /*
+    Bit 2 SSOE: SS output enable(CR2)
+        0: SS output is disabled in master mode and the cell can 
+        work in multimaster configuration
+
+        1: SS output is enabled in master mode and when the cell 
+        is enabled. The cell cannot work in a multimaster environment.
+    */
+    switch (SPI_BAUD_RATE)
+    {
+    case SPI_MASTER_HW_MODE:
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,9);
+
+        SET_BIT(SPI1_PERIPHERAL->CR2_REG,2);
+        break;
+
+    case SPI_MASTER_SW_MODE:
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,9);
+        break;
+
+    }
+}
