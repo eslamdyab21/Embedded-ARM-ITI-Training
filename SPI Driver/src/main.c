@@ -53,17 +53,23 @@ void RCC_GPIO_NVIC_voidInit(void){
 
 int main(void){
 
-    u8 byte = 'c';
+    u8 byteTx = 'c';
+    u8 byteRx = 0;
     u32 i = 0;
 
     RCC_GPIO_NVIC_voidInit();
     SPI_voidMasterInit();
 
+    SPI_voidTx(byteTx);
 
     while(1){
         if(SPI_boolIsTxFrameComplete())
-            SPI_voidTx(byte);
-            
+            SPI_voidTx(byteTx);
+
+        if(SPI_boolIsRxFrameComplete())
+            byteRx = SPI_16Rx();
+
+ 
         for(i=0; i <1000000; i++);
         GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_HIGH);
         for(i=0; i <1000000; i++);

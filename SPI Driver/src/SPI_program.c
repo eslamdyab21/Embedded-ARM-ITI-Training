@@ -269,21 +269,24 @@ void SPI_voidMasterInit(void){
     SPI_voidMasterManagmentMode();
 
 
-    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
-    //is connected to a high-level signal).
-    SPI_voidEnableMaster();
     
-
-    //7. enable SPI
-    SPI_voidEnableSPI();
-
-
+    
     //Transmit sequence: 
     //Enable TXE interrupt (Tx Frame Complete)
     SPI_voidTxeInt();
 
     //Enable RXNE interrupt (Rx Frame Complete)
     SPI_voidRxeInt();
+
+    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
+    //is connected to a high-level signal).
+    SPI_voidEnableMaster();
+    
+    //7. enable SPI
+    SPI_voidEnableSPI();
+
+
+    
 
 }
 
@@ -385,5 +388,5 @@ u8 SPI_boolIsRxFrameComplete(void){
         1: Rx buffer not empty
     */
 
-    return !GET_BIT(SPI1_PERIPHERAL->SR_REG,0);
+    return GET_BIT(SPI1_PERIPHERAL->SR_REG,0);
 }
