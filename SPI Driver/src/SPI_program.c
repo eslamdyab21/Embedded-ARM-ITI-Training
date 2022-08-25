@@ -274,3 +274,62 @@ void SPI_voidMasterInit(void){
     SPI_voidEnableMaster();
     
 }
+
+
+/*
+* Function to Transmit data
+*/
+void SPI_voidTx(u16 Copy_u16TxData){
+    SPI1_PERIPHERAL->DR_REG = Copy_u16TxData;
+}
+
+
+/*
+* Function to Receive data
+*/
+u16 SPI_16Rx(void){
+    return SPI1_PERIPHERAL->DR_REG;
+}
+
+
+
+
+
+
+/*
+* Function to Enable/Disale TXE interrupt (Tx Frame Complete)
+* Paramters :
+    SPI_TXE_INT
+        Choose a state in config
+            SPI_ENABLE_INT 
+            SPI_DISABLE_INT 
+*/
+void SPI_voidTxeInt(void){
+    /*
+    Bit 7 TXEIE: Tx buffer empty interrupt enable(CR2)
+        0: TXE interrupt masked
+        1: TXE interrupt not masked. Used to generate an interrupt 
+            request when the TXE flag is set.
+        */
+    SET_BIT(SPI1_PERIPHERAL->CR2_REG,7);
+}
+
+
+
+
+
+/*
+* Function to check if frame is transmited (Enable TXE first)
+* Returns :
+    1: frame is transferd so you can send a new frame
+    0: frame is not transferd yet so you need to wait before sending a new frame
+*/
+u8 SPI_boolIsTxFrameComplete(void){
+    /*
+    Bit 1 TXE: Transmit buffer empty(SR)
+        0: Tx buffer not empty
+        1: Tx buffer empty
+    */
+   
+    return GET_BIT(SPI1_PERIPHERAL->SR_REG,1);
+}

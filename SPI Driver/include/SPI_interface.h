@@ -26,6 +26,11 @@
 //frame format (MSB-first or LSB-first)
 #define SPI_MSB_FIRST   0
 #define SPI_LSB_FIRST   1
+
+
+//Enable/Disale TXE interrupt
+#define SPI_ENABLE_INT  1
+#define SPI_DISABLE_INT 0
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -115,6 +120,42 @@ void SPI_voidEnableSPI(void);
 * Function to disable SPI
 */
 void SPI_voidDisableSPI(void);
+
+
+
+/*
+* Function to Transmit data
+*/
+void SPI_voidTx(u16 Copy_u16TxData);
+
+
+/*
+* Function to Receive data
+*/
+u16 SPI_u16Rx(void);
+
+
+
+/*
+* Function to Enable/Disale TXE interrupt (Tx Frame Complete)
+* Paramters :
+    SPI_TXE_INT
+        Choose a state in config
+            SPI_ENABLE_INT 
+            SPI_DISABLE_INT 
+*/
+void SPI_voidTxeInt(void);
+
+
+
+
+/*
+* Function to check if frame is transmited (Enable TXE first)
+* Returns :
+    1: frame is transferd so you can send a new frame
+    0: frame is not transferd yet so you need to wait before sending a new frame
+*/
+u8 SPI_boolIsTxFrameComplete(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

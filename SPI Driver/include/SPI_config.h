@@ -42,6 +42,18 @@ Choose a format
     SPI_LSB_FIRST   
 */
 #define SPI_FRAME_FORMAT    SPI_MSB_FIRST
+
+
+
+
+//Enable/Disale TXE interrupt
+/*
+Choose a state in config
+    SPI_ENABLE_INT 
+    SPI_DISABLE_INT 
+*/
+#define SPI_TXE_INT  SPI_ENABLE_INT
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
