@@ -191,3 +191,50 @@ void SPI_voidMasterManagmentMode(void){
 
     }
 }
+
+
+
+
+/*
+* Function to set the controller as master
+*/
+void SPI_voidEnableMaster(void){
+    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
+    //is connected to a high-level signal).
+
+    /*
+    Bit 2 MSTR: Master selection
+        0: Slave configuration
+        1: Master configuration
+    */
+
+    SET_BIT(SPI1_PERIPHERAL->CR1_REG,2);
+}
+
+
+/*
+* Function to enable SPI
+*/
+void SPI_voidEnableSPI(void){
+    /*
+    Bit 6 SPE: SPI enable
+    0: Peripheral disabled
+    1: Peripheral enabled
+    */
+
+    SET_BIT(SPI1_PERIPHERAL->CR1_REG,6);
+}
+
+
+/*
+* Function to disable SPI
+*/
+void SPI_voidDisableSPI(void){
+    /*
+    Bit 6 SPE: SPI enable
+    0: Peripheral disabled
+    1: Peripheral enabled
+    */
+
+    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,6);
+}
