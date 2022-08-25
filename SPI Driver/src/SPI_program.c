@@ -178,7 +178,7 @@ void SPI_voidMasterManagmentMode(void){
         1: SS output is enabled in master mode and when the cell 
         is enabled. The cell cannot work in a multimaster environment.
     */
-    switch (SPI_BAUD_RATE)
+    switch (SPI_MASTER_CNTRL_MODE)
     {
     case SPI_MASTER_HW_MODE:
         CLR_BIT(SPI1_PERIPHERAL->CR1_REG,9);
@@ -274,13 +274,16 @@ void SPI_voidMasterInit(void){
     SPI_voidEnableMaster();
     
 
+    //7. enable SPI
+    SPI_voidEnableSPI();
 
+    
     //Transmit sequence: 
     //Enable TXE interrupt (Tx Frame Complete)
-    SPI_voidTxeInt();
+    //SPI_voidTxeInt();
 
     //Enable RXNE interrupt (Rx Frame Complete)
-    SPI_voidRxeInt();
+    //SPI_voidRxeInt();
 
 }
 
