@@ -27,5 +27,52 @@ typedef struct{
 
 
 
+//Macros
+
+//Enable/Disale TXE interrupt
+/*
+Choose a state in config
+    SPI_ENABLE_INT 
+    SPI_DISABLE_INT 
+*/
+#define SPI_TXE_INT  SPI_ENABLE_INT
+
+
+
+//Enable/Disale RXNE interrupt
+/*
+Choose a state in config
+    SPI_ENABLE_INT 
+    SPI_DISABLE_INT 
+*/
+#define SPI_RXNE_INT  SPI_ENABLE_INT
+
+
+
+
+/*
+* Function to Enable/Disale RXNE interrupt (Rx Frame Complete)
+* Paramters :
+    SPI_RXNE_INT
+        Choose a state in config
+            SPI_ENABLE_INT 
+            SPI_DISABLE_INT 
+*/
+void SPI_voidRxeInt(void);
+
+
+
+
+/*
+* Function to Enable/Disale TXE interrupt (Tx Frame Complete)
+* Paramters :
+    SPI_TXE_INT
+        Choose a state in config
+            SPI_ENABLE_INT 
+            SPI_DISABLE_INT 
+*/
+void SPI_voidTxeInt(void);
+
+
 
 #endif /* SPI_PRIVATE_H_ */

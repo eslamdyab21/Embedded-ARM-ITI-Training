@@ -143,17 +143,6 @@ u16 SPI_u16Rx(void);
 
 
 
-/*
-* Function to Enable/Disale TXE interrupt (Tx Frame Complete)
-* Paramters :
-    SPI_TXE_INT
-        Choose a state in config
-            SPI_ENABLE_INT 
-            SPI_DISABLE_INT 
-*/
-void SPI_voidTxeInt(void);
-
-
 
 
 /*
@@ -163,20 +152,6 @@ void SPI_voidTxeInt(void);
     0: frame is not transferd yet so you need to wait before sending a new frame
 */
 u8 SPI_boolIsTxFrameComplete(void);
-
-
-
-
-
-/*
-* Function to Enable/Disale RXNE interrupt (Rx Frame Complete)
-* Paramters :
-    SPI_RXNE_INT
-        Choose a state in config
-            SPI_ENABLE_INT 
-            SPI_DISABLE_INT 
-*/
-void SPI_voidRxeInt(void);
 
 
 
