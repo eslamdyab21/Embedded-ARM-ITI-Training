@@ -273,6 +273,15 @@ void SPI_voidMasterInit(void){
     //is connected to a high-level signal).
     SPI_voidEnableMaster();
     
+
+
+    //Transmit sequence: 
+    //Enable TXE interrupt (Tx Frame Complete)
+    SPI_voidTxeInt();
+
+    //Enable RXNE interrupt (Rx Frame Complete)
+    SPI_voidRxeInt();
+
 }
 
 
