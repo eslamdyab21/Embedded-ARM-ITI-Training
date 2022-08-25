@@ -54,6 +54,15 @@ Choose a state in config
 */
 #define SPI_TXE_INT  SPI_ENABLE_INT
 
+
+
+//Enable/Disale RXNE interrupt
+/*
+Choose a state in config
+    SPI_ENABLE_INT 
+    SPI_DISABLE_INT 
+*/
+#define SPI_RXNE_INT  SPI_ENABLE_INT
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

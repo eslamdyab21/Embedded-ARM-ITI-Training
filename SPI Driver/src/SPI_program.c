@@ -330,6 +330,48 @@ u8 SPI_boolIsTxFrameComplete(void){
         0: Tx buffer not empty
         1: Tx buffer empty
     */
-   
+
     return GET_BIT(SPI1_PERIPHERAL->SR_REG,1);
+}
+
+
+
+
+/*
+* Function to Enable/Disale RXNE interrupt (Rx Frame Complete)
+* Paramters :
+    SPI_RXNE_INT
+        Choose a state in config
+            SPI_ENABLE_INT 
+            SPI_DISABLE_INT 
+*/
+void SPI_voidRxeInt(void){
+
+    /*
+    Bit 6 RXNEIE: RX buffer not empty interrupt enable
+        0: RXNE interrupt masked
+        1: RXNE interrupt not masked. Used to generate an interrupt 
+           request when the RXNE flag is set.
+    */
+
+    SET_BIT(SPI1_PERIPHERAL->CR2_REG,6);
+}
+
+
+
+
+/*
+* Function to check if frame is recived (Enable RXNE first)
+* Returns :
+    1: frame is recived so you can recive a new frame
+    0: frame is not recived yet so you need to wait before reciving a new frame
+*/
+u8 SPI_boolIsRxFrameComplete(void){
+    /*
+    Bit 0 RXNE: Receive buffer not empty
+        0: Rx buffer empty
+        1: Rx buffer not empty
+    */
+
+    return !GET_BIT(SPI1_PERIPHERAL->SR_REG,0);
 }

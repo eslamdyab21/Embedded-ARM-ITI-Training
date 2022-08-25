@@ -31,7 +31,14 @@
 //Enable/Disale TXE interrupt
 #define SPI_ENABLE_INT  1
 #define SPI_DISABLE_INT 0
+
+
+//Enable/Disale RXNE interrupt
+#define SPI_ENABLE_INT  1
+#define SPI_DISABLE_INT 0
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
 
 
@@ -156,6 +163,31 @@ void SPI_voidTxeInt(void);
     0: frame is not transferd yet so you need to wait before sending a new frame
 */
 u8 SPI_boolIsTxFrameComplete(void);
+
+
+
+
+
+/*
+* Function to Enable/Disale RXNE interrupt (Rx Frame Complete)
+* Paramters :
+    SPI_RXNE_INT
+        Choose a state in config
+            SPI_ENABLE_INT 
+            SPI_DISABLE_INT 
+*/
+void SPI_voidRxeInt(void);
+
+
+
+
+/*
+* Function to check if frame is recived (Enable RXNE first)
+* Returns :
+    1: frame is recived so you can recive a new frame
+    0: frame is not recived yet so you need to wait before reciving a new frame
+*/
+u8 SPI_boolIsRxFrameComplete(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
