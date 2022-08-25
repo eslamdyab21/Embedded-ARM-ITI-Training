@@ -99,3 +99,36 @@ void SPI_voidDataFrameSize(void){
     }
     
 }
+
+
+
+
+/*
+* Function to set the frame format (MSB-first or LSB-first)
+* Paramters :
+    SPI_FRAME_FORMAT
+        Choose a format in config
+            SPI_MSB_FIRST   
+            SPI_LSB_FIRST 
+*/
+void SPI_voidDataFrameFormat(void){
+    //4.Configure the LSBFIRST bit in the SPI_CR1 register to 
+    //define the frame format.
+
+    /*
+    Bit 7 LSBFIRST: Frame format
+    0: MSB transmitted first
+    1: LSB transmitted first
+    */
+
+    switch (SPI_FRAME_FORMAT)
+    {
+    case SPI_MSB_FIRST:
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,7);
+        break;
+    
+    case SPI_LSB_FIRST:
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,7);
+        break;
+    }
+}
