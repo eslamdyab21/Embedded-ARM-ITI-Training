@@ -30,7 +30,7 @@ Choose a mode
     SPI_CLK_MODE_2      //Clock Polarity = 1, Cock Phase = 0
     SPI_CLK_MODE_3      //Clock Polarity = 1, Cock Phase = 1
 */
-#define SPI_CLK_MODE   SPI_CLK_MODE_0
+#define SPI_CLK_MODE   SPI_CLK_MODE_3
 
 
 

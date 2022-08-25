@@ -46,7 +46,7 @@ void RCC_GPIO_NVIC_voidInit(void){
     /*********************Enable USART NVIC-Interupt********************/
     NVIC_voidInit();
     //35    42  settable    SPI1    SPI1 global interrupt   0x0000_00CC
-    //NVIC_voidEnableInterrupt(35);
+    NVIC_voidEnableInterrupt(35);
 }
 
 
@@ -59,11 +59,15 @@ int main(void){
     RCC_GPIO_NVIC_voidInit();
     SPI_voidMasterInit();
 
+
     while(1){
-        //if(SPI_boolIsTxFrameComplete())
-        SPI_voidTx(byte);
-        
+        if(SPI_boolIsTxFrameComplete())
+            SPI_voidTx(byte);
+            
         for(i=0; i <1000000; i++);
+        GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_HIGH);
+        for(i=0; i <1000000; i++);
+        GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
     }
 
 

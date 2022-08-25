@@ -277,13 +277,13 @@ void SPI_voidMasterInit(void){
     //7. enable SPI
     SPI_voidEnableSPI();
 
-    
+
     //Transmit sequence: 
     //Enable TXE interrupt (Tx Frame Complete)
-    //SPI_voidTxeInt();
+    SPI_voidTxeInt();
 
     //Enable RXNE interrupt (Rx Frame Complete)
-    //SPI_voidRxeInt();
+    SPI_voidRxeInt();
 
 }
 
