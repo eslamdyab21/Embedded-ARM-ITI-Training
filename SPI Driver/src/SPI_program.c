@@ -148,6 +148,7 @@ void SPI_voidDataFrameFormat(void){
 void SPI_voidMasterManagmentMode(void){
     /*
             ---Hardware NSS management (SSM = 0)---
+    NSS pin is in output mode
     NSS output enabled (SSM = 0, SSOE = 1)
     This configuration is used only when the device operates in master mode. The
     NSS signal is driven low when the master starts the communication and is kept
@@ -237,4 +238,39 @@ void SPI_voidDisableSPI(void){
     */
 
     CLR_BIT(SPI1_PERIPHERAL->CR1_REG,6);
+}
+
+
+/*
+* Master Init Function
+*/
+void SPI_voidMasterInit(void){
+    //1.Select the BR[2:0] bits to define the serial clock baud rate 
+    //(see SPI_CR1 register)
+    SPI_voidBaudRateClk();
+
+
+    //2.Select the CPOL and CPHA bits to define one of the four relationships 
+    //between the data transfer and the serial clock
+    SPI_voidClkPolarityPhaseMode();
+    
+    
+    //3.Set the DFF bit to define 8- or 16-bit data frame size
+    //DFF: Data frame format
+    SPI_voidDataFrameSize();
+    
+
+    //4.Configure the LSBFIRST bit in the SPI_CR1 register to 
+    //define the frame format.
+    SPI_voidDataFrameFormat();
+    
+
+    //5.HW or SW Mode
+    SPI_voidMasterManagmentMode();
+
+
+    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
+    //is connected to a high-level signal).
+    SPI_voidEnableMaster();
+    
 }

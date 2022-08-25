@@ -178,6 +178,12 @@ void SPI_voidMasterManagmentMode(void);
 * Function to set the controller as master
 */
 void SPI_voidEnableMaster(void);
+
+
+/*
+* Master Init Function
+*/
+void SPI_voidMasterInit(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
