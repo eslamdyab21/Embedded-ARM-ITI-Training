@@ -68,6 +68,7 @@
 /*
 * Function to set the data frame size (8/16 bits)
 * Paramters :
+    SPI_FRAME_SIZE
         Choose a frame size in config
             SPI_8BITS
             SPI_16BITS
@@ -79,7 +80,7 @@ void SPI_voidDataFrameSize(void);
 /*
 * Function to configure the Clock Polarity and Cock Phase mode
 * Paramters :
-                
+        SPI_CLK_MODE         
         Choose a mode in config
             SPI_CLK_MODE_0      //Clock Polarity = 0, Cock Phase = 0
             SPI_CLK_MODE_1      //Clock Polarity = 0, Cock Phase = 1
@@ -95,6 +96,7 @@ void SPI_voidClkPolarityPhaseMode(void);
 /*
 * Function to set the frame format (MSB-first or LSB-first)
 * Paramters :
+    SPI_FRAME_FORMAT
         Choose a format in config
             SPI_MSB_FIRST   
             SPI_LSB_FIRST 
@@ -149,6 +151,7 @@ void SPI_voidEnableSlave(void);
 /*
 * Function to define the serial clock baud rate
 * Paramters :
+    SPI_BAUD_RATE
         Choose a Baud rate in config
             SPI_BAUD_RATE_F_2       
             SPI_BAUD_RATE_F_4       
@@ -166,6 +169,7 @@ void SPI_voidBaudRateClk(void);
 /*
 * Function to set the Master managment mode (HW or SW mode)
 * Paramters :
+    SPI_BAUD_RATE
         Choose a mode in config
             SPI_MASTER_HW_MODE   
             SPI_MASTER_SW_MODE 
