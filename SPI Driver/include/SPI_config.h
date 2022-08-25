@@ -8,8 +8,7 @@
 #ifndef SPI_CONFIG_H_
 #define SPI_CONFIG_H_
 
-
-//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++BOTH++++++++++++++++++++++++++++++++
 //Macros
 
 //Data frmae size
@@ -43,17 +42,25 @@ Choose a format
     SPI_LSB_FIRST   
 */
 #define SPI_FRAME_FORMAT    SPI_MSB_FIRST
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
 
+
+
+//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
 //Slave managment mode (HW or SW mode)
 /*
 Choose a format
-    SPI_HW_MODE   
-    SPI_SW_MODE  
+    SPI_SLAVE_HW_MODE   
+    SPI_SLAVE_SW_MODE  
 */
-#define SPI_SLAVE_CNTRL_MODE    SPI_HW_MODE
+#define SPI_SLAVE_CNTRL_MODE    SPI_SLAVE_HW_MODE
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 
 
 
@@ -75,7 +82,13 @@ Choose a Baud rate
 #define SPI_BAUD_RATE   SPI_BAUD_RATE_F_2
 
 
-
+//Master managment mode (HW or SW mode)
+/*
+Choose a mode
+    SPI_MASTER_HW_MODE   
+    SPI_MASTER_SW_MODE  
+*/
+#define SPI_MASTER_CNTRL_MODE    SPI_MASTER_HW_MODE
 
 
 

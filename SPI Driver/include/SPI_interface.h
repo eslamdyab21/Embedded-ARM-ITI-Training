@@ -10,7 +10,7 @@
 
 
 
-//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++BOTH++++++++++++++++++++++++++++++++
 //Macros
 //Data frmae size
 #define SPI_8BITS    0
@@ -26,15 +26,24 @@
 //frame format (MSB-first or LSB-first)
 #define SPI_MSB_FIRST   0
 #define SPI_LSB_FIRST   1
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+
+
+
+//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
 //Slave managment mode (HW or SW mode)
-#define SPI_HW_MODE     0
-#define SPI_SW_MODE     1
+#define SPI_SLAVE_HW_MODE     0
+#define SPI_SLAVE_SW_MODE     1
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
 
 //+++++++++++++++++++++++++++++++++++MASTER++++++++++++++++++++++++++++++++
 //Macros
+
 //Baud rate control
 #define SPI_BAUD_RATE_F_2       0b000
 #define SPI_BAUD_RATE_F_4       0b001
@@ -46,8 +55,16 @@
 #define SPI_BAUD_RATE_F_256     0b111
 
 
+//Master managment mode (HW or SW mode)
+#define SPI_MASTER_HW_MODE     0
+#define SPI_MASTER_SW_MODE     1
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
+
+
+
+
+//+++++++++++++++++++++++++++++++++++BOTH++++++++++++++++++++++++++++++++
 /*
 * Function to set the data frame size (8/16 bits)
 * Paramters :
@@ -87,6 +104,25 @@ void SPI_voidDataFrameFormat(void);
 
 
 /*
+* Function to enable SPI
+*/
+void SPI_voidEnableSPI(void);
+
+
+/*
+* Function to disable SPI
+*/
+void SPI_voidDisableSPI(void);
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+//+++++++++++++++++++++++++++++++++++SLAVE++++++++++++++++++++++++++++++++
+/*
 * Function to set the Slave managment mode (HW or SW mode)
 * Paramters :
         Choose a mode in config
@@ -110,7 +146,6 @@ void SPI_voidEnableSlave(void);
 
 
 //+++++++++++++++++++++++++++++++++++MASTER++++++++++++++++++++++++++++++++
-
 /*
 * Function to define the serial clock baud rate
 * Paramters :
@@ -126,6 +161,24 @@ void SPI_voidEnableSlave(void);
 */
 void SPI_voidBaudRateClk(void);
 
+
+
+/*
+* Function to set the Master managment mode (HW or SW mode)
+* Paramters :
+        Choose a mode in config
+            SPI_MASTER_HW_MODE   
+            SPI_MASTER_SW_MODE 
+*/
+void SPI_voidMasterManagmentMode(void);
+
+
+
+/*
+* Function to set the controller as master
+*/
+void SPI_voidEnableMaster(void);
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 #endif /* SPI_INTERFACE_H_ */
