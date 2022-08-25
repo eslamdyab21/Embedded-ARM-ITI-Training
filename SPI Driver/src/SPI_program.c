@@ -281,7 +281,7 @@ void SPI_voidMasterInit(void){
     //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
     //is connected to a high-level signal).
     SPI_voidEnableMaster();
-    
+
     //7. enable SPI
     SPI_voidEnableSPI();
 
@@ -389,4 +389,66 @@ u8 SPI_boolIsRxFrameComplete(void){
     */
 
     return GET_BIT(SPI1_PERIPHERAL->SR_REG,0);
+}
+
+
+
+
+
+/*
+* Function to set the Communication Protocol
+* Paramters :
+    Choose a mode
+    SPI_COMMUNICATION_PROTCOL
+        SPI_FULL_DUBLEX                   
+        SPI_UNI_DIRCTION_RESEIVE_ONLY     
+        SPI_BIDIRCTIONAL_TX               
+        SPI_BIDIRCTIONAL_RX               
+*/
+void SPI_voidCommunicationProtocol(void){
+
+    //(BIDIMODE and RXONLY)
+    /*
+    Bit 15 BIDIMODE: Bidirectional data mode enable
+        0: 2-line unidirectional data mode selected
+        1: 1-line bidirectional data mode selected
+    */
+
+    /*
+    Bit 10 RXONLY: Receive only
+        This bit combined with the BIDImode bit selects the direction of 
+        transfer in 2-line unidirectional mode. This bit is also useful in 
+        a multislave system in which this particular slave is not accessed, 
+        the output from the accessed slave is not corrupted.
+            0: Full duplex (Transmit and receive)
+            1: Output disabled (Receive-only mode)
+    */
+
+
+    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,10);
+    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,15);
+
+
+    switch (SPI_COMMUNICATION_PROTCOL)
+    {
+    case SPI_FULL_DUBLEX:
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,10);
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,15);
+        break;
+
+    case SPI_UNI_DIRCTION_RESEIVE_ONLY:
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,15);
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,10);
+        break;
+    
+    case SPI_BIDIRCTIONAL_TX:
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,15);
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,10);
+        break;
+    
+    case SPI_BIDIRCTIONAL_RX:
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,15);
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,10);
+        break;
+    }
 }

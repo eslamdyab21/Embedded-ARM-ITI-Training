@@ -42,6 +42,19 @@ Choose a format
     SPI_LSB_FIRST   
 */
 #define SPI_FRAME_FORMAT    SPI_MSB_FIRST
+
+
+
+
+//Communication Protocol
+/*
+Choose a mode
+    SPI_FULL_DUBLEX                   
+    SPI_UNI_DIRCTION_RESEIVE_ONLY     
+    SPI_BIDIRCTIONAL_TX               
+    SPI_BIDIRCTIONAL_RX               
+*/
+#define SPI_COMMUNICATION_PROTCOL   SPI_FULL_DUBLEX
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

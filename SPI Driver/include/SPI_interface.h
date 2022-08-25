@@ -36,6 +36,13 @@
 //Enable/Disale RXNE interrupt
 #define SPI_ENABLE_INT  1
 #define SPI_DISABLE_INT 0
+
+
+//Communication Protocol         (BIDIMODE=0 and RXONLY=0)
+#define SPI_FULL_DUBLEX                   0b00
+#define SPI_UNI_DIRCTION_RESEIVE_ONLY     0b01
+#define SPI_BIDIRCTIONAL_TX               0b11
+#define SPI_BIDIRCTIONAL_RX               0b10
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -163,6 +170,21 @@ u8 SPI_boolIsTxFrameComplete(void);
     0: frame is not recived yet so you need to wait before reciving a new frame
 */
 u8 SPI_boolIsRxFrameComplete(void);
+
+
+
+
+/*
+* Function to set the Communication Protocol
+* Paramters :
+    SPI_COMMUNICATION_PROTCOL
+    Choose a mode
+        SPI_FULL_DUBLEX                   
+        SPI_UNI_DIRCTION_RESEIVE_ONLY     
+        SPI_BIDIRCTIONAL_TX               
+        SPI_BIDIRCTIONAL_RX               
+*/
+void SPI_voidCommunicationProtocol(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
