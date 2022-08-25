@@ -68,3 +68,34 @@ void SPI_voidClkPolarityPhaseMode(void){
     SPI1_PERIPHERAL->CR1_REG |= SPI_CLK_MODE;
 
 }
+
+
+
+/*
+* Function to set the data frame size (8/16 bits)
+* Paramters :
+    SPI_FRAME_SIZE
+        Choose a frame size in config
+            SPI_8BITS
+            SPI_16BITS
+*/
+void SPI_voidDataFrameSize(void){
+    //3.Set the DFF bit to define 8- or 16-bit data frame size
+    //DFF: Data frame format
+    /*
+    0: 8-bit data frame format is selected for transmission/reception
+    1: 16-bit data frame format is selected for transmission/reception
+    */
+
+    switch (SPI_FRAME_SIZE)
+    {
+    case SPI_8BITS:
+        CLR_BIT(SPI1_PERIPHERAL->CR1_REG,11);
+        break;
+    
+    case SPI_16BITS:
+        SET_BIT(SPI1_PERIPHERAL->CR1_REG,11);
+        break;
+    }
+    
+}
