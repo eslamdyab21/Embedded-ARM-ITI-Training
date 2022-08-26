@@ -36,7 +36,7 @@ void RCC_GPIO_NVIC_voidInit(void){
     //A4: NSS (Alternating)
     GPIO_voidSetPinMode(GPIO_PORTA, 4, GPIO_PIN_MODE_AF_PP_10MHZ);
     //A6: MISO (Input)
-    GPIO_voidSetPinMode(GPIO_PORTA, 6, GPIO_PIN_MODE_PULLING_INPUT);
+    GPIO_voidSetPinMode(GPIO_PORTA, 6, GPIO_PIN_MODE_FLOATING_INPUT);
 
 
     GPIO_voidSetPinMode(GPIO_PORTA, 0, GPIO_PIN_MODE_GP_PP_10MHZ);
@@ -53,7 +53,7 @@ void RCC_GPIO_NVIC_voidInit(void){
 
 int main(void){
 
-    u8 byteTx = 'c';
+    u8 byteTx = 0b01100001;
     u8 byteRx = 0;
     u32 i = 0;
 
@@ -63,17 +63,21 @@ int main(void){
     SPI_voidTx(byteTx);
 
     while(1){
-        if(SPI_boolIsTxFrameComplete())
+        
+        while(!SPI_boolIsTxFrameComplete());
+        SPI_voidTx(byteTx);
+        /*if(SPI_boolIsTxFrameComplete())
             SPI_voidTx(byteTx);
 
         if(SPI_boolIsRxFrameComplete())
-            byteRx = SPI_16Rx();
+            byteRx = SPI_16Rx();*/
 
- 
-        for(i=0; i <1000000; i++);
+
+        for(i=0; i <100000; i++);
         GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_HIGH);
-        for(i=0; i <1000000; i++);
+        for(i=0; i <100000; i++);
         GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
+
     }
 
 

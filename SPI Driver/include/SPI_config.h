@@ -30,7 +30,7 @@ Choose a mode
     SPI_CLK_MODE_2      //Clock Polarity = 1, Cock Phase = 0
     SPI_CLK_MODE_3      //Clock Polarity = 1, Cock Phase = 1
 */
-#define SPI_CLK_MODE   SPI_CLK_MODE_1
+#define SPI_CLK_MODE   SPI_CLK_MODE_0
 
 
 
@@ -41,7 +41,7 @@ Choose a format
     SPI_MSB_FIRST   
     SPI_LSB_FIRST   
 */
-#define SPI_FRAME_FORMAT    SPI_MSB_FIRST
+#define SPI_FRAME_FORMAT    SPI_LSB_FIRST
 
 
 
@@ -92,7 +92,7 @@ Choose a Baud rate
     SPI_BAUD_RATE_F_128     
     SPI_BAUD_RATE_F_256
 */
-#define SPI_BAUD_RATE   SPI_BAUD_RATE_F_2
+#define SPI_BAUD_RATE   SPI_BAUD_RATE_F_32
 
 
 //Master managment mode (HW or SW mode)

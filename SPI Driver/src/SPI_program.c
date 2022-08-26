@@ -36,9 +36,9 @@ void SPI_voidBaudRateClk(void){
 
     CLR_BIT(SPI1_PERIPHERAL->CR1_REG,3);
     CLR_BIT(SPI1_PERIPHERAL->CR1_REG,4);
-    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,5);
+    SET_BIT(SPI1_PERIPHERAL->CR1_REG,5);
 
-    SPI1_PERIPHERAL->CR1_REG |= SPI_BAUD_RATE<<3;
+    //SPI1_PERIPHERAL->CR1_REG |= SPI_BAUD_RATE<<3;
     
 }
 
@@ -245,42 +245,54 @@ void SPI_voidDisableSPI(void){
 * Master Init Function
 */
 void SPI_voidMasterInit(void){
+
+    //2.Select the CPOL and CPHA bits to define one of the four relationships 
+    //between the data transfer and the serial clock
+    SPI_voidClkPolarityPhaseMode();
+
+
+    
+
+
+    
+    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
+    //is connected to a high-level signal).
+    SPI_voidEnableMaster();
+
+    
     //1.Select the BR[2:0] bits to define the serial clock baud rate 
     //(see SPI_CR1 register)
     SPI_voidBaudRateClk();
 
 
-    //2.Select the CPOL and CPHA bits to define one of the four relationships 
-    //between the data transfer and the serial clock
-    SPI_voidClkPolarityPhaseMode();
-    
-    
-    //3.Set the DFF bit to define 8- or 16-bit data frame size
-    //DFF: Data frame format
-    SPI_voidDataFrameSize();
-    
 
     //4.Configure the LSBFIRST bit in the SPI_CR1 register to 
     //define the frame format.
     SPI_voidDataFrameFormat();
-    
+
 
     //5.HW or SW Mode
     SPI_voidMasterManagmentMode();
 
 
+    //3.Set the DFF bit to define 8- or 16-bit data frame size
+    //DFF: Data frame format
+    SPI_voidDataFrameSize();
+    
+
     
     
+    SPI_voidCommunicationProtocol();
+
+
     //Transmit sequence: 
     //Enable TXE interrupt (Tx Frame Complete)
-    SPI_voidTxeInt();
+    //SPI_voidTxeInt();
 
     //Enable RXNE interrupt (Rx Frame Complete)
-    SPI_voidRxeInt();
+    //SPI_voidRxeInt();
 
-    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
-    //is connected to a high-level signal).
-    SPI_voidEnableMaster();
+    
 
     //7. enable SPI
     SPI_voidEnableSPI();
@@ -346,7 +358,16 @@ u8 SPI_boolIsTxFrameComplete(void){
         1: Tx buffer empty
     */
 
-    return GET_BIT(SPI1_PERIPHERAL->SR_REG,1);
+    //return GET_BIT(SPI1_PERIPHERAL->SR_REG,1);
+
+
+    /*
+    Bit 7 BSY: Busy flag
+        0: SPI (or I2S) not busy
+        1: SPI (or I2S) is busy in communication or Tx buffer is not empty
+           This flag is set and cleared by hardware.
+    */
+    return !GET_BIT(SPI1_PERIPHERAL->SR_REG,7);
 }
 
 
@@ -425,8 +446,8 @@ void SPI_voidCommunicationProtocol(void){
     */
 
 
-    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,10);
     CLR_BIT(SPI1_PERIPHERAL->CR1_REG,15);
+    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,10);
 
 
     switch (SPI_COMMUNICATION_PROTCOL)
