@@ -185,6 +185,22 @@ u8 SPI_boolIsRxFrameComplete(void);
         SPI_BIDIRCTIONAL_RX               
 */
 void SPI_voidCommunicationProtocol(void);
+
+
+
+
+/*
+* Function to Enable TXE interrupt (Tx Frame Complete)
+* Paramters :
+*/
+void SPI_voidTxeIntEnable(void);
+
+
+/*
+* Function to Disable TXE interrupt (Tx Frame Complete)
+* Paramters :
+*/
+void SPI_voidTxeIntDisable(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

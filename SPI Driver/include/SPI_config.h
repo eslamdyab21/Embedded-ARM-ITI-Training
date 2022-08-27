@@ -92,7 +92,7 @@ Choose a Baud rate
     SPI_BAUD_RATE_F_128     
     SPI_BAUD_RATE_F_256
 */
-#define SPI_BAUD_RATE   SPI_BAUD_RATE_F_32
+#define SPI_BAUD_RATE   SPI_BAUD_RATE_F_8
 
 
 //Master managment mode (HW or SW mode)

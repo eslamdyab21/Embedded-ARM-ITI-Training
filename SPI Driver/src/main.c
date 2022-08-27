@@ -41,7 +41,8 @@ void RCC_GPIO_NVIC_voidInit(void){
 
     GPIO_voidSetPinMode(GPIO_PORTA, 0, GPIO_PIN_MODE_GP_PP_10MHZ);
     GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
-
+    GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_GP_PP_10MHZ);
+    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 
     /*********************Enable USART NVIC-Interupt********************/
     NVIC_voidInit();
@@ -53,31 +54,48 @@ void RCC_GPIO_NVIC_voidInit(void){
 
 int main(void){
 
-    u8 byteTx = 0b01100001;
+    u8 byteTx = 0;
     u8 byteRx = 0;
+
+    u16 byte0 = 0x0000;
     u32 i = 0;
+    u32 counter = 0;
 
     RCC_GPIO_NVIC_voidInit();
     SPI_voidMasterInit();
 
-    SPI_voidTx(byteTx);
+    //00000101
 
+    //SPI_voidTx(5);
     while(1){
         
-        while(!SPI_boolIsTxFrameComplete());
         SPI_voidTx(byteTx);
-        /*if(SPI_boolIsTxFrameComplete())
-            SPI_voidTx(byteTx);
-
-        if(SPI_boolIsRxFrameComplete())
-            byteRx = SPI_16Rx();*/
+        while(!SPI_boolIsTxFrameComplete());
 
 
-        for(i=0; i <100000; i++);
+        for(i=0; i <10000; i++);
         GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_HIGH);
-        for(i=0; i <100000; i++);
+        for(i=0; i <10000; i++);
         GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
+        
 
+        counter++;
+        if(counter > 20){
+            byteTx++;
+            if(byteTx > 50)
+                byteTx = 0;
+            
+            counter = 0;
+
+            for(i=0; i <1000; i++);
+            GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+            for(i=0; i <1000; i++);
+            GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+            
+        }
+
+        //SPI_voidTx(byte0);
+        //while(!SPI_boolIsTxFrameComplete());
     }
 
 

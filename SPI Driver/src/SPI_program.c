@@ -36,9 +36,9 @@ void SPI_voidBaudRateClk(void){
 
     CLR_BIT(SPI1_PERIPHERAL->CR1_REG,3);
     CLR_BIT(SPI1_PERIPHERAL->CR1_REG,4);
-    SET_BIT(SPI1_PERIPHERAL->CR1_REG,5);
+    CLR_BIT(SPI1_PERIPHERAL->CR1_REG,5);
 
-    //SPI1_PERIPHERAL->CR1_REG |= SPI_BAUD_RATE<<3;
+    SPI1_PERIPHERAL->CR1_REG |= SPI_BAUD_RATE<<3;
     
 }
 
@@ -246,6 +246,11 @@ void SPI_voidDisableSPI(void){
 */
 void SPI_voidMasterInit(void){
 
+
+    //1.Select the BR[2:0] bits to define the serial clock baud rate 
+    //(see SPI_CR1 register)
+    SPI_voidBaudRateClk();
+
     //2.Select the CPOL and CPHA bits to define one of the four relationships 
     //between the data transfer and the serial clock
     SPI_voidClkPolarityPhaseMode();
@@ -253,16 +258,9 @@ void SPI_voidMasterInit(void){
 
     
 
-
-    
-    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
-    //is connected to a high-level signal).
-    SPI_voidEnableMaster();
-
-    
-    //1.Select the BR[2:0] bits to define the serial clock baud rate 
-    //(see SPI_CR1 register)
-    SPI_voidBaudRateClk();
+    //3.Set the DFF bit to define 8- or 16-bit data frame size
+    //DFF: Data frame format
+    SPI_voidDataFrameSize();
 
 
 
@@ -271,14 +269,14 @@ void SPI_voidMasterInit(void){
     SPI_voidDataFrameFormat();
 
 
+    
     //5.HW or SW Mode
     SPI_voidMasterManagmentMode();
 
 
-    //3.Set the DFF bit to define 8- or 16-bit data frame size
-    //DFF: Data frame format
-    SPI_voidDataFrameSize();
-    
+    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
+    //is connected to a high-level signal).
+    SPI_voidEnableMaster();
 
     
     
@@ -287,7 +285,7 @@ void SPI_voidMasterInit(void){
 
     //Transmit sequence: 
     //Enable TXE interrupt (Tx Frame Complete)
-    //SPI_voidTxeInt();
+    //SPI_voidTxeIntEnable();
 
     //Enable RXNE interrupt (Rx Frame Complete)
     //SPI_voidRxeInt();
@@ -307,14 +305,18 @@ void SPI_voidMasterInit(void){
 * Function to Transmit data
 */
 void SPI_voidTx(u16 Copy_u16TxData){
+
     SPI1_PERIPHERAL->DR_REG = Copy_u16TxData;
+
+    //Enable TXE interrupt (Tx Frame Complete)
+    //SPI_voidTxeIntEnable();
 }
 
 
 /*
 * Function to Receive data
 */
-u16 SPI_16Rx(void){
+u16 SPI_u16Rx(void){
     return SPI1_PERIPHERAL->DR_REG;
 }
 
@@ -324,14 +326,10 @@ u16 SPI_16Rx(void){
 
 
 /*
-* Function to Enable/Disale TXE interrupt (Tx Frame Complete)
+* Function to Enable TXE interrupt (Tx Frame Complete)
 * Paramters :
-    SPI_TXE_INT
-        Choose a state in config
-            SPI_ENABLE_INT 
-            SPI_DISABLE_INT 
 */
-void SPI_voidTxeInt(void){
+void SPI_voidTxeIntEnable(void){
     /*
     Bit 7 TXEIE: Tx buffer empty interrupt enable(CR2)
         0: TXE interrupt masked
@@ -342,6 +340,20 @@ void SPI_voidTxeInt(void){
 }
 
 
+
+/*
+* Function to Disable TXE interrupt (Tx Frame Complete)
+* Paramters :
+*/
+void SPI_voidTxeIntDisable(void){
+    /*
+    Bit 7 TXEIE: Tx buffer empty interrupt enable(CR2)
+        0: TXE interrupt masked
+        1: TXE interrupt not masked. Used to generate an interrupt 
+            request when the TXE flag is set.
+        */
+    CLR_BIT(SPI1_PERIPHERAL->CR2_REG,7);
+}
 
 
 
@@ -358,7 +370,7 @@ u8 SPI_boolIsTxFrameComplete(void){
         1: Tx buffer empty
     */
 
-    //return GET_BIT(SPI1_PERIPHERAL->SR_REG,1);
+    return GET_BIT(SPI1_PERIPHERAL->SR_REG,1);
 
 
     /*
@@ -367,7 +379,7 @@ u8 SPI_boolIsTxFrameComplete(void){
         1: SPI (or I2S) is busy in communication or Tx buffer is not empty
            This flag is set and cleared by hardware.
     */
-    return !GET_BIT(SPI1_PERIPHERAL->SR_REG,7);
+    //return !GET_BIT(SPI1_PERIPHERAL->SR_REG,7);
 }
 
 
@@ -472,4 +484,29 @@ void SPI_voidCommunicationProtocol(void){
         CLR_BIT(SPI1_PERIPHERAL->CR1_REG,10);
         break;
     }
+}
+
+
+
+#include "GPIO/GPIO_interface.h"
+
+//u8 byteTx = 0;
+u32 i = 0;
+
+
+void SPI1_IRQHandler(){
+    
+    //SPI_voidTx(byteTx);
+    //for(i=0; i <10000; i++);
+    if(SPI_boolIsTxFrameComplete()){
+
+        for(i=0; i <1000; i++);
+        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+        for(i=0; i <1000; i++);
+        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+
+        //Disable TXE interrupt (Tx Frame Complete)
+        SPI_voidTxeIntDisable();
+    }
+    
 }
