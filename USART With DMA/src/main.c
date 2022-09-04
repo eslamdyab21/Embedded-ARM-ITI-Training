@@ -101,7 +101,7 @@ int main(void){
     u16 array1[1000];
     u16 array2[1000];
 
-    u8 i=0;
+    u32 i=0;
 
     for(i=0;i<1000;i++){
         array1[i] = i;
@@ -122,7 +122,7 @@ int main(void){
     DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize);
-
+    GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
 
 
     //CPU
@@ -131,6 +131,14 @@ int main(void){
         array2[i] = array1[i];
     }
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+
+    while (1){
+        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+        for(i=0;i<100000;i++);
+        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+        for(i=0;i<100000;i++);
+    }
+
     
     return 0;
 }
