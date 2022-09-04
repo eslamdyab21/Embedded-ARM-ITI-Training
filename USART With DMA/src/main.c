@@ -63,7 +63,7 @@ void RCC_GPIO_NVIC_voidInit(void){
     /**************************RCC/GPIO*******************************/
     RCC_voidInit();
 	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
-    RCC_voidPeripheralClockEnable(RCC_AHB, DMA1);
+	//RCC_voidPeripheralClockEnable(RCC_AHB, DMA1);
 
     GPIO_voidSetPinMode(GPIO_PORTA, 0, GPIO_PIN_MODE_GP_PP_10MHZ);
     GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
