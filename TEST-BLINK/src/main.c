@@ -17,7 +17,7 @@ int main(void)
 	RCC_voidInit();
 	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
 
-	GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_PULLING_INPUT);
+	GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_GP_PP_10MHZ);
 	GPIO_voidSetPinValue(GPIO_PORTA, 1, GPIO_HIGH);
 
 	return 0;
