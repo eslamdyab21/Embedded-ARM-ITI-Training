@@ -110,7 +110,7 @@ int main(void){
     u32 USART_DR_Adress = 0x40013800 + 0x04;
     u32 DMA_Rx; 
     //DMA Channel 1
-    u8 Copy_u8ChannelNumber =1;
+    u8 Copy_u8ChannelNumber =5;
     u32 *Copy_u32SourceAdress = USART_DR_Adress;
     u32 *Copy_u32DestinationAdress = &DMA_Rx;
     u32 Copy_u32NumberOfDataElements = 1000;
