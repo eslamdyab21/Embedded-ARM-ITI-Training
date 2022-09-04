@@ -83,7 +83,7 @@ void RCC_GPIO_NVIC_voidInit(void){
     16 23 settable DMA1_Channel6    DMA1 Channel6 global interrupt  0x0000_0080
     17 24 settable DMA1_Channel7    DMA1 Channel7 global interrupt  0x0000_0084
     */
-    NVIC_voidEnableInterrupt(11);
+    //NVIC_voidEnableInterrupt(11);
 }
 
 
