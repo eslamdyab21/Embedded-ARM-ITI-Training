@@ -1496,7 +1496,6 @@ Discarded input sections
  .group         0x00000000        0xc ./src/main.o
  .group         0x00000000        0xc ./src/main.o
  .group         0x00000000        0xc ./src/main.o
- .group         0x00000000        0xc ./src/main.o
  .text          0x00000000        0x0 ./src/main.o
  .data          0x00000000        0x0 ./src/main.o
  .bss           0x00000000        0x0 ./src/main.o
@@ -1504,7 +1503,6 @@ Discarded input sections
                 0x00000000       0x60 ./src/main.o
  .debug_macro   0x00000000      0xa6c ./src/main.o
  .debug_macro   0x00000000       0x22 ./src/main.o
- .debug_macro   0x00000000       0x34 ./src/main.o
  .debug_macro   0x00000000       0x58 ./src/main.o
  .debug_macro   0x00000000       0x82 ./src/main.o
  .debug_macro   0x00000000       0x28 ./src/main.o
@@ -2194,7 +2192,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x59fd
+.debug_info     0x00000000     0x5ae3
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x956 ./system/src/newlib/_exit.o
  .debug_info    0x00000956      0x942 ./system/src/newlib/_sbrk.o
@@ -2210,9 +2208,9 @@ END GROUP
  .debug_info    0x00004abd      0x32f ./src/RCC Driver/RCC_program.o
  .debug_info    0x00004dec      0x197 ./src/GPIO/GPIO_program.o
  .debug_info    0x00004f83      0x3f7 ./src/DMA_program.o
- .debug_info    0x0000537a      0x683 ./src/main.o
+ .debug_info    0x0000537a      0x769 ./src/main.o
 
-.debug_abbrev   0x00000000     0x1748
+.debug_abbrev   0x00000000     0x1760
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x1f3 ./system/src/newlib/_exit.o
  .debug_abbrev  0x000001f3      0x1fc ./system/src/newlib/_sbrk.o
@@ -2228,9 +2226,9 @@ END GROUP
  .debug_abbrev  0x0000137b       0xab ./src/RCC Driver/RCC_program.o
  .debug_abbrev  0x00001426       0xf4 ./src/GPIO/GPIO_program.o
  .debug_abbrev  0x0000151a      0x125 ./src/DMA_program.o
- .debug_abbrev  0x0000163f      0x109 ./src/main.o
+ .debug_abbrev  0x0000163f      0x121 ./src/main.o
 
-.debug_line     0x00000000     0x37d8
+.debug_line     0x00000000     0x37c5
  *(.debug_line)
  .debug_line    0x00000000      0x477 ./system/src/newlib/_exit.o
  .debug_line    0x00000477      0x42b ./system/src/newlib/_sbrk.o
@@ -2246,7 +2244,7 @@ END GROUP
  .debug_line    0x00003245       0xfb ./src/RCC Driver/RCC_program.o
  .debug_line    0x00003340      0x110 ./src/GPIO/GPIO_program.o
  .debug_line    0x00003450      0x202 ./src/DMA_program.o
- .debug_line    0x00003652      0x186 ./src/main.o
+ .debug_line    0x00003652      0x173 ./src/main.o
 
 .debug_frame    0x00000000      0xac0
  *(.debug_frame)
@@ -2310,7 +2308,7 @@ END GROUP
  .debug_str     0x00056827      0x3a7 ./src/DMA_program.o
                                0x31df (size before relaxing)
  .debug_str     0x00056bce       0xef ./src/main.o
-                               0x36fa (size before relaxing)
+                               0x3690 (size before relaxing)
 
 .debug_loc      0x00000000     0x115f
  *(.debug_loc)
@@ -2360,7 +2358,7 @@ OUTPUT(USART With DMA.elf elf32-littlearm)
  .debug_ranges  0x00000298       0x98 ./src/DMA_program.o
  .debug_ranges  0x00000330       0x28 ./src/main.o
 
-.debug_macro    0x00000000     0x297d
+.debug_macro    0x00000000     0x2974
  .debug_macro   0x00000000      0x1b4 ./system/src/newlib/_exit.o
  .debug_macro   0x000001b4       0x9c ./system/src/newlib/_exit.o
  .debug_macro   0x00000250      0x10e ./system/src/newlib/_exit.o
@@ -2418,4 +2416,4 @@ OUTPUT(USART With DMA.elf elf32-littlearm)
  .debug_macro   0x000028a7       0x40 ./src/DMA_program.o
  .debug_macro   0x000028e7       0x34 ./src/DMA_program.o
  .debug_macro   0x0000291b       0x10 ./src/DMA_program.o
- .debug_macro   0x0000292b       0x52 ./src/main.o
+ .debug_macro   0x0000292b       0x49 ./src/main.o
