@@ -73,7 +73,7 @@ void RCC_GPIO_NVIC_voidInit(void){
 
 
     /*********************Enable DMA NVIC-Interupt********************/
-    NVIC_voidInit();
+    //NVIC_voidInit();
     /*
     11 18 settable DMA1_Channel1    DMA1 Channel1 global interrupt  0x0000_006C
     12 19 settable DMA1_Channel2    DMA1 Channel2 global interrupt  0x0000_0070
@@ -98,14 +98,14 @@ int main(void){
     RCC_GPIO_NVIC_voidInit();
 
     //Test DMA
-    u16 array1[1000];
-    u16 array2[1000];
+   // u16 array1[1000];
+    //u16 array2[1000];
 
     u32 i=0;
 
-    for(i=0;i<1000;i++){
+    /*for(i=0;i<1000;i++){
         array1[i] = i;
-    }
+    }*/
 
 
     /*//DMA Channel 1
@@ -127,9 +127,9 @@ int main(void){
 
     //CPU
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
-    for(i=0;i<1000;i++){
+    /*for(i=0;i<1000;i++){
         array2[i] = array1[i];
-    }
+    }*/
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 
     while (1){
