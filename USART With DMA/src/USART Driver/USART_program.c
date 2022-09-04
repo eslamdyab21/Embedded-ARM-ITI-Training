@@ -43,7 +43,13 @@ void USART_voidInit(void){
 
     //4.Select DMA enable (DMAT) in USART_CR3 if Multi buffer Communication 
     //is to take place. Configure the DMA register as explained in multibuffer communication.
-
+    /*Bit 6 DMAR: DMA enable receiver
+	This bit is set/reset by software
+		1: DMA mode is enabled for reception
+		0: DMA mode is disabled for reception
+		This bit is not available for UART5.
+	*/
+    SET_BIT(USART1_REG->CR3,6);
 
     //5.Select the desired baud rate using the USART_BRR register.
     //10Mhz USART perferal, target 9600ps

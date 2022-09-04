@@ -97,16 +97,12 @@ void DMA1_Channel1_IRQHandler(void){
 
 int main(void){
     RCC_GPIO_NVIC_voidInit();
+    USART_voidInit();
 
     //Test DMA
-    u8 array1[1000];
-    u8 array2[1000];
+    u8 array1[2];
 
     u32 i=0;
-
-    for(i=0;i<1000;i++){
-        array1[i] = i;
-    }
 
 
     u32 USART_DR_Adress = 0x40013800 + 0x04;
@@ -115,7 +111,7 @@ int main(void){
     u8 Copy_u8ChannelNumber =5;
     u32 *Copy_u32SourceAdress = USART_DR_Adress;
     u32 *Copy_u32DestinationAdress = array1;
-    u32 Copy_u32NumberOfDataElements = 1000;
+    u32 Copy_u32NumberOfDataElements = 2;
     u8 PriorityLevel = DMA_MEDIUM; 
     u8 Copy_u8SourceSize = DMA_8BITS;
     u8 Copy_u8DestinationSize = DMA_8BITS;
@@ -125,22 +121,29 @@ int main(void){
     DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize);
-    //GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 
 
-    //CPU
-    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
-    for(i=0;i<1000;i++){
-        array2[i] = array1[i];
+    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+	for(i=0;i<100000;i++);
+	GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+	for(i=0;i<100000;i++);
+
+    while (1){
+        GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+        for(i=0;i<100000;i++);
+        GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
+        for(i=0;i<100000;i++);
+
+        if(array1[0] == 'a'){
+        	GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
+        }
+        else if(array1[0] == 'b'){
+			GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+			GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);
+		}
+
     }
-    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
-
-    /*while (1){
-        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
-        for(i=0;i<100000;i++);
-        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
-        for(i=0;i<100000;i++);
-    }*/
 
     
     return 0;
