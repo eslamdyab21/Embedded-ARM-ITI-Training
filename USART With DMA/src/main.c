@@ -40,7 +40,7 @@ void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_
     //in the DMA_CCRx register
     DMA_voidDataTransferDirection(Copy_u8ChannelNumber);
 
-    //DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
+    DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
     //DMA_voidEnableSourceIncreament(Copy_u8ChannelNumber);
 
     DMA_voidSourceSize(Copy_u8ChannelNumber, Copy_u8SourceSize);
@@ -83,12 +83,14 @@ void RCC_GPIO_NVIC_voidInit(void){
     16 23 settable DMA1_Channel6    DMA1 Channel6 global interrupt  0x0000_0080
     17 24 settable DMA1_Channel7    DMA1 Channel7 global interrupt  0x0000_0084
     */
-    //NVIC_voidEnableInterrupt(11);
+    NVIC_voidEnableInterrupt(11);
+    
 }
 
 void DMA1_Channel1_IRQHandler(void){
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
     DMA_voidClearAllFlagsChanel1();
+    NVIC_voidDisableInterrupt(11);
 }
 
 
@@ -97,8 +99,8 @@ int main(void){
     RCC_GPIO_NVIC_voidInit();
 
     //Test DMA
-    u16 array1[1000];
-    u16 array2[1000];
+    u8 array1[1000];
+    u8 array2[1000];
 
     u32 i=0;
 
@@ -108,11 +110,11 @@ int main(void){
 
 
     u32 USART_DR_Adress = 0x40013800 + 0x04;
-    u32 DMA_Rx; 
-    //DMA Channel 1
+    u8 DMA_Rx; 
+    //DMA Channel 5 (USART-RX)
     u8 Copy_u8ChannelNumber =5;
     u32 *Copy_u32SourceAdress = USART_DR_Adress;
-    u32 *Copy_u32DestinationAdress = &DMA_Rx;
+    u32 *Copy_u32DestinationAdress = array1;
     u32 Copy_u32NumberOfDataElements = 1000;
     u8 PriorityLevel = DMA_MEDIUM; 
     u8 Copy_u8SourceSize = DMA_8BITS;
