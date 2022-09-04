@@ -40,8 +40,8 @@ void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_
     //in the DMA_CCRx register
     DMA_voidDataTransferDirection(Copy_u8ChannelNumber);
 
-    DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
-    DMA_voidEnableSourceIncreament(Copy_u8ChannelNumber);
+    //DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
+    //DMA_voidEnableSourceIncreament(Copy_u8ChannelNumber);
 
     DMA_voidSourceSize(Copy_u8ChannelNumber, Copy_u8SourceSize);
     DMA_voidDestinationSize(Copy_u8ChannelNumber, Copy_u8DestinationSize);
@@ -51,7 +51,7 @@ void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_
 
 
     //Enable Memory to Memory
-    DMA_voidEnableMemory2MemoryMode(Copy_u8ChannelNumber);
+    //DMA_voidEnableMemory2MemoryMode(Copy_u8ChannelNumber);
 
 
     //6.Activate the channel by setting the ENABLE bit in the DMA_CCRx register.
@@ -107,10 +107,12 @@ int main(void){
     }
 
 
+    u32 USART_DR_Adress = 0x40013800 + 0x04;
+    u32 DMA_Rx; 
     //DMA Channel 1
     u8 Copy_u8ChannelNumber =1;
-    u32 *Copy_u32SourceAdress = array1;
-    u32 *Copy_u32DestinationAdress = array2;
+    u32 *Copy_u32SourceAdress = USART_DR_Adress;
+    u32 *Copy_u32DestinationAdress = &DMA_Rx;
     u32 Copy_u32NumberOfDataElements = 1000;
     u8 PriorityLevel = DMA_MEDIUM; 
     u8 Copy_u8SourceSize = DMA_8BITS;
@@ -121,7 +123,7 @@ int main(void){
     DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize);
-    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+    //GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 
 
     //CPU
