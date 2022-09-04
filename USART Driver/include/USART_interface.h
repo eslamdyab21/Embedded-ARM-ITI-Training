@@ -70,4 +70,9 @@ void USART_voidRxInt(u8 *Ptr_u8DataByte);
 void USART_voidRxIntSend(void);
 
 
+/*
+*function to enable DMA Reciver
+*/
+void USART_voidEnableDMAR(void);
+
 #endif /* USART_INTERFACE_H_ */

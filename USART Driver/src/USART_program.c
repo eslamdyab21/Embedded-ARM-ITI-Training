@@ -195,3 +195,18 @@ void USART1_IRQHandler(void){
             USART_voidRxIntSend();
     }
 }
+
+
+/*
+*function to enable DMA Reciver
+*/
+void USART_voidEnableDMAR(void){
+    /*
+    Bit 6 DMAR: DMA enable receiver
+    This bit is set/reset by software
+        1: DMA mode is enabled for reception
+        0: DMA mode is disabled for reception
+        This bit is not available for UART5.
+    */
+    SET_BIT(USART1_REG->CR3,6);
+}
