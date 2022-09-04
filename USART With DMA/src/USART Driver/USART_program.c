@@ -9,9 +9,9 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
-#include "USART Driver/USART_interface.h"
-#include "USART Driver/USART_config.h"
-#include "USART Driver/USART_private.h"
+#include "USART_interface.h"
+#include "USART_config.h"
+#include "USART_private.h"
 
 
 
@@ -194,4 +194,19 @@ void USART1_IRQHandler(void){
         if(GET_BIT(USART1_REG->SR,5) && Ptr_u8RxByte)
             USART_voidRxIntSend();
     }
+}
+
+
+/*
+*function to enable DMA Reciver
+*/
+void USART_voidEnableDMAR(void){
+    /*
+    Bit 6 DMAR: DMA enable receiver
+    This bit is set/reset by software
+        1: DMA mode is enabled for reception
+        0: DMA mode is disabled for reception
+        This bit is not available for UART5.
+    */
+    SET_BIT(USART1_REG->CR3,6);
 }
