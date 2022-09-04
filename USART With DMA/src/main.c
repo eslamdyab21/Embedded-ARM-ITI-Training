@@ -16,7 +16,7 @@
 #include "USART Driver/USART_interface.h"
 
 
-void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
+/*void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
                   u8 Copy_u8DestinationSize){
 
@@ -57,7 +57,7 @@ void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_
     //6.Activate the channel by setting the ENABLE bit in the DMA_CCRx register.
     DMA_voidEnableChannel_x(Copy_u8ChannelNumber);
 }
-
+*/
 
 void RCC_GPIO_NVIC_voidInit(void){
     /**************************RCC/GPIO*******************************/
@@ -87,10 +87,10 @@ void RCC_GPIO_NVIC_voidInit(void){
 }
 
 
-void DMA1_Channel1_IRQHandler(void){
+/*void DMA1_Channel1_IRQHandler(void){
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
     DMA_voidClearAllFlagsChanel1();
-}
+}*/
 
 
 
