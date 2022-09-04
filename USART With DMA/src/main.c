@@ -8,7 +8,7 @@
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
-//#include "DMA_interface.h"
+#include "DMA_interface.h"
 
 #include "RCC Driver/RCC_interface.h"
 #include "GPIO/GPIO_interface.h"
@@ -16,7 +16,7 @@
 #include "USART Driver/USART_interface.h"
 
 
-/*void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
+void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
                   u8 Copy_u8DestinationSize){
 
@@ -57,19 +57,19 @@
     //6.Activate the channel by setting the ENABLE bit in the DMA_CCRx register.
     DMA_voidEnableChannel_x(Copy_u8ChannelNumber);
 }
-*/
+
 
 void RCC_GPIO_NVIC_voidInit(void){
     /**************************RCC/GPIO*******************************/
     RCC_voidInit();
 	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
-	//RCC_voidPeripheralClockEnable(RCC_AHB, DMA1);
-
-    GPIO_voidSetPinMode(GPIO_PORTA, 0, GPIO_PIN_MODE_GP_PP_10MHZ);
-    GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
+	RCC_voidPeripheralClockEnable(RCC_AHB, DMA1);
 
     GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_GP_PP_10MHZ);
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+
+    GPIO_voidSetPinMode(GPIO_PORTA, 2, GPIO_PIN_MODE_GP_PP_10MHZ);
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
 
 
     /*********************Enable DMA NVIC-Interupt********************/
@@ -86,11 +86,10 @@ void RCC_GPIO_NVIC_voidInit(void){
     //NVIC_voidEnableInterrupt(11);
 }
 
-
-/*void DMA1_Channel1_IRQHandler(void){
+void DMA1_Channel1_IRQHandler(void){
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
     DMA_voidClearAllFlagsChanel1();
-}*/
+}
 
 
 
@@ -98,17 +97,17 @@ int main(void){
     RCC_GPIO_NVIC_voidInit();
 
     //Test DMA
-   // u16 array1[1000];
-    //u16 array2[1000];
+    u16 array1[1000];
+    u16 array2[1000];
 
     u32 i=0;
 
-    /*for(i=0;i<1000;i++){
+    for(i=0;i<1000;i++){
         array1[i] = i;
-    }*/
+    }
 
 
-    /*//DMA Channel 1
+    //DMA Channel 1
     u8 Copy_u8ChannelNumber =1;
     u32 *Copy_u32SourceAdress = array1;
     u32 *Copy_u32DestinationAdress = array2;
@@ -118,26 +117,26 @@ int main(void){
     u8 Copy_u8DestinationSize = DMA_8BITS;
 
 
-    GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
     DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize);
-    GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
-	*/
-
-    //CPU
-    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
-    /*for(i=0;i<1000;i++){
-        array2[i] = array1[i];
-    }*/
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 
-    while (1){
+
+    //CPU
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+    for(i=0;i<1000;i++){
+        array2[i] = array1[i];
+    }
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
+
+    /*while (1){
         GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
         for(i=0;i<100000;i++);
         GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
         for(i=0;i<100000;i++);
-    }
+    }*/
 
     
     return 0;
