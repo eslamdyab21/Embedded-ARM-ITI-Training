@@ -108,7 +108,7 @@ int main(void){
     }
 
 
-    //DMA Channel 1
+    /*//DMA Channel 1
     u8 Copy_u8ChannelNumber =1;
     u32 *Copy_u32SourceAdress = array1;
     u32 *Copy_u32DestinationAdress = array2;
@@ -123,7 +123,7 @@ int main(void){
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize);
     GPIO_voidSetPinValue(GPIO_PORTA,0,GPIO_LOW);
-
+	*/
 
     //CPU
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
