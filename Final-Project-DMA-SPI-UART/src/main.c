@@ -85,7 +85,7 @@ void SPI_voidMasterInit(void){
 
 void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
-                  u8 Copy_u8DestinationSize){
+                  u8 Copy_u8DestinationSize, u8 Copy_u8SourceIncreament, u8 Copy_u8SourceDestination){
 
     //1.Set the peripheral register address in the DMA_CPARx register
     DMA_voidSourceAddress(Copy_u8ChannelNumber, Copy_u32SourceAdress);
@@ -134,12 +134,6 @@ void RCC_GPIO_NVIC_USART1_SPI1_voidInit(void){
 	RCC_voidPeripheralClockEnable(RCC_AHB, DMA1);
     RCC_voidPeripheralClockEnable(RCC_APB2, SPI1);
 
-    GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_GP_PP_10MHZ);
-    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
-
-    GPIO_voidSetPinMode(GPIO_PORTA, 2, GPIO_PIN_MODE_GP_PP_10MHZ);
-    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
-
     /*SPI
     Alternate function      SPI1_REMAP = 0      SPI1_REMAP = 1
         SPI1_NSS                  PA4               PA15
@@ -155,6 +149,13 @@ void RCC_GPIO_NVIC_USART1_SPI1_voidInit(void){
     GPIO_voidSetPinMode(GPIO_PORTA, 4, GPIO_PIN_MODE_AF_PP_10MHZ);
     //A6: MISO (Input)
     GPIO_voidSetPinMode(GPIO_PORTA, 6, GPIO_PIN_MODE_FLOATING_INPUT);
+
+
+    GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_GP_PP_10MHZ);
+    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
+
+    GPIO_voidSetPinMode(GPIO_PORTA, 2, GPIO_PIN_MODE_GP_PP_10MHZ);
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
 
 
     /*********************Enable DMA NVIC-Interupt********************/
@@ -187,31 +188,45 @@ void DMA1_Channel5_IRQHandler(void){
 
 int main(void){
     RCC_GPIO_NVIC_voidInit();
-    USART_voidInit();
-
-    //Test DMA
-    u8 array1[2];
+    USART_voidInit();    
 
     u32 i=0;
+    u32 Copy_u32NumberOfDataElements = 2;
 
 
-
-    //u8 DMA_Rx;
     //DMA Channel 5 (USART-RX)
-    u8 Copy_u8ChannelNumber =5;
+    u8 Copy_u8ChannelNumber = 5;
+    u8 array1[Copy_u32NumberOfDataElements];
     u32 *Copy_u32SourceAdress = USART_DR_ADDRES;
     u32 *Copy_u32DestinationAdress = array1;
-    u32 Copy_u32NumberOfDataElements = 2;
     u8 PriorityLevel = DMA_MEDIUM; 
     u8 Copy_u8SourceSize = DMA_8BITS;
     u8 Copy_u8DestinationSize = DMA_8BITS;
-
+    u8 Copy_u8SourceIncreament = 0;
+    u8 Copy_u8SourceDestination = 1;
 
     GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
     DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
-                  Copy_u8DestinationSize);
+                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
 
+
+
+    //DMA Channel 2 (SPI-RX)
+    u8 Copy_u8ChannelNumber = 2;
+    //u8 array1[Copy_u32NumberOfDataElements];
+    u32 *Copy_u32SourceAdress = array1;
+    u32 *Copy_u32DestinationAdress = SPI_DR_ADDRES;
+    u8 PriorityLevel = DMA_MEDIUM; 
+    u8 Copy_u8SourceSize = DMA_8BITS;
+    u8 Copy_u8DestinationSize = DMA_8BITS;
+    u8 Copy_u8SourceIncreament = 1;
+    u8 Copy_u8SourceDestination = 0;
+
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+    DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
+                  Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
+                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
 
     /*GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
 	for(i=0;i<100000;i++);
