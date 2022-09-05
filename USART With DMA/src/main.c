@@ -144,7 +144,7 @@ int main(void){
         /*USART_voidTx(array1[0]);
         USART_voidTx(array1[1]);*/
 
-        if(DMA_voidIsTransferComplete(Copy_u8ChannelNumber)){
+        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber)){
         	GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
         	USART_voidTx(array1[0]);
         	USART_voidTx(array1[1]);

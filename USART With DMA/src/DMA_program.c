@@ -266,7 +266,7 @@ void DMA_voidDisableDestinationIncreament(u8 Copy_u8ChannelNumber){
 * Paramters:
 *           Copy_u8ChannelNumber: Channel Number 1 to 7
 */
-u8 DMA_voidIsTransferComplete(u8 Copy_u8ChannelNumber){
+u8 DMA_u8IsTransferComplete(u8 Copy_u8ChannelNumber){
     /*
     Bits 25, 21, 17, 13, TCIFx: Channel x transfer complete flag (x = 1 ..7)
 	9, 5, 1
