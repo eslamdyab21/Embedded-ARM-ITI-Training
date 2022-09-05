@@ -75,7 +75,7 @@ void SPI_voidMasterInit(void){
     //SPI_voidRxeInt();
 
     
-    SPI_voidRxDMAEnable();
+    SPI_voidTxDMAEnable();
     //7. enable SPI
     SPI_voidEnableSPI();
 
