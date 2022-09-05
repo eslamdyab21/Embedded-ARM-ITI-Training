@@ -250,7 +250,7 @@ int main(void){
         USART_voidTx(array1[1]);*/
 
         if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber5)){
-        	GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
+        	GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
         	USART_voidTx(array1[0]);
         	USART_voidTx(array1[1]);
 
