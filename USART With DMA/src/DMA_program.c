@@ -276,7 +276,7 @@ u8 DMA_voidIsTransferComplete(u8 Copy_u8ChannelNumber){
 		1: A transfer complete (TC) event occurred on channel x
     */
 
-    return GET_BIT(DMA1_REG.ISR,17);
+    return GET_BIT(DMA1_REG->ISR,17);
 }
 
 

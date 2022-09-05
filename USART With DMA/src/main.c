@@ -122,7 +122,7 @@ int main(void){
     u8 Copy_u8DestinationSize = DMA_8BITS;
 
 
-    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
     DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize);
@@ -134,22 +134,30 @@ int main(void){
 	for(i=0;i<100000;i++);*/
 
     while (1){
-        GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+
+
+        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
         for(i=0;i<100000;i++);
-        GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
+        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
         for(i=0;i<100000;i++);
 
         /*USART_voidTx(array1[0]);
-        USART_voidTx(array1[1]);
+        USART_voidTx(array1[1]);*/
 
-        if(array1[0] == 'a'){
-        	GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
-        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
+        if(DMA_voidIsTransferComplete(Copy_u8ChannelNumber)){
+        	GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
+        	USART_voidTx(array1[0]);
+        	USART_voidTx(array1[1]);
+
+        	/*if(array1[0] == 'a')
+				GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+
+			if(array1[1] == 'b')
+				GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);*/
+
         }
-        else if(array1[1] == 'b'){
-			GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
-			GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);
-		}*/
+
+
 
     }
 
