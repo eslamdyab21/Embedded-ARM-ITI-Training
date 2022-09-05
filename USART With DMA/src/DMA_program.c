@@ -262,6 +262,25 @@ void DMA_voidDisableDestinationIncreament(u8 Copy_u8ChannelNumber){
 
 
 /*
+* Function to check Transfer complete
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+u8 DMA_voidIsTransferComplete(u8 Copy_u8ChannelNumber){
+    /*
+    Bits 25, 21, 17, 13, TCIFx: Channel x transfer complete flag (x = 1 ..7)
+	9, 5, 1
+	This bit is set by hardware. It is cleared by software writing 1 to the corresponding bit in the
+	DMA_IFCR register.
+		0: No transfer complete (TC) event on channel x
+		1: A transfer complete (TC) event occurred on channel x
+    */
+
+    return GET_BIT(DMA1_REG.ISR,17);
+}
+
+
+/*
 * Function to enable Transfer complete interrupt 
 * Paramters:
 *           Copy_u8ChannelNumber: Channel Number 1 to 7

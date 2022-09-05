@@ -16,6 +16,10 @@
 #include "USART Driver/USART_interface.h"
 
 
+#define USART_BASE_ADDRESS 			0x40013800
+#define USART_DR_ADDRES             ( u32 *)  (USART_BASE_ADDRESS+0x04)
+
+
 void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
                   u8 Copy_u8DestinationSize){
@@ -63,6 +67,7 @@ void RCC_GPIO_NVIC_voidInit(void){
     /**************************RCC/GPIO*******************************/
     RCC_voidInit();
 	RCC_voidPeripheralClockEnable(RCC_APB2, GPIOA);
+	RCC_voidPeripheralClockEnable(RCC_APB2, USART1);
 	RCC_voidPeripheralClockEnable(RCC_AHB, DMA1);
 
     GPIO_voidSetPinMode(GPIO_PORTA, 1, GPIO_PIN_MODE_GP_PP_10MHZ);
@@ -87,7 +92,7 @@ void RCC_GPIO_NVIC_voidInit(void){
     
 }
 
-void DMA1_Channel1_IRQHandler(void){
+void DMA1_Channel5_IRQHandler(void){
     GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
     DMA_voidClearAllFlagsChanel1();
     NVIC_voidDisableInterrupt(11);
@@ -105,11 +110,11 @@ int main(void){
     u32 i=0;
 
 
-    u32 USART_DR_Adress = 0x40013800 + 0x04;
-    u8 DMA_Rx; 
+
+    //u8 DMA_Rx;
     //DMA Channel 5 (USART-RX)
     u8 Copy_u8ChannelNumber =5;
-    u32 *Copy_u32SourceAdress = USART_DR_Adress;
+    u32 *Copy_u32SourceAdress = USART_DR_ADDRES;
     u32 *Copy_u32DestinationAdress = array1;
     u32 Copy_u32NumberOfDataElements = 2;
     u8 PriorityLevel = DMA_MEDIUM; 
@@ -123,10 +128,10 @@ int main(void){
                   Copy_u8DestinationSize);
 
 
-    GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+    /*GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
 	for(i=0;i<100000;i++);
 	GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
-	for(i=0;i<100000;i++);
+	for(i=0;i<100000;i++);*/
 
     while (1){
         GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
@@ -134,14 +139,17 @@ int main(void){
         GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
         for(i=0;i<100000;i++);
 
+        /*USART_voidTx(array1[0]);
+        USART_voidTx(array1[1]);
+
         if(array1[0] == 'a'){
         	GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
         	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
         }
-        else if(array1[0] == 'b'){
+        else if(array1[1] == 'b'){
 			GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 			GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);
-		}
+		}*/
 
     }
 

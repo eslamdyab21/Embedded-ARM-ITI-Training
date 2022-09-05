@@ -132,6 +132,15 @@ void DMA_voidDisableDestinationIncreament(u8 Copy_u8ChannelNumber);
 
 
 /*
+* Function to check Transfer complete
+* Paramters:
+*           Copy_u8ChannelNumber: Channel Number 1 to 7
+*/
+u8 DMA_voidIsTransferComplete(u8 Copy_u8ChannelNumber);
+
+
+
+/*
 * Function to enable Transfer complete interrupt 
 * Paramters:
 *           Copy_u8ChannelNumber: Channel Number 1 to 7

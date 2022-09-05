@@ -49,7 +49,7 @@ void USART_voidInit(void){
 		0: DMA mode is disabled for reception
 		This bit is not available for UART5.
 	*/
-    SET_BIT(USART1_REG->CR3,6);
+    USART_voidEnableDMAR();
 
     //5.Select the desired baud rate using the USART_BRR register.
     //10Mhz USART perferal, target 9600ps
@@ -65,11 +65,11 @@ void USART_voidInit(void){
 
     //Set the TXEIE (TXE interrupt enable) to enable the TXE to check
     //if the DR is empty before sending new data
-    SET_BIT(USART1_REG->CR1,7);
+    //SET_BIT(USART1_REG->CR1,7);
 
 
     //Set the TCIE (Transmission complete interrupt enable) to enable the TC
-    SET_BIT(USART1_REG->CR1,6);
+    //SET_BIT(USART1_REG->CR1,6);
 
 
 
@@ -80,7 +80,7 @@ void USART_voidInit(void){
 
     //Set the RXNEIE (RXNE interrupt enable) to enable the RXNE: to check
     //if the DR is not empty before reading new data
-    SET_BIT(USART1_REG->CR1,7);
+    //SET_BIT(USART1_REG->CR1,7);
 
 }
 
