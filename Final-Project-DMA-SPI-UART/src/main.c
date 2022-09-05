@@ -21,6 +21,10 @@
 #define USART_BASE_ADDRESS 			0x40013800
 #define USART_DR_ADDRES             ( u32 *)  (USART_BASE_ADDRESS+0x04)
 
+#define SPI_BASE_ADDRESS 			0x40013000
+#define SPI_DR_ADDRES               ( u32 *)  (USART_BASE_ADDRESS+0x0C)
+
+
 
 void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
