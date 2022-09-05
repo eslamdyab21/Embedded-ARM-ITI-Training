@@ -25,6 +25,63 @@
 #define SPI_DR_ADDRES               ( u32 *)  (USART_BASE_ADDRESS+0x0C)
 
 
+/*
+* Master Init Function
+*/
+void SPI_voidMasterInit(void){
+
+
+    //1.Select the BR[2:0] bits to define the serial clock baud rate 
+    //(see SPI_CR1 register)
+    SPI_voidBaudRateClk();
+
+    //2.Select the CPOL and CPHA bits to define one of the four relationships 
+    //between the data transfer and the serial clock
+    SPI_voidClkPolarityPhaseMode();
+
+
+    
+
+    //3.Set the DFF bit to define 8- or 16-bit data frame size
+    //DFF: Data frame format
+    SPI_voidDataFrameSize();
+
+
+
+    //4.Configure the LSBFIRST bit in the SPI_CR1 register to 
+    //define the frame format.
+    SPI_voidDataFrameFormat();
+
+
+    
+    //5.HW or SW Mode
+    SPI_voidMasterManagmentMode();
+
+
+    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
+    //is connected to a high-level signal).
+    SPI_voidEnableMaster();
+
+    
+    
+    SPI_voidCommunicationProtocol();
+
+
+    //Transmit sequence: 
+    //Enable TXE interrupt (Tx Frame Complete)
+    //SPI_voidTxeIntEnable();
+
+    //Enable RXNE interrupt (Rx Frame Complete)
+    //SPI_voidRxeInt();
+
+    
+
+    //7. enable SPI
+    SPI_voidEnableSPI();
+
+
+}
+
 
 void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
