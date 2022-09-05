@@ -75,9 +75,12 @@ void SPI_voidMasterInit(void){
     //SPI_voidRxeInt();
 
     
-    SPI_voidTxDMAEnable();
+
     //7. enable SPI
     SPI_voidEnableSPI();
+
+    //enable DMA-Rx for SPI
+    SPI_voidTxDMAEnable();
 
 
 }
@@ -179,7 +182,7 @@ void RCC_GPIO_NVIC_USART1_SPI1_voidInit(void){
     /*********************Enable SPI NVIC-Interupt********************/
     NVIC_voidInit();
     //35    42  settable    SPI1    SPI1 global interrupt   0x0000_00CC
-    NVIC_voidEnableInterrupt(35);
+    //NVIC_voidEnableInterrupt(35);
     
 }
 
@@ -218,7 +221,7 @@ int main(void){
 
 
 
-    //DMA Channel 2 (SPI-RX)
+    /*//DMA Channel 2 (SPI-RX)
     u8 Copy_u8ChannelNumber2 = 2;
     //u8 array1[Copy_u32NumberOfDataElements];
     Copy_u32SourceAdress = array1;
@@ -232,7 +235,7 @@ int main(void){
     GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
     DMA_voidInit(Copy_u8ChannelNumber2, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
-                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
+                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);*/
 
     /*GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
 	for(i=0;i<100000;i++);
@@ -241,8 +244,12 @@ int main(void){
 
     while (1){
 
+    	SPI_voidTx(0b01010000);
+    	while(!SPI_boolIsTxFrameComplete());
+        //GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
 
-        GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
+
+    	GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
         for(i=0;i<100000;i++);
         GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
         for(i=0;i<100000;i++);
@@ -255,16 +262,10 @@ int main(void){
         	USART_voidTx(array1[0]);
         	USART_voidTx(array1[1]);
 
-        	/*if(array1[0] == 'a')
-				GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
-
-			if(array1[1] == 'b')
-				GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);*/
-
         }
-        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber2)){
-        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);
-        }
+        /*if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber2))
+        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);*/
+
 
 
 
