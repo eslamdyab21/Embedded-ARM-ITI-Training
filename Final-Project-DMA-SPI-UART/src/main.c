@@ -157,6 +157,9 @@ void RCC_GPIO_NVIC_USART1_SPI1_voidInit(void){
     GPIO_voidSetPinMode(GPIO_PORTA, 2, GPIO_PIN_MODE_GP_PP_10MHZ);
     GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
 
+    GPIO_voidSetPinMode(GPIO_PORTA, 3, GPIO_PIN_MODE_GP_PP_10MHZ);
+    GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
+
 
     /*********************Enable DMA NVIC-Interupt********************/
     //NVIC_voidInit();
@@ -205,7 +208,7 @@ int main(void){
     u8 Copy_u8SourceIncreament = 0;
     u8 Copy_u8SourceDestination = 1;
 
-    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
     DMA_voidInit(Copy_u8ChannelNumber5, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
@@ -223,7 +226,7 @@ int main(void){
     u8 Copy_u8SourceIncreament = 1;
     u8 Copy_u8SourceDestination = 0;
 
-    GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+    GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
     DMA_voidInit(Copy_u8ChannelNumber2, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
@@ -257,7 +260,7 @@ int main(void){
 
         }
         if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber2)){
-        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
+        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);
         }
 
 
