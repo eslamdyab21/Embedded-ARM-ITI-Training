@@ -75,7 +75,7 @@ void SPI_voidMasterInit(void){
     //SPI_voidRxeInt();
 
     
-
+    SPI_voidRxDMAEnable();
     //7. enable SPI
     SPI_voidEnableSPI();
 
@@ -194,6 +194,7 @@ void DMA1_Channel5_IRQHandler(void){
 int main(void){
 	RCC_GPIO_NVIC_USART1_SPI1_voidInit();
     USART_voidInit();    
+    SPI_voidMasterInit();
 
     u32 i=0;
     u32 Copy_u32NumberOfDataElements = 2;
