@@ -201,6 +201,18 @@ void SPI_voidTxeIntEnable(void);
 * Paramters :
 */
 void SPI_voidTxeIntDisable(void);
+
+
+/*
+* Function to Enable DMA_Tx 
+*/
+void SPI_voidTxDMAEnable(void);
+
+
+/*
+* Function to Enable DMA_Rx
+*/
+void SPI_voidRxDMAEnable(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -269,11 +281,6 @@ void SPI_voidMasterManagmentMode(void);
 */
 void SPI_voidEnableMaster(void);
 
-
-/*
-* Master Init Function
-*/
-void SPI_voidMasterInit(void);
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

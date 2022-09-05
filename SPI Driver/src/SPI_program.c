@@ -241,64 +241,7 @@ void SPI_voidDisableSPI(void){
 }
 
 
-/*
-* Master Init Function
-*/
-void SPI_voidMasterInit(void){
 
-
-    //1.Select the BR[2:0] bits to define the serial clock baud rate 
-    //(see SPI_CR1 register)
-    SPI_voidBaudRateClk();
-
-    //2.Select the CPOL and CPHA bits to define one of the four relationships 
-    //between the data transfer and the serial clock
-    SPI_voidClkPolarityPhaseMode();
-
-
-    
-
-    //3.Set the DFF bit to define 8- or 16-bit data frame size
-    //DFF: Data frame format
-    SPI_voidDataFrameSize();
-
-
-
-    //4.Configure the LSBFIRST bit in the SPI_CR1 register to 
-    //define the frame format.
-    SPI_voidDataFrameFormat();
-
-
-    
-    //5.HW or SW Mode
-    SPI_voidMasterManagmentMode();
-
-
-    //6.The MSTR and SPE bits must be set (they remain set only if the NSS pin 
-    //is connected to a high-level signal).
-    SPI_voidEnableMaster();
-
-    
-    
-    SPI_voidCommunicationProtocol();
-
-
-    //Transmit sequence: 
-    //Enable TXE interrupt (Tx Frame Complete)
-    //SPI_voidTxeIntEnable();
-
-    //Enable RXNE interrupt (Rx Frame Complete)
-    //SPI_voidRxeInt();
-
-    
-
-    //7. enable SPI
-    SPI_voidEnableSPI();
-
-
-    
-
-}
 
 
 /*
@@ -487,18 +430,41 @@ void SPI_voidCommunicationProtocol(void){
 }
 
 
+/*
+* Function to Enable DMA_Tx 
+*/
+void SPI_voidTxDMAEnable(void){
+    /*
+    Bit 1 TXDMAEN: Tx buffer DMA enable
+    When this bit is set, the DMA request is made whenever the TXE flag is set.
+        0: Tx buffer DMA disabled
+        1: Tx buffer DMA enabled
+    */
+    SET_BIT(SPI1_PERIPHERAL->CR2_REG,1);
+}
 
-#include "GPIO/GPIO_interface.h"
 
-//u8 byteTx = 0;
-u32 i = 0;
+/*
+* Function to Enable DMA_Rx
+*/
+void SPI_voidRxDMAEnable(void){
+    /*
+    Bit 0 RXDMAEN: Rx buffer DMA enable
+    When this bit is set, the DMA request is made whenever the RXNE flag is set.
+        0: Rx buffer DMA disabled
+        1: Rx buffer DMA enabled
+    */
+    SET_BIT(SPI1_PERIPHERAL->CR2_REG,0);
+}
+
+
 
 
 void SPI1_IRQHandler(){
     
     //SPI_voidTx(byteTx);
     //for(i=0; i <10000; i++);
-    if(SPI_boolIsTxFrameComplete()){
+    /*if(SPI_boolIsTxFrameComplete()){
 
         for(i=0; i <1000; i++);
         GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
@@ -506,7 +472,8 @@ void SPI1_IRQHandler(){
         GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_LOW);
 
         //Disable TXE interrupt (Tx Frame Complete)
-        SPI_voidTxeIntDisable();
-    }
+        
+    }*/
+    SPI_voidTxeIntDisable();
     
 }
