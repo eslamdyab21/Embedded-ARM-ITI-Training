@@ -195,7 +195,7 @@ int main(void){
 
 
     //DMA Channel 5 (USART-RX)
-    u8 Copy_u8ChannelNumber = 5;
+    u8 Copy_u8ChannelNumber5 = 5;
     u8 array1[Copy_u32NumberOfDataElements];
     u32 *Copy_u32SourceAdress = USART_DR_ADDRES;
     u32 *Copy_u32DestinationAdress = array1;
@@ -206,14 +206,14 @@ int main(void){
     u8 Copy_u8SourceDestination = 1;
 
     GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
-    DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
+    DMA_voidInit(Copy_u8ChannelNumber5, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
 
 
 
     //DMA Channel 2 (SPI-RX)
-    u8 Copy_u8ChannelNumber = 2;
+    u8 Copy_u8ChannelNumber2 = 2;
     //u8 array1[Copy_u32NumberOfDataElements];
     u32 *Copy_u32SourceAdress = array1;
     u32 *Copy_u32DestinationAdress = SPI_DR_ADDRES;
@@ -224,7 +224,7 @@ int main(void){
     u8 Copy_u8SourceDestination = 0;
 
     GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
-    DMA_voidInit(Copy_u8ChannelNumber, Copy_u32SourceAdress, Copy_u32DestinationAdress,
+    DMA_voidInit(Copy_u8ChannelNumber2, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
                   Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
 
@@ -244,7 +244,7 @@ int main(void){
         /*USART_voidTx(array1[0]);
         USART_voidTx(array1[1]);*/
 
-        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber)){
+        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber5)){
         	GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
         	USART_voidTx(array1[0]);
         	USART_voidTx(array1[1]);
@@ -255,6 +255,9 @@ int main(void){
 			if(array1[1] == 'b')
 				GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);*/
 
+        }
+        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber2)){
+        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
         }
 
 
