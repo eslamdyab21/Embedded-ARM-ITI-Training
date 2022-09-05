@@ -14,6 +14,8 @@
 #include "GPIO/GPIO_interface.h"
 #include "NVIC Driver/NVIC_interface.h"
 #include "USART Driver/USART_interface.h"
+#include "SPI Driver/SPI_interface.h"
+
 
 
 #define USART_BASE_ADDRESS 			0x40013800
