@@ -31,6 +31,7 @@ src \
 src/GPIO \
 src/NVIC\ Driver \
 src/RCC\ Driver \
+src/SPI\ Driver \
 src/USART\ Driver \
 system/src/cmsis \
 system/src/cortexm \

@@ -85,7 +85,7 @@ void SPI_voidMasterInit(void){
 
 void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_u32DestinationAdress,
                   u32 Copy_u32NumberOfDataElements, u8 PriorityLevel, u8 Copy_u8SourceSize, 
-                  u8 Copy_u8DestinationSize, u8 Copy_u8SourceIncreament, u8 Copy_u8SourceDestination){
+                  u8 Copy_u8DestinationSize, u8 Copy_u8SourceIncreament, u8 Copy_u8DestinationIncreament){
 
     //1.Set the peripheral register address in the DMA_CPARx register
     DMA_voidSourceAddress(Copy_u8ChannelNumber, Copy_u32SourceAdress);
@@ -107,8 +107,10 @@ void DMA_voidInit(u8 Copy_u8ChannelNumber, u32 *Copy_u32SourceAdress, u32 *Copy_
     //in the DMA_CCRx register
     DMA_voidDataTransferDirection(Copy_u8ChannelNumber);
 
-    DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
-    //DMA_voidEnableSourceIncreament(Copy_u8ChannelNumber);
+    if(Copy_u8DestinationIncreament)
+    	DMA_voidEnableDestinationIncreament(Copy_u8ChannelNumber);
+    if(Copy_u8SourceIncreament)
+    	DMA_voidEnableSourceIncreament(Copy_u8ChannelNumber);
 
     DMA_voidSourceSize(Copy_u8ChannelNumber, Copy_u8SourceSize);
     DMA_voidDestinationSize(Copy_u8ChannelNumber, Copy_u8DestinationSize);
@@ -190,7 +192,7 @@ void DMA1_Channel5_IRQHandler(void){
 
 
 int main(void){
-    RCC_GPIO_NVIC_voidInit();
+	RCC_GPIO_NVIC_USART1_SPI1_voidInit();
     USART_voidInit();    
 
     u32 i=0;
@@ -218,13 +220,13 @@ int main(void){
     //DMA Channel 2 (SPI-RX)
     u8 Copy_u8ChannelNumber2 = 2;
     //u8 array1[Copy_u32NumberOfDataElements];
-    u32 *Copy_u32SourceAdress = array1;
-    u32 *Copy_u32DestinationAdress = SPI_DR_ADDRES;
-    u8 PriorityLevel = DMA_MEDIUM; 
-    u8 Copy_u8SourceSize = DMA_8BITS;
-    u8 Copy_u8DestinationSize = DMA_8BITS;
-    u8 Copy_u8SourceIncreament = 1;
-    u8 Copy_u8SourceDestination = 0;
+    Copy_u32SourceAdress = array1;
+    Copy_u32DestinationAdress = SPI_DR_ADDRES;
+    PriorityLevel = DMA_MEDIUM;
+    Copy_u8SourceSize = DMA_8BITS;
+    Copy_u8DestinationSize = DMA_8BITS;
+    Copy_u8SourceIncreament = 1;
+    Copy_u8SourceDestination = 0;
 
     GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
     DMA_voidInit(Copy_u8ChannelNumber2, Copy_u32SourceAdress, Copy_u32DestinationAdress,

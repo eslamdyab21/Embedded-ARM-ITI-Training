@@ -14,6 +14,7 @@ RM := rm -rf
 -include system/src/cortexm/subdir.mk
 -include system/src/cmsis/subdir.mk
 -include src/USART\ Driver/subdir.mk
+-include src/SPI\ Driver/subdir.mk
 -include src/RCC\ Driver/subdir.mk
 -include src/NVIC\ Driver/subdir.mk
 -include src/GPIO/subdir.mk
