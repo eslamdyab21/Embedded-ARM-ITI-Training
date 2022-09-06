@@ -277,8 +277,8 @@ u8 DMA_u8IsTransferComplete(u8 Copy_u8ChannelNumber){
     */
     if(Copy_u8ChannelNumber == 5)
         return GET_BIT(DMA1_REG->ISR,17);
-    else if(Copy_u8ChannelNumber == 2)
-        return GET_BIT(DMA1_REG->ISR,5);
+    else if(Copy_u8ChannelNumber == 3)
+        return GET_BIT(DMA1_REG->ISR,9);
 }
 
 

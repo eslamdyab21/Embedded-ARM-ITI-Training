@@ -221,8 +221,8 @@ int main(void){
 
 
 
-    /*//DMA Channel 2 (SPI-RX)
-    u8 Copy_u8ChannelNumber2 = 2;
+    //DMA Channel 2 (SPI-RX)
+    u8 Copy_u8ChannelNumber3 = 3;
     //u8 array1[Copy_u32NumberOfDataElements];
     Copy_u32SourceAdress = array1;
     Copy_u32DestinationAdress = SPI_DR_ADDRES;
@@ -233,9 +233,9 @@ int main(void){
     Copy_u8SourceDestination = 0;
 
     GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_LOW);
-    DMA_voidInit(Copy_u8ChannelNumber2, Copy_u32SourceAdress, Copy_u32DestinationAdress,
+    DMA_voidInit(Copy_u8ChannelNumber3, Copy_u32SourceAdress, Copy_u32DestinationAdress,
                   Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize, 
-                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);*/
+                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
 
     /*GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
 	for(i=0;i<100000;i++);
@@ -244,8 +244,8 @@ int main(void){
 
     while (1){
 
-    	SPI_voidTx(0b01010000);
-    	while(!SPI_boolIsTxFrameComplete());
+    	//SPI_voidTx(0b01010000);
+    	//while(!SPI_boolIsTxFrameComplete());
         //GPIO_voidSetPinValue(GPIO_PORTA,1,GPIO_HIGH);
 
 
