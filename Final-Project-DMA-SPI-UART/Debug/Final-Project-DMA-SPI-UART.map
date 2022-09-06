@@ -2367,7 +2367,7 @@ END GROUP
  .debug_frame   0x00000c80       0x30 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-mlock.o)
  .debug_frame   0x00000cb0       0x20 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-msizer.o)
 
-.debug_str      0x00000000    0x5784c
+.debug_str      0x00000000    0x5784a
  *(.debug_str)
  .debug_str     0x00000000     0x7d32 ./system/src/newlib/_exit.o
                                0x7f05 (size before relaxing)
@@ -2401,8 +2401,8 @@ END GROUP
                                0x31e9 (size before relaxing)
  .debug_str     0x00057303      0x3c0 ./src/DMA_program.o
                                0x3204 (size before relaxing)
- .debug_str     0x000576c3      0x189 ./src/main.o
-                               0x3baf (size before relaxing)
+ .debug_str     0x000576c3      0x187 ./src/main.o
+                               0x3bad (size before relaxing)
 
 .debug_loc      0x00000000     0x151a
  *(.debug_loc)

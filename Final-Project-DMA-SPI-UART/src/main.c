@@ -22,7 +22,7 @@
 #define USART_DR_ADDRES             ( u32 *)  (USART_BASE_ADDRESS+0x04)
 
 #define SPI_BASE_ADDRESS 			0x40013000
-#define SPI_DR_ADDRES               ( u32 *)  (USART_BASE_ADDRESS+0x0C)
+#define SPI_DR_ADDRES               ( u32 *)  (SPI_BASE_ADDRESS+0x0C)
 
 
 /*
@@ -213,6 +213,7 @@ int main(void){
     u8 Copy_u8DestinationSize = DMA_8BITS;
     u8 Copy_u8SourceIncreament = 0;
     u8 Copy_u8SourceDestination = 1;
+
 
     GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_LOW);
     DMA_voidInit(Copy_u8ChannelNumber5, Copy_u32SourceAdress, Copy_u32DestinationAdress,
