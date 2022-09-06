@@ -200,6 +200,7 @@ int main(void){
     SPI_voidMasterInit();
 
     u32 i=0;
+    u8 send_one_time = 0;
     u32 Copy_u32NumberOfDataElements = 2;
 
 
@@ -222,7 +223,7 @@ int main(void){
 
 
 
-    //DMA Channel 2 (SPI-RX)
+    //DMA Channel 3 (SPI-RX)
     u8 Copy_u8ChannelNumber3 = 3;
     //u8 array1[Copy_u32NumberOfDataElements];
     Copy_u32SourceAdress = array1;
@@ -256,19 +257,20 @@ int main(void){
         /*USART_voidTx(array1[0]);
         USART_voidTx(array1[1]);*/
 
-        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber5)){
+        if( (DMA_u8IsTransferComplete(Copy_u8ChannelNumber5) ) && ( send_one_time == 0) ){
         	//only begin the spi communication after the uart is done
         	DMA_voidInit(Copy_u8ChannelNumber3, Copy_u32SourceAdress, Copy_u32DestinationAdress,
-        	                  Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize,
-        	                  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
+						  Copy_u32NumberOfDataElements, PriorityLevel, Copy_u8SourceSize,
+						  Copy_u8DestinationSize, Copy_u8SourceIncreament, Copy_u8SourceDestination);
 
-        	GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
-        	USART_voidTx(array1[0]);
-        	USART_voidTx(array1[1]);
+        	//GPIO_voidSetPinValue(GPIO_PORTA,2,GPIO_HIGH);
+        	//USART_voidTx(array1[0]);
+        	//USART_voidTx(array1[1]);
+        	send_one_time = 1;
 
         }
-        /*if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber2))
-        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);*/
+        if(DMA_u8IsTransferComplete(Copy_u8ChannelNumber3))
+        	GPIO_voidSetPinValue(GPIO_PORTA,3,GPIO_HIGH);
 
 
 
