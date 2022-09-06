@@ -1376,9 +1376,13 @@ Discarded input sections
  .bss           0x00000000        0x0 ./src/SPI Driver/SPI_program.o
  .text.SPI_voidDisableSPI
                 0x00000000       0x10 ./src/SPI Driver/SPI_program.o
+ .text.SPI_voidTx
+                0x00000000        0xc ./src/SPI Driver/SPI_program.o
  .text.SPI_u16Rx
                 0x00000000        0xc ./src/SPI Driver/SPI_program.o
  .text.SPI_voidTxeIntEnable
+                0x00000000       0x10 ./src/SPI Driver/SPI_program.o
+ .text.SPI_boolIsTxFrameComplete
                 0x00000000       0x10 ./src/SPI Driver/SPI_program.o
  .text.SPI_voidRxeInt
                 0x00000000       0x10 ./src/SPI Driver/SPI_program.o
@@ -1825,98 +1829,92 @@ END GROUP
  .text.SPI_voidEnableSPI
                 0x080008a8       0x10 ./src/SPI Driver/SPI_program.o
                 0x080008a8                SPI_voidEnableSPI
- .text.SPI_voidTx
-                0x080008b8        0xc ./src/SPI Driver/SPI_program.o
-                0x080008b8                SPI_voidTx
  .text.SPI_voidTxeIntDisable
-                0x080008c4       0x10 ./src/SPI Driver/SPI_program.o
-                0x080008c4                SPI_voidTxeIntDisable
- .text.SPI_boolIsTxFrameComplete
-                0x080008d4       0x10 ./src/SPI Driver/SPI_program.o
-                0x080008d4                SPI_boolIsTxFrameComplete
+                0x080008b8       0x10 ./src/SPI Driver/SPI_program.o
+                0x080008b8                SPI_voidTxeIntDisable
  .text.SPI_voidCommunicationProtocol
-                0x080008e4       0x28 ./src/SPI Driver/SPI_program.o
-                0x080008e4                SPI_voidCommunicationProtocol
+                0x080008c8       0x28 ./src/SPI Driver/SPI_program.o
+                0x080008c8                SPI_voidCommunicationProtocol
  .text.SPI_voidTxDMAEnable
-                0x0800090c       0x10 ./src/SPI Driver/SPI_program.o
-                0x0800090c                SPI_voidTxDMAEnable
+                0x080008f0       0x10 ./src/SPI Driver/SPI_program.o
+                0x080008f0                SPI_voidTxDMAEnable
  .text.SPI1_IRQHandler
-                0x0800091c        0x8 ./src/SPI Driver/SPI_program.o
-                0x0800091c                SPI1_IRQHandler
+                0x08000900        0x8 ./src/SPI Driver/SPI_program.o
+                0x08000900                SPI1_IRQHandler
  .text.RCC_voidInit
-                0x08000924       0x7c ./src/RCC Driver/RCC_program.o
-                0x08000924                RCC_voidInit
+                0x08000908       0x7c ./src/RCC Driver/RCC_program.o
+                0x08000908                RCC_voidInit
  .text.RCC_voidPeripheralClockEnable
-                0x080009a0       0x4c ./src/RCC Driver/RCC_program.o
-                0x080009a0                RCC_voidPeripheralClockEnable
+                0x08000984       0x4c ./src/RCC Driver/RCC_program.o
+                0x08000984                RCC_voidPeripheralClockEnable
  .text.NVIC_voidInit
-                0x080009ec       0x10 ./src/NVIC Driver/NVIC_program.o
-                0x080009ec                NVIC_voidInit
+                0x080009d0       0x10 ./src/NVIC Driver/NVIC_program.o
+                0x080009d0                NVIC_voidInit
  .text.NVIC_voidEnableInterrupt
-                0x080009fc       0x2c ./src/NVIC Driver/NVIC_program.o
-                0x080009fc                NVIC_voidEnableInterrupt
+                0x080009e0       0x2c ./src/NVIC Driver/NVIC_program.o
+                0x080009e0                NVIC_voidEnableInterrupt
  .text.NVIC_voidDisableInterrupt
-                0x08000a28       0x2c ./src/NVIC Driver/NVIC_program.o
-                0x08000a28                NVIC_voidDisableInterrupt
+                0x08000a0c       0x2c ./src/NVIC Driver/NVIC_program.o
+                0x08000a0c                NVIC_voidDisableInterrupt
  .text.GPIO_voidSetPinMode
-                0x08000a54       0xe4 ./src/GPIO/GPIO_program.o
-                0x08000a54                GPIO_voidSetPinMode
+                0x08000a38       0xe4 ./src/GPIO/GPIO_program.o
+                0x08000a38                GPIO_voidSetPinMode
  .text.GPIO_voidSetPinValue
-                0x08000b38       0x68 ./src/GPIO/GPIO_program.o
-                0x08000b38                GPIO_voidSetPinValue
+                0x08000b1c       0x68 ./src/GPIO/GPIO_program.o
+                0x08000b1c                GPIO_voidSetPinValue
  .text.DMA_voidSourceAddress
-                0x08000ba0       0x14 ./src/DMA_program.o
-                0x08000ba0                DMA_voidSourceAddress
+                0x08000b84       0x14 ./src/DMA_program.o
+                0x08000b84                DMA_voidSourceAddress
  .text.DMA_voidSourceSize
-                0x08000bb4       0x80 ./src/DMA_program.o
-                0x08000bb4                DMA_voidSourceSize
+                0x08000b98       0x80 ./src/DMA_program.o
+                0x08000b98                DMA_voidSourceSize
  .text.DMA_voidDestinationAddress
-                0x08000c34       0x14 ./src/DMA_program.o
-                0x08000c34                DMA_voidDestinationAddress
+                0x08000c18       0x14 ./src/DMA_program.o
+                0x08000c18                DMA_voidDestinationAddress
  .text.DMA_voidDestinationSize
-                0x08000c48       0x80 ./src/DMA_program.o
-                0x08000c48                DMA_voidDestinationSize
+                0x08000c2c       0x80 ./src/DMA_program.o
+                0x08000c2c                DMA_voidDestinationSize
  .text.DMA_voidNumberOfDataElements
-                0x08000cc8       0x14 ./src/DMA_program.o
-                0x08000cc8                DMA_voidNumberOfDataElements
+                0x08000cac       0x14 ./src/DMA_program.o
+                0x08000cac                DMA_voidNumberOfDataElements
  .text.DMA_voidChannelPriorityLevel
-                0x08000cdc       0xa4 ./src/DMA_program.o
-                0x08000cdc                DMA_voidChannelPriorityLevel
+                0x08000cc0       0xa4 ./src/DMA_program.o
+                0x08000cc0                DMA_voidChannelPriorityLevel
  .text.DMA_voidEnableSourceIncreament
-                0x08000d80       0x24 ./src/DMA_program.o
-                0x08000d80                DMA_voidEnableSourceIncreament
+                0x08000d64       0x24 ./src/DMA_program.o
+                0x08000d64                DMA_voidEnableSourceIncreament
  .text.DMA_voidEnableDestinationIncreament
-                0x08000da4       0x24 ./src/DMA_program.o
-                0x08000da4                DMA_voidEnableDestinationIncreament
+                0x08000d88       0x24 ./src/DMA_program.o
+                0x08000d88                DMA_voidEnableDestinationIncreament
  .text.DMA_u8IsTransferComplete
-                0x08000dc8       0x24 ./src/DMA_program.o
-                0x08000dc8                DMA_u8IsTransferComplete
+                0x08000dac       0x24 ./src/DMA_program.o
+                0x08000dac                DMA_u8IsTransferComplete
  .text.DMA_voidEnableTransferCompleteInterrupt
-                0x08000dec       0x24 ./src/DMA_program.o
-                0x08000dec                DMA_voidEnableTransferCompleteInterrupt
+                0x08000dd0       0x24 ./src/DMA_program.o
+                0x08000dd0                DMA_voidEnableTransferCompleteInterrupt
  .text.DMA_voidEnableChannel_x
-                0x08000e10       0x24 ./src/DMA_program.o
-                0x08000e10                DMA_voidEnableChannel_x
+                0x08000df4       0x24 ./src/DMA_program.o
+                0x08000df4                DMA_voidEnableChannel_x
  .text.DMA_voidDataTransferDirection
-                0x08000e34       0x24 ./src/DMA_program.o
-                0x08000e34                DMA_voidDataTransferDirection
+                0x08000e18       0x24 ./src/DMA_program.o
+                0x08000e18                DMA_voidDataTransferDirection
  .text.DMA_voidClearAllFlagsChanel1
-                0x08000e58        0xc ./src/DMA_program.o
-                0x08000e58                DMA_voidClearAllFlagsChanel1
+                0x08000e3c        0xc ./src/DMA_program.o
+                0x08000e3c                DMA_voidClearAllFlagsChanel1
  .text.SPI_voidMasterInit
-                0x08000e64       0x28 ./src/main.o
-                0x08000e64                SPI_voidMasterInit
+                0x08000e48       0x28 ./src/main.o
+                0x08000e48                SPI_voidMasterInit
  .text.DMA_voidInit
-                0x08000e8c       0x6e ./src/main.o
-                0x08000e8c                DMA_voidInit
+                0x08000e70       0x6e ./src/main.o
+                0x08000e70                DMA_voidInit
  .text.RCC_GPIO_NVIC_USART1_SPI1_voidInit
-                0x08000efa       0x96 ./src/main.o
-                0x08000efa                RCC_GPIO_NVIC_USART1_SPI1_voidInit
+                0x08000ede       0x96 ./src/main.o
+                0x08000ede                RCC_GPIO_NVIC_USART1_SPI1_voidInit
  .text.DMA1_Channel5_IRQHandler
-                0x08000f90       0x18 ./src/main.o
-                0x08000f90                DMA1_Channel5_IRQHandler
- .text.main     0x08000fa8       0x9c ./src/main.o
-                0x08000fa8                main
+                0x08000f74       0x18 ./src/main.o
+                0x08000f74                DMA1_Channel5_IRQHandler
+ .text.main     0x08000f8c       0xb8 ./src/main.o
+                0x08000f8c                main
  .text.__errno  0x08001044        0xc c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-errno.o)
                 0x08001044                __errno
  .text._vsnprintf_r
@@ -2276,7 +2274,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x61b9
+.debug_info     0x00000000     0x6209
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x956 ./system/src/newlib/_exit.o
  .debug_info    0x00000956      0x942 ./system/src/newlib/_sbrk.o
@@ -2294,9 +2292,9 @@ END GROUP
  .debug_info    0x00005079      0x187 ./src/NVIC Driver/NVIC_program.o
  .debug_info    0x00005200      0x197 ./src/GPIO/GPIO_program.o
  .debug_info    0x00005397      0x422 ./src/DMA_program.o
- .debug_info    0x000057b9      0xa00 ./src/main.o
+ .debug_info    0x000057b9      0xa50 ./src/main.o
 
-.debug_abbrev   0x00000000     0x1972
+.debug_abbrev   0x00000000     0x1963
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x1f3 ./system/src/newlib/_exit.o
  .debug_abbrev  0x000001f3      0x1fc ./system/src/newlib/_sbrk.o
@@ -2314,9 +2312,9 @@ END GROUP
  .debug_abbrev  0x0000153e       0xb5 ./src/NVIC Driver/NVIC_program.o
  .debug_abbrev  0x000015f3       0xf4 ./src/GPIO/GPIO_program.o
  .debug_abbrev  0x000016e7      0x141 ./src/DMA_program.o
- .debug_abbrev  0x00001828      0x14a ./src/main.o
+ .debug_abbrev  0x00001828      0x13b ./src/main.o
 
-.debug_line     0x00000000     0x3bd1
+.debug_line     0x00000000     0x3bd2
  *(.debug_line)
  .debug_line    0x00000000      0x477 ./system/src/newlib/_exit.o
  .debug_line    0x00000477      0x42b ./system/src/newlib/_sbrk.o
@@ -2333,10 +2331,10 @@ END GROUP
  .debug_line    0x00003478       0xfb ./src/RCC Driver/RCC_program.o
  .debug_line    0x00003573      0x146 ./src/NVIC Driver/NVIC_program.o
  .debug_line    0x000036b9      0x110 ./src/GPIO/GPIO_program.o
- .debug_line    0x000037c9      0x219 ./src/DMA_program.o
- .debug_line    0x000039e2      0x1ef ./src/main.o
+ .debug_line    0x000037c9      0x21a ./src/DMA_program.o
+ .debug_line    0x000039e3      0x1ef ./src/main.o
 
-.debug_frame    0x00000000      0xccc
+.debug_frame    0x00000000      0xcd0
  *(.debug_frame)
  .debug_frame   0x00000000       0x38 ./system/src/newlib/_exit.o
  .debug_frame   0x00000038       0x28 ./system/src/newlib/_sbrk.o
@@ -2354,22 +2352,22 @@ END GROUP
  .debug_frame   0x00000690       0x80 ./src/NVIC Driver/NVIC_program.o
  .debug_frame   0x00000710       0x54 ./src/GPIO/GPIO_program.o
  .debug_frame   0x00000764      0x1e8 ./src/DMA_program.o
- .debug_frame   0x0000094c       0x90 ./src/main.o
- .debug_frame   0x000009dc       0x20 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x000009fc       0x4c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-vsnprintf.o)
- .debug_frame   0x00000a48       0x90 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-svfprintf.o)
- .debug_frame   0x00000ad8       0x60 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
- .debug_frame   0x00000b38       0x28 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-memchr-stub.o)
- .debug_frame   0x00000b60       0x28 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00000b88       0x28 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-memmove.o)
- .debug_frame   0x00000bb0       0x38 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x00000be8       0x2c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x00000c14       0x3c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-reallocr.o)
- .debug_frame   0x00000c50       0x2c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x00000c7c       0x30 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-mlock.o)
- .debug_frame   0x00000cac       0x20 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-msizer.o)
+ .debug_frame   0x0000094c       0x94 ./src/main.o
+ .debug_frame   0x000009e0       0x20 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00000a00       0x4c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-vsnprintf.o)
+ .debug_frame   0x00000a4c       0x90 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-svfprintf.o)
+ .debug_frame   0x00000adc       0x60 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x00000b3c       0x28 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-memchr-stub.o)
+ .debug_frame   0x00000b64       0x28 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00000b8c       0x28 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-memmove.o)
+ .debug_frame   0x00000bb4       0x38 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00000bec       0x2c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00000c18       0x3c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x00000c54       0x2c c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x00000c80       0x30 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-mlock.o)
+ .debug_frame   0x00000cb0       0x20 c:/users/dyab/downloads/drive-download-20220821t124058z-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7-m\libg_nano.a(lib_a-nano-msizer.o)
 
-.debug_str      0x00000000    0x57836
+.debug_str      0x00000000    0x5784c
  *(.debug_str)
  .debug_str     0x00000000     0x7d32 ./system/src/newlib/_exit.o
                                0x7f05 (size before relaxing)
@@ -2403,10 +2401,10 @@ END GROUP
                                0x31e9 (size before relaxing)
  .debug_str     0x00057303      0x3c0 ./src/DMA_program.o
                                0x3204 (size before relaxing)
- .debug_str     0x000576c3      0x173 ./src/main.o
-                               0x3bbe (size before relaxing)
+ .debug_str     0x000576c3      0x189 ./src/main.o
+                               0x3baf (size before relaxing)
 
-.debug_loc      0x00000000     0x1475
+.debug_loc      0x00000000     0x151a
  *(.debug_loc)
  .debug_loc     0x00000000       0x85 ./system/src/newlib/_sbrk.o
  .debug_loc     0x00000085      0x1a9 ./system/src/newlib/_startup.o
@@ -2420,7 +2418,7 @@ END GROUP
  .debug_loc     0x0000098f      0x1ca ./src/NVIC Driver/NVIC_program.o
  .debug_loc     0x00000b59      0x2ba ./src/GPIO/GPIO_program.o
  .debug_loc     0x00000e13      0x4a9 ./src/DMA_program.o
- .debug_loc     0x000012bc      0x1b9 ./src/main.o
+ .debug_loc     0x000012bc      0x25e ./src/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
